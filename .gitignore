@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Cached raw data — large, reproducible from MANIFEST. Keep MANIFEST.json.
+cache/*
+!cache/MANIFEST.json
+
+# Notebook outputs strip locally; final artifacts live in analyses/*/out/
+# and SHOULD be committed (they are the published versions).
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secrets
+.env
+.env.local
+secrets/

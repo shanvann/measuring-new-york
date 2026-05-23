@@ -1,0 +1,45 @@
+{
+  "frozen_at": "2026-06-01",
+  "note": "Pinned vintages for the Measuring New York series. All chapters use these unless a chapter's worklog entry explicitly justifies a different vintage. See plan §5.3.",
+  "vintages": {
+    "acs": {
+      "release": "2019-2023 5-year",
+      "geographies": ["tract", "cd-approximation-via-pumas", "borough"],
+      "source": "https://www.census.gov/data/developers/data-sets/acs-5year.html",
+      "notes": "CDs are not a Census geography; approximated via PUMA crosswalks for borough/CD-level summaries."
+    },
+    "nyc_open_data_snapshot": {
+      "date": "2026-06-01",
+      "note": "All NYC Open Data (Socrata) endpoints queried with a SoQL date filter <= '2026-06-01T00:00:00.000' to lock the snapshot."
+    },
+    "mta_gtfs": {
+      "date": "2026-06-01",
+      "source": "https://new.mta.info/developers — subway + bus GTFS bundles",
+      "note": "Save the downloaded zips under cache/mta_gtfs/<bundle>-2026-06-01.zip"
+    },
+    "osm_overpass": {
+      "date": "2026-06-01",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "bbox": "NYC five-borough bounding box: -74.2591,40.4774,-73.7004,40.9176",
+      "note": "Cache raw Overpass JSON under cache/osm/<query-name>-2026-06-01.json"
+    },
+    "geographies": {
+      "community_districts_59": {
+        "source": "https://data.cityofnewyork.us/api/geospatial/5crt-au7u?method=export&format=GeoJSON",
+        "note": "NYC Open Data dataset 5crt-au7u: DCP Community Districts (current version 26a, 59 CDs + 12 JIAs). BoroCD encodes borough in first digit + CD number in last two."
+      },
+      "nta_2020": {
+        "source": "https://data.cityofnewyork.us/api/geospatial/9nt8-h7nd?method=export&format=GeoJSON",
+        "note": "NYC Open Data: 2020 Neighborhood Tabulation Areas (NTAs)"
+      },
+      "census_tracts_2020": {
+        "source": "https://data.cityofnewyork.us/api/geospatial/63ge-mke6?method=export&format=GeoJSON",
+        "note": "NYC Open Data: 2020 Census Tracts"
+      },
+      "modzcta": {
+        "source": "https://data.cityofnewyork.us/api/geospatial/pri4-ifjk?method=export&format=GeoJSON",
+        "note": "NYC Open Data: Modified ZIP Code Tabulation Areas"
+      }
+    }
+  }
+}

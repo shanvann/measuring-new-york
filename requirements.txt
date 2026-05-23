@@ -1,0 +1,41 @@
+# Measuring New York — analysis stack.
+#
+# Pinned for Python 3.9.x (system python on macOS). When migrating to 3.12,
+# re-resolve from scratch and consider swapping `censusdata` -> `cenpy`.
+#
+# Lower bounds chosen to match what's available on PyPI for 3.9; upper bounds
+# left open so dependabot-style refreshes don't break the lockstep, but
+# real production use should pip freeze into a requirements-lock.txt.
+
+# core data
+pandas>=2.0,<2.3
+numpy>=1.24,<2.1
+pyarrow>=14
+duckdb>=0.10
+
+# spatial
+geopandas>=0.14,<1.1
+shapely>=2.0
+pyproj>=3.6
+fiona>=1.9
+
+# fetchers
+requests>=2.31
+sodapy>=2.2          # NYC Open Data (Socrata)
+censusdata>=1.15     # ACS pull (works on 3.9; plan upgrade path to cenpy under 3.12)
+gtfs-kit>=10         # MTA GTFS parsing
+osmnx>=1.9           # OSM walking networks + POIs (uses Overpass under the hood)
+
+# viz (static only; interactive maps stay in the website repo per plan §9)
+matplotlib>=3.8
+contextily>=1.5
+
+# notebook / dev
+jupyter>=1.0
+jupytext>=1.16
+python-dotenv>=1.0
+tqdm>=4.66
+
+# lint (optional, used by `make lint`)
+ruff>=0.4
+black>=24.3

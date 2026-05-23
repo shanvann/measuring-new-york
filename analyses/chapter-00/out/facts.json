@@ -1,0 +1,61 @@
+{
+  "snapshot": "2026-05-01",
+  "lookback_days": 30,
+  "total_311_calls": 296426,
+  "cd_count": 59,
+  "calls_per_day": 9880.9,
+  "top_5_cds_by_call_volume": [
+    {
+      "boro_cd": "112",
+      "name": "MN 12 \u2013 Washington Heights / Inwood",
+      "calls": 8716
+    },
+    {
+      "boro_cd": "401",
+      "name": "QN 1 \u2013 Astoria",
+      "calls": 8092
+    },
+    {
+      "boro_cd": "412",
+      "name": "412",
+      "calls": 7575
+    },
+    {
+      "boro_cd": "301",
+      "name": "BK 1 \u2013 Williamsburg / Greenpoint",
+      "calls": 7553
+    },
+    {
+      "boro_cd": "212",
+      "name": "BX 12 \u2013 Wakefield / Williamsbridge",
+      "calls": 7427
+    }
+  ],
+  "bottom_5_cds_by_call_volume": [
+    {
+      "boro_cd": "202",
+      "name": "202",
+      "calls": 2172
+    },
+    {
+      "boro_cd": "313",
+      "name": "313",
+      "calls": 2693
+    },
+    {
+      "boro_cd": "411",
+      "name": "411",
+      "calls": 2869
+    },
+    {
+      "boro_cd": "316",
+      "name": "316",
+      "calls": 3005
+    },
+    {
+      "boro_cd": "101",
+      "name": "MN 1 \u2013 Financial District / Tribeca",
+      "calls": 3107
+    }
+  ]
+}

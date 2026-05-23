@@ -1,0 +1,935 @@
+{
+  "entries": {
+    "geographies/census_tracts_2020.geojson": {
+      "bytes": 7766393,
+      "fetched_at": "2026-05-23T12:33:02+00:00",
+      "sha256": "f675729db034cbb77e6d77005a1572ce9d104247b72512d5b3d94646c4413a38",
+      "source_url": "https://data.cityofnewyork.us/api/geospatial/63ge-mke6?method=export&format=GeoJSON"
+    },
+    "geographies/community_districts_59.geojson": {
+      "bytes": 3792574,
+      "fetched_at": "2026-05-23T12:32:59+00:00",
+      "sha256": "37dfe2f243bea1e5643ceea9e517851ba16fd5d9bd48f8351778c98f51cc79fe",
+      "source_url": "https://data.cityofnewyork.us/api/geospatial/5crt-au7u?method=export&format=GeoJSON"
+    },
+    "geographies/modzcta.geojson": {
+      "bytes": 3150282,
+      "fetched_at": "2026-05-23T12:33:03+00:00",
+      "sha256": "281a1d375e86da650b5d4e2bd332b231267d73c996c60673ad968e162d758411",
+      "source_url": "https://data.cityofnewyork.us/api/geospatial/pri4-ifjk?method=export&format=GeoJSON"
+    },
+    "geographies/nta_2020.geojson": {
+      "bytes": 4589872,
+      "fetched_at": "2026-05-23T12:33:00+00:00",
+      "sha256": "bb5f1759872c8fa7ed18f7430c971b3b238a68927e0046d06d1ddb4ce90fc26b",
+      "source_url": "https://data.cityofnewyork.us/api/geospatial/9nt8-h7nd?method=export&format=GeoJSON"
+    },
+    "three_one_one/cd-101-2025-12-01-last1d.json": {
+      "bytes": 15912,
+      "fetched_at": "2026-05-23T12:36:37+00:00",
+      "sha256": "d7bd302898ac1b96b8997554804d2a05ddad750a841ca014a6743025fadf40b6",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-101-2026-05-01-last30d.json": {
+      "bytes": 1076642,
+      "fetched_at": "2026-05-23T12:54:07+00:00",
+      "sha256": "fdcc8a144220925ff4e76100496e9fa5c9e1d67c0cdd41d296aa6a7b36687a7c",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-102-2025-12-01-last1d.json": {
+      "bytes": 22458,
+      "fetched_at": "2026-05-23T12:36:37+00:00",
+      "sha256": "69f22fbb566cee358c073d5aadfc5df4bd00e367c49728542bb4495003f34c89",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-102-2026-05-01-last30d.json": {
+      "bytes": 1383399,
+      "fetched_at": "2026-05-23T12:54:08+00:00",
+      "sha256": "b29fd4433a8361177db0e949c89b59e9c348f141aa02fe5d75c9395ec002a48e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-103-2025-12-01-last1d.json": {
+      "bytes": 56246,
+      "fetched_at": "2026-05-23T12:36:38+00:00",
+      "sha256": "85a930683382ec0142584de2592d25e868825fd74726f402911308f224162dec",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-103-2026-05-01-last30d.json": {
+      "bytes": 1885552,
+      "fetched_at": "2026-05-23T12:54:09+00:00",
+      "sha256": "21da0151fd7fcd842a795f5a9755f89b88eec475c5972a58f6da4be31cfffc25",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-104-2025-12-01-last1d.json": {
+      "bytes": 43563,
+      "fetched_at": "2026-05-23T12:36:38+00:00",
+      "sha256": "4e8a743ba9df45358239477df4dc7ee87814c73efb3e9454899464a3b2af2603",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-104-2026-05-01-last30d.json": {
+      "bytes": 1825079,
+      "fetched_at": "2026-05-23T12:54:10+00:00",
+      "sha256": "bc210de78363029469cdd5cc82842c12fb87d5d866ffc4389410037765bfc94e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-105-2025-12-01-last1d.json": {
+      "bytes": 31030,
+      "fetched_at": "2026-05-23T12:36:39+00:00",
+      "sha256": "24f35909d134ec8aac36db32491a7d19557321a28ab353a1ade6dbeeb2a6126e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-105-2026-05-01-last30d.json": {
+      "bytes": 1791273,
+      "fetched_at": "2026-05-23T12:54:11+00:00",
+      "sha256": "3359696afffb7ff5c9c1a25c52c3ea8ec5f6c45bc859c40ed8f79abae579a929",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-106-2025-12-01-last1d.json": {
+      "bytes": 32576,
+      "fetched_at": "2026-05-23T12:36:39+00:00",
+      "sha256": "63ddd59ff77bb77d3fa26f1393a2ba9e717b0116010976480ba4ee6a6c132967",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-106-2026-05-01-last30d.json": {
+      "bytes": 1136028,
+      "fetched_at": "2026-05-23T12:54:12+00:00",
+      "sha256": "aca186982b75efbed87a006c5c02af627b357477a57b4bf044e6a2ed19fc34a1",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-107-2025-12-01-last1d.json": {
+      "bytes": 49985,
+      "fetched_at": "2026-05-23T12:36:40+00:00",
+      "sha256": "7bc035fdd56444a702ed17a5154c7b78253b92f66736473ebc43f6601483c473",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-107-2026-05-01-last30d.json": {
+      "bytes": 1951740,
+      "fetched_at": "2026-05-23T12:54:14+00:00",
+      "sha256": "77d040b2918466689a7f6c5dca2958f0f8055a6f8c62210faed148813f2b1214",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-108-2025-12-01-last1d.json": {
+      "bytes": 39098,
+      "fetched_at": "2026-05-23T12:36:41+00:00",
+      "sha256": "fb51f6c432a2987305a6396b6fbe5883c2f1d4cc0c75a868209d5ca639347424",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-108-2026-05-01-last30d.json": {
+      "bytes": 1558038,
+      "fetched_at": "2026-05-23T12:54:15+00:00",
+      "sha256": "d07844622d098c5bfacdd5130b87a92d27ab867659488045e0a2e0f038a4c507",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-109-2025-12-01-last1d.json": {
+      "bytes": 53091,
+      "fetched_at": "2026-05-23T12:36:41+00:00",
+      "sha256": "f5be7f4825661669e074c1871003e6ca0a767ccd84eb42c1c946b896e7047dba",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-109-2026-05-01-last30d.json": {
+      "bytes": 1463184,
+      "fetched_at": "2026-05-23T12:54:16+00:00",
+      "sha256": "6a65dc47e7574d9264f96775ae3077b1e8afb28bde14708bf1cf0da2ad18bb8d",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-110-2025-12-01-last1d.json": {
+      "bytes": 73318,
+      "fetched_at": "2026-05-23T12:36:42+00:00",
+      "sha256": "6748467e570b14a4ccfc3fde141f11c8087bda43f18ee0b12af3a1d91051c055",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-110-2026-05-01-last30d.json": {
+      "bytes": 2149359,
+      "fetched_at": "2026-05-23T12:54:17+00:00",
+      "sha256": "83ee2f8ddbb67b5a6b91c8edc8a3b37b0a65c1982887cf63bc6e7de51273679b",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-111-2025-12-01-last1d.json": {
+      "bytes": 38832,
+      "fetched_at": "2026-05-23T12:36:43+00:00",
+      "sha256": "24f5929460614a2cdcb9b75a5d30830d0059ddd2966f435247ee791317c4ce02",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-111-2026-05-01-last30d.json": {
+      "bytes": 1454257,
+      "fetched_at": "2026-05-23T12:54:18+00:00",
+      "sha256": "b381378ebebe35b22ba417c4cdcb3d25a6c0e3ad3b722f78099b53dd66be2302",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-112-2025-12-01-last1d.json": {
+      "bytes": 108104,
+      "fetched_at": "2026-05-23T12:36:43+00:00",
+      "sha256": "d8269929dac3ac8238dfb4e1c0c39bcce67e54bc6c4cad9284fef680e385cd94",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-112-2026-05-01-last30d.json": {
+      "bytes": 3018704,
+      "fetched_at": "2026-05-23T12:54:20+00:00",
+      "sha256": "9e6b0115db63b7ec1623cea24cb686a579dbc4e0965f0091f04e2ac6ffb65eeb",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-113-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:44+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-113-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:20+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-114-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:44+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-114-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:20+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-115-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:44+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-115-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:21+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-116-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:44+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-116-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:21+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-117-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:45+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-117-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:21+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-118-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:45+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-118-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:21+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+MANHATTAN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-201-2025-12-01-last1d.json": {
+      "bytes": 42999,
+      "fetched_at": "2026-05-23T12:36:46+00:00",
+      "sha256": "05646f390cecec57eb5228298043fe6ecf6f3074adfc99210c3d2836a1232c83",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-201-2026-05-01-last30d.json": {
+      "bytes": 1272088,
+      "fetched_at": "2026-05-23T12:54:23+00:00",
+      "sha256": "9866a6a0ced07bbcd9e4e9661deb4d3dee7ddc69fd2074411ce62cf6e63d69ca",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-202-2025-12-01-last1d.json": {
+      "bytes": 20989,
+      "fetched_at": "2026-05-23T12:36:47+00:00",
+      "sha256": "4d726b971d414df75b3b9547d64adac69ea0c57aa2c46b83c09e221e0aa415e5",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-202-2026-05-01-last30d.json": {
+      "bytes": 725431,
+      "fetched_at": "2026-05-23T12:54:23+00:00",
+      "sha256": "bbd7a551be2f3471f10c0d344fd763dcca11cc0e956c96fd9179554d884db804",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-203-2025-12-01-last1d.json": {
+      "bytes": 43097,
+      "fetched_at": "2026-05-23T12:36:47+00:00",
+      "sha256": "97930b37fcd128cd21ad55c79d040f8ef243b1f80b7c4bd3620d17ab1caf956c",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-203-2026-05-01-last30d.json": {
+      "bytes": 1574360,
+      "fetched_at": "2026-05-23T12:54:24+00:00",
+      "sha256": "9ee416dd34ff623c8760525f7680ada6a4f4a717e89f961e1821f432af52ba2f",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-204-2025-12-01-last1d.json": {
+      "bytes": 78834,
+      "fetched_at": "2026-05-23T12:36:49+00:00",
+      "sha256": "f30799167f650c7881706080ad3ebade0bc3a2b50c72073a9b2bb75405683368",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-204-2026-05-01-last30d.json": {
+      "bytes": 2460165,
+      "fetched_at": "2026-05-23T12:54:25+00:00",
+      "sha256": "5d3426ae70334e4e3052ef1f503c864e358bdf2cb2a3cfef6dbeac1524855e5b",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-205-2025-12-01-last1d.json": {
+      "bytes": 51884,
+      "fetched_at": "2026-05-23T12:36:50+00:00",
+      "sha256": "0f2f69cb8a71559f092a8bf9d3589ffe1c589ea0d3159529f0dcc316cc12123e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-205-2026-05-01-last30d.json": {
+      "bytes": 2210426,
+      "fetched_at": "2026-05-23T12:54:29+00:00",
+      "sha256": "87bf5ca4bd3240337163f6a39a82c9ffa828dd1fb3f5830aee841f11d528e608",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-206-2025-12-01-last1d.json": {
+      "bytes": 52167,
+      "fetched_at": "2026-05-23T12:36:50+00:00",
+      "sha256": "90eaff5fe536b3ee01331c8213a7e46583e7e074aa2ba0ace41b10c1fb1ddd81",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-206-2026-05-01-last30d.json": {
+      "bytes": 1367495,
+      "fetched_at": "2026-05-23T12:54:30+00:00",
+      "sha256": "6d959c12f5b384db1c4b36c84e5d89c3634ac8fa0bfe42d68c225eebed8f5c37",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-207-2025-12-01-last1d.json": {
+      "bytes": 63094,
+      "fetched_at": "2026-05-23T12:36:52+00:00",
+      "sha256": "ce380641d96bad2b47b2af9dddbcce6d5cc7a18980f42ac84d51ff91442b80aa",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-207-2026-05-01-last30d.json": {
+      "bytes": 2057016,
+      "fetched_at": "2026-05-23T12:54:32+00:00",
+      "sha256": "9260803119ad124f9f88e32d4f7340d79a51d8edaa890cc43e57d7a6099f74f7",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-208-2025-12-01-last1d.json": {
+      "bytes": 57163,
+      "fetched_at": "2026-05-23T12:36:52+00:00",
+      "sha256": "20afd35622c2dd1131d9844ba95aeb840528b07b3800c2f3bacb2e5bff588e43",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-208-2026-05-01-last30d.json": {
+      "bytes": 1507223,
+      "fetched_at": "2026-05-23T12:54:33+00:00",
+      "sha256": "7a35046a9e08dcf7da52a54d37b2735c23e785135f19c4a3b6487c779a28dd46",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-209-2025-12-01-last1d.json": {
+      "bytes": 57628,
+      "fetched_at": "2026-05-23T12:36:54+00:00",
+      "sha256": "6b40c9b298b601078e49a1c1140bd11660bd3aecfd3256fd5c5f2f2fed78c4e2",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-209-2026-05-01-last30d.json": {
+      "bytes": 1700601,
+      "fetched_at": "2026-05-23T12:54:34+00:00",
+      "sha256": "c12c26bc737478f3b6d12df3c73a4ba3508ddad29f879e34b4dbcc20125bb426",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-210-2025-12-01-last1d.json": {
+      "bytes": 29489,
+      "fetched_at": "2026-05-23T12:36:54+00:00",
+      "sha256": "5c2964f447cb3af7e4d539a43951fb70b4f4d4510f3c7195d786984349d695c2",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-210-2026-05-01-last30d.json": {
+      "bytes": 1209944,
+      "fetched_at": "2026-05-23T12:54:35+00:00",
+      "sha256": "36437e6ed9f37abf0594028b9f7e211312288ff2eab0f6a363370ba426edfd27",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-211-2025-12-01-last1d.json": {
+      "bytes": 36327,
+      "fetched_at": "2026-05-23T12:36:55+00:00",
+      "sha256": "9f1a9645eab88fe6eb478861d12e09cabeb9752f07180f424efcc83f53fbfe22",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-211-2026-05-01-last30d.json": {
+      "bytes": 1400384,
+      "fetched_at": "2026-05-23T12:54:36+00:00",
+      "sha256": "4576dfa6f1fb58a579fea928726a817535998150c4d45dca3a62f04223522c3b",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-212-2025-12-01-last1d.json": {
+      "bytes": 817332,
+      "fetched_at": "2026-05-23T12:36:57+00:00",
+      "sha256": "21d5fb231bb26d90ba444bc85581a7fc4751b6a2ea1c1b5a49a006781062648e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-212-2026-05-01-last30d.json": {
+      "bytes": 2511074,
+      "fetched_at": "2026-05-23T12:54:37+00:00",
+      "sha256": "54791cea9fbc61ca83139cdb211effc493a0b0b83c6a9d5f9b8f1499c01cbef1",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-213-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:57+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-213-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:37+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-214-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:57+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-214-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:38+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-215-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:57+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-215-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:38+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-216-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:58+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-216-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:38+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-217-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:58+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-217-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:39+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-218-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:36:59+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-218-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:54:39+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+BRONX%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-301-2025-12-01-last1d.json": {
+      "bytes": 53303,
+      "fetched_at": "2026-05-23T12:36:03+00:00",
+      "sha256": "ff19f0febebc337f91fee0eb59703339bdf1ea5e41f16461450ddc3092cff25f",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-301-2026-05-01-last30d.json": {
+      "bytes": 2608225,
+      "fetched_at": "2026-05-23T12:54:40+00:00",
+      "sha256": "6292684bdf23ff1242cbedb6b767ba124d2f12f5a9701c7f02307dcec715bb77",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-301-2026-06-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:35:50+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-06-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-05-31T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-302-2025-12-01-last1d.json": {
+      "bytes": 38678,
+      "fetched_at": "2026-05-23T12:36:59+00:00",
+      "sha256": "212d85b4f610f63cf300edcacf5ba44b406e1765e97a36987d2079e9a9f7d455",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-302-2026-05-01-last30d.json": {
+      "bytes": 2398427,
+      "fetched_at": "2026-05-23T12:54:41+00:00",
+      "sha256": "ee454fcd5b8db090ec988d44c07b44991a76ec63ef7b8ef543553373c18b6d38",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-303-2025-12-01-last1d.json": {
+      "bytes": 48827,
+      "fetched_at": "2026-05-23T12:37:00+00:00",
+      "sha256": "10e7b66b8b97cfea782d64b6a2c2654f753ad7d0c5db21f3ee4746ccc6a64b06",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-303-2026-05-01-last30d.json": {
+      "bytes": 1907480,
+      "fetched_at": "2026-05-23T12:54:42+00:00",
+      "sha256": "18e35454734146c184d3d0e71555e8c0834cce3c7ae2a4a5a12cd18ca2e7572f",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-304-2025-12-01-last1d.json": {
+      "bytes": 38498,
+      "fetched_at": "2026-05-23T12:37:01+00:00",
+      "sha256": "87380438567457770e807347bb918ba28867136701b8acf11231453b27a129f3",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-304-2026-05-01-last30d.json": {
+      "bytes": 1511344,
+      "fetched_at": "2026-05-23T12:54:43+00:00",
+      "sha256": "1ae9a27ef16a82bdd1dcac61667aa95887a4b8e7262b227045f841482f1e9432",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-305-2025-12-01-last1d.json": {
+      "bytes": 65015,
+      "fetched_at": "2026-05-23T12:37:02+00:00",
+      "sha256": "1b97116ce9b7abfb48c32977f61938da0be807dbae047ca49ff6c58a7259cc5e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-305-2026-05-01-last30d.json": {
+      "bytes": 2511345,
+      "fetched_at": "2026-05-23T12:54:47+00:00",
+      "sha256": "096b15cb82a0407caac60a74ec1994852bf0b4433cdfffce5ff32a475ab7d1e4",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-306-2025-12-01-last1d.json": {
+      "bytes": 33778,
+      "fetched_at": "2026-05-23T12:37:02+00:00",
+      "sha256": "046c2e2a2adba977cc7412c22c2411fd1849aa3ba32498740f4af74eb1e45c6e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-306-2026-05-01-last30d.json": {
+      "bytes": 1605134,
+      "fetched_at": "2026-05-23T12:54:47+00:00",
+      "sha256": "1dc586a9364bb7449dbc61c8e6cca4f83290326b51396bd16be8b8615e1cd31c",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-307-2025-12-01-last1d.json": {
+      "bytes": 31406,
+      "fetched_at": "2026-05-23T12:37:03+00:00",
+      "sha256": "01f34339b500b4f82de42ee12b8139b84df50c6344a71f3eeb3a532587fae380",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-307-2026-05-01-last30d.json": {
+      "bytes": 1339773,
+      "fetched_at": "2026-05-23T12:54:48+00:00",
+      "sha256": "49f8d2bbda4e86590de3e2acf5f6d144fd9eb8020d8303f689c01dd5726d1211",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-308-2025-12-01-last1d.json": {
+      "bytes": 43471,
+      "fetched_at": "2026-05-23T12:37:04+00:00",
+      "sha256": "dda625fbf92111f8a34bb5cf90babcdf19c480f873f2de4048f28a27d3f78738",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-308-2026-05-01-last30d.json": {
+      "bytes": 1617384,
+      "fetched_at": "2026-05-23T12:54:49+00:00",
+      "sha256": "fa2bb80129fac55519fab38f6fb73487c8f3d77a07ffc340d74c1f601d89363e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-309-2025-12-01-last1d.json": {
+      "bytes": 38184,
+      "fetched_at": "2026-05-23T12:37:04+00:00",
+      "sha256": "13cc513d7ee7ce5e86034f379463be412713d945f4ad8d45f5e497ca44d67fb2",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-309-2026-05-01-last30d.json": {
+      "bytes": 1498293,
+      "fetched_at": "2026-05-23T12:54:49+00:00",
+      "sha256": "10d61a433576a6c90b4f034527d7646cbec4246f80b37aacab7204c8f784645c",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-310-2025-12-01-last1d.json": {
+      "bytes": 41501,
+      "fetched_at": "2026-05-23T12:37:05+00:00",
+      "sha256": "fdf6aeac7dda8d90b6e668922e16abb536cb3d2efd5975486bbad7b26a198d65",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-310-2026-05-01-last30d.json": {
+      "bytes": 1531403,
+      "fetched_at": "2026-05-23T12:54:50+00:00",
+      "sha256": "5e62046d2bad4d74c9adce586a29c0ace7979a8a562403dc4502e11f49a7b771",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-311-2025-12-01-last1d.json": {
+      "bytes": 61006,
+      "fetched_at": "2026-05-23T12:37:05+00:00",
+      "sha256": "71cef93e25fbb2ca6d227872dc76756296173bd0ace12662533520fb027bbb45",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-311-2026-05-01-last30d.json": {
+      "bytes": 2129821,
+      "fetched_at": "2026-05-23T12:54:51+00:00",
+      "sha256": "8f9fb76f48a315538e6b91d3209bbc3b421c341e11f99014d1c807af49bf91c6",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-312-2025-12-01-last1d.json": {
+      "bytes": 27714,
+      "fetched_at": "2026-05-23T12:37:06+00:00",
+      "sha256": "fa438638c8e4dfbc9359ebc29f128a7a314541458b516254966dafa666fa20e9",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-312-2026-05-01-last30d.json": {
+      "bytes": 1612474,
+      "fetched_at": "2026-05-23T12:54:52+00:00",
+      "sha256": "b2cf11e634d3122c96b047b85b5116ae187ba3947da342011e9376893945079c",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-313-2025-12-01-last1d.json": {
+      "bytes": 22832,
+      "fetched_at": "2026-05-23T12:37:06+00:00",
+      "sha256": "035d658ed2eabaa46c4dacd0d10f701183b923eef00e396b00a59d50fc3ae912",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-313-2026-05-01-last30d.json": {
+      "bytes": 932444,
+      "fetched_at": "2026-05-23T12:54:53+00:00",
+      "sha256": "cf2e49bdfac518cf3d73f9894285de3d2bafb981edeb22e7de66631c82793746",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-314-2025-12-01-last1d.json": {
+      "bytes": 72204,
+      "fetched_at": "2026-05-23T12:37:07+00:00",
+      "sha256": "ec55dd2cc33c9bc73bae5cd603c9baba16e102523abd2bbf5b16cd67467fe0c5",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-314-2026-05-01-last30d.json": {
+      "bytes": 2185967,
+      "fetched_at": "2026-05-23T12:54:54+00:00",
+      "sha256": "054b2f9f4a8a4c2c0c4ea7519e70a9ca5a201491b691c44d2024cfc21413ce81",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-315-2025-12-01-last1d.json": {
+      "bytes": 51745,
+      "fetched_at": "2026-05-23T12:37:08+00:00",
+      "sha256": "e4484eb7bb3b3d9db434e88aadef773efd5c85d84426b3af7809cfe9783c33ed",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-315-2026-05-01-last30d.json": {
+      "bytes": 1775188,
+      "fetched_at": "2026-05-23T12:54:54+00:00",
+      "sha256": "b406b3b100d12da460d5f41906f925ff46f5e33f34ada384406c1213bbeb9161",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-316-2025-12-01-last1d.json": {
+      "bytes": 24296,
+      "fetched_at": "2026-05-23T12:37:08+00:00",
+      "sha256": "3e0ca47109d91df580aa80a295283bafacd8707a95a0ca1a066de7212b9dc22a",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-316-2026-05-01-last30d.json": {
+      "bytes": 1026701,
+      "fetched_at": "2026-05-23T12:54:55+00:00",
+      "sha256": "6a7cbe00d3ff42fb3849739652d954c17b64787731c85b85a4f3c8ec4f48f184",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-317-2025-12-01-last1d.json": {
+      "bytes": 52338,
+      "fetched_at": "2026-05-23T12:37:09+00:00",
+      "sha256": "b5694a2e806152178e6b2076024f38d3a687001d000b97cec21977b8a7d38e9a",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-317-2026-05-01-last30d.json": {
+      "bytes": 1958091,
+      "fetched_at": "2026-05-23T12:54:59+00:00",
+      "sha256": "f0bfc9a90c2db96806107df4e19d09204eb8393d06239e2bbfe04e44c9e613cf",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-318-2025-12-01-last1d.json": {
+      "bytes": 39548,
+      "fetched_at": "2026-05-23T12:37:10+00:00",
+      "sha256": "13833297032681997907cef69024d38ec2518b3ea7d66321c4fc4aee00e09ca6",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-318-2026-05-01-last30d.json": {
+      "bytes": 1468874,
+      "fetched_at": "2026-05-23T12:55:00+00:00",
+      "sha256": "09871d17e36fd55c881f202cc2eb0863ddebaf71b7b09e1cfc49dd571e6a31a6",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+BROOKLYN%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-401-2025-12-01-last1d.json": {
+      "bytes": 55252,
+      "fetched_at": "2026-05-23T12:37:10+00:00",
+      "sha256": "231cea70af945dcdf474f0fd77011b10b77030de2b914ca59b296f804695f645",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-401-2026-05-01-last30d.json": {
+      "bytes": 2747459,
+      "fetched_at": "2026-05-23T12:55:01+00:00",
+      "sha256": "408e0b87cc06ec9eb16add77f9d7d0276a88e77f9184fd47cc56715fd841a732",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-402-2025-12-01-last1d.json": {
+      "bytes": 40804,
+      "fetched_at": "2026-05-23T12:37:11+00:00",
+      "sha256": "539e318b9e9db716d1074469aa81485cf3590a1ec6ef4c77bb40606a4cef4a5d",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-402-2026-05-01-last30d.json": {
+      "bytes": 1998648,
+      "fetched_at": "2026-05-23T12:55:03+00:00",
+      "sha256": "1fe533f05ad9f932f2ab26e31274eb02ac8e3062080adda8fc8eea196956a847",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-403-2025-12-01-last1d.json": {
+      "bytes": 57120,
+      "fetched_at": "2026-05-23T12:37:11+00:00",
+      "sha256": "c5d155b3e9dff43b599c0bdc6dd93b1fd6bc26d1e30a3947143e4d019efc18b3",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-403-2026-05-01-last30d.json": {
+      "bytes": 1774662,
+      "fetched_at": "2026-05-23T12:55:04+00:00",
+      "sha256": "f9b4df511e464122f92b8dfc84edff7f98023303e9e6c7134a5f0b59353c5584",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-404-2025-12-01-last1d.json": {
+      "bytes": 42481,
+      "fetched_at": "2026-05-23T12:37:11+00:00",
+      "sha256": "1c58e78e9047a807c28f61963c472a3ad859d717da656cf6f75842de97e1ce07",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-404-2026-05-01-last30d.json": {
+      "bytes": 1275381,
+      "fetched_at": "2026-05-23T12:55:04+00:00",
+      "sha256": "9882f7c837de5d8868921276d4d9e14719eeff07ad77e3780934c55517303b1e",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2704+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-405-2025-12-01-last1d.json": {
+      "bytes": 53883,
+      "fetched_at": "2026-05-23T12:37:12+00:00",
+      "sha256": "970bb0342b10d7580a8b4e8ee51584b4724ba44bf07d2a854479bba019c3b5ea",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-405-2026-05-01-last30d.json": {
+      "bytes": 2321068,
+      "fetched_at": "2026-05-23T12:55:06+00:00",
+      "sha256": "239773ee19dff359a4b55dcd20a2146ae56409b07b8b85af318936b07f27fbea",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2705+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-406-2025-12-01-last1d.json": {
+      "bytes": 26573,
+      "fetched_at": "2026-05-23T12:37:12+00:00",
+      "sha256": "500e6ade1c4bf651a7978be430496b69ef65ea35a6cf564a3348b64522aa76cf",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-406-2026-05-01-last30d.json": {
+      "bytes": 1099879,
+      "fetched_at": "2026-05-23T12:55:06+00:00",
+      "sha256": "4875607f7aadeb2973543861682c99541deeca582676649d11bac2daa126741b",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2706+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-407-2025-12-01-last1d.json": {
+      "bytes": 61355,
+      "fetched_at": "2026-05-23T12:37:13+00:00",
+      "sha256": "5b9fe1979dc5f8538e8c51ac305fad0fa8d194e86e4470e5c2d8cb896765b21d",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-407-2026-05-01-last30d.json": {
+      "bytes": 2384443,
+      "fetched_at": "2026-05-23T12:55:07+00:00",
+      "sha256": "53f4ed7a96656e6f24b718e588df585ee2c7f721e6ec46e091c797c5aae63724",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2707+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-408-2025-12-01-last1d.json": {
+      "bytes": 47372,
+      "fetched_at": "2026-05-23T12:37:13+00:00",
+      "sha256": "070f7f337ded5397108def17b22d5455750ac8fc0fdc22f98781ebc4805ae116",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-408-2026-05-01-last30d.json": {
+      "bytes": 1535301,
+      "fetched_at": "2026-05-23T12:55:08+00:00",
+      "sha256": "c36ea3652df45cc2edd57ef3729659b367caafbc8ddc23957ca4b64711cf576d",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2708+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-409-2025-12-01-last1d.json": {
+      "bytes": 44953,
+      "fetched_at": "2026-05-23T12:37:14+00:00",
+      "sha256": "cc2b8b58fb263baa8a9ec1e674c5186c1a5965fe3360479c927bfacb859a3ad4",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-409-2026-05-01-last30d.json": {
+      "bytes": 1757424,
+      "fetched_at": "2026-05-23T12:55:09+00:00",
+      "sha256": "c3c65bd668fd7dd669b4cd3dedb7b7233a312b83829083d874fce4cb6ce2809d",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2709+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-410-2025-12-01-last1d.json": {
+      "bytes": 33250,
+      "fetched_at": "2026-05-23T12:37:14+00:00",
+      "sha256": "b6f2f39c456430ae9ec7439825f308af03bd1aea4fb0de3444f054a248efedd7",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-410-2026-05-01-last30d.json": {
+      "bytes": 1897188,
+      "fetched_at": "2026-05-23T12:55:10+00:00",
+      "sha256": "564824fd9e1707ad08a2bfe89d2913036a5b6850c3841f147a9c89429a1dc177",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2710+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-411-2025-12-01-last1d.json": {
+      "bytes": 22653,
+      "fetched_at": "2026-05-23T12:37:14+00:00",
+      "sha256": "db403ca76a95b8e2f68631ff011495dd6c23f3934f983946891fae3db82bc860",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-411-2026-05-01-last30d.json": {
+      "bytes": 970702,
+      "fetched_at": "2026-05-23T12:55:11+00:00",
+      "sha256": "124de7ba8830c82481b93141ea828e1a2a4c3ad790b68fcca16fbb83f7d2eaf6",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2711+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-412-2025-12-01-last1d.json": {
+      "bytes": 53559,
+      "fetched_at": "2026-05-23T12:37:15+00:00",
+      "sha256": "fc215ae33b021de04b36082bd5b134e5df4000d68bf9a0ce1ea82e094751625c",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-412-2026-05-01-last30d.json": {
+      "bytes": 2568028,
+      "fetched_at": "2026-05-23T12:55:12+00:00",
+      "sha256": "95ac4c28938693f1117439282c361a5419a432e5aa243e816f7f10f941a35851",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2712+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-413-2025-12-01-last1d.json": {
+      "bytes": 27412,
+      "fetched_at": "2026-05-23T12:37:15+00:00",
+      "sha256": "04ccaeb7e12578f22d83ae0be34f8e1a95afcd7fdface75e6344f962dc939e2b",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-413-2026-05-01-last30d.json": {
+      "bytes": 1588074,
+      "fetched_at": "2026-05-23T12:55:13+00:00",
+      "sha256": "3252713272906c320520aea20fe60b4aaf749ab3a3262e362a6146ef3beced43",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2713+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-414-2025-12-01-last1d.json": {
+      "bytes": 15693,
+      "fetched_at": "2026-05-23T12:37:16+00:00",
+      "sha256": "cdfcd7c7e48122e4c6c36026de40b6cf0e0be42294d78821e0b87460f0ad458f",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-414-2026-05-01-last30d.json": {
+      "bytes": 1091128,
+      "fetched_at": "2026-05-23T12:55:14+00:00",
+      "sha256": "6f031adf95c4b6875fa87e0528cca632b27ea241b3e6eca5fcf2785dafa718ac",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2714+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-415-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:37:16+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-415-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:55:14+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2715+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-416-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:37:16+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-416-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:55:14+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2716+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-417-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:37:17+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-417-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:55:14+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2717+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-418-2025-12-01-last1d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:37:17+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-418-2026-05-01-last30d.json": {
+      "bytes": 2,
+      "fetched_at": "2026-05-23T12:55:14+00:00",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2718+QUEENS%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-501-2025-12-01-last1d.json": {
+      "bytes": 41755,
+      "fetched_at": "2026-05-23T12:37:17+00:00",
+      "sha256": "65661715cf3e587cb24f70779d0d37c8495f9579f38a3fdea3e0b826e8953ec8",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+STATEN+ISLAND%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-501-2026-05-01-last30d.json": {
+      "bytes": 1731169,
+      "fetched_at": "2026-05-23T12:55:15+00:00",
+      "sha256": "28d64dbc4359d380e672436b0bd01177ba0c73188f44903ba3dc6064b3ec2f71",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2701+STATEN+ISLAND%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-502-2025-12-01-last1d.json": {
+      "bytes": 23579,
+      "fetched_at": "2026-05-23T12:37:18+00:00",
+      "sha256": "3003babccd11c53dc7751a29265fc8a997d278827b0d60c0e612f4922a48f4e3",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+STATEN+ISLAND%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-502-2026-05-01-last30d.json": {
+      "bytes": 1135994,
+      "fetched_at": "2026-05-23T12:55:16+00:00",
+      "sha256": "2bc4b1cef3e62ed9995e5466cdf372e77b07dbd43c4e5e666174432732178e30",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2702+STATEN+ISLAND%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-503-2025-12-01-last1d.json": {
+      "bytes": 21999,
+      "fetched_at": "2026-05-23T12:37:18+00:00",
+      "sha256": "2179c0db235d941dae46c80e2e5d86c37b70b52edd3c2d928b7a8afc65a1c74d",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272025-12-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272025-11-30T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+STATEN+ISLAND%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/cd-503-2026-05-01-last30d.json": {
+      "bytes": 1266792,
+      "fetched_at": "2026-05-23T12:55:16+00:00",
+      "sha256": "c94e47336f108bec34ee655363ebf47de6ba61bf262867c9020d0464f032833c",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-05-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-04-01T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+STATEN+ISLAND%27&%24limit=50000&%24order=created_date+DESC"
+    }
+  },
+  "note": "Append-only manifest of every cached file. Written by shared/cache.py:record(). Read by pipelines to skip re-fetching. Committed to git so reproducibility survives a cache wipe."
+}

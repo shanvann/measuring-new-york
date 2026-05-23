@@ -23,6 +23,13 @@
       "bbox": "NYC five-borough bounding box: -74.2591,40.4774,-73.7004,40.9176",
       "note": "Cache raw Overpass JSON under cache/osm/<query-name>-2026-06-01.json"
     },
+    "lehd_lodes": {
+      "year": 2022,
+      "release": "LODES8",
+      "source": "https://lehd.ces.census.gov/data/lodes/LODES8/ny/wac/ny_wac_S000_JT00_2022.csv.gz",
+      "totals": {"nyc_jobs": 4466975, "nyc_blocks_with_jobs": 25279, "nyc_tracts_after_agg": 2303},
+      "note": "Workplace Area Characteristics (WAC) — jobs per Census block. Aggregated to tract for spatial joins. 2022 is the latest year published in LODES8 at vintage freeze. C000 column = total jobs across all NAICS."
+    },
     "geographies": {
       "community_districts_59": {
         "source": "https://data.cityofnewyork.us/api/geospatial/5crt-au7u?method=export&format=GeoJSON",

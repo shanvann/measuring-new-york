@@ -1,0 +1,69 @@
+{
+  "service_date": "2026-09-01",
+  "departure": "2026-09-01T08:00:00",
+  "max_minutes": 45.0,
+  "city_total_jobs_2022_lodes": 4466975,
+  "anchor_cds": [
+    {
+      "boro_cd": "105",
+      "name": "Midtown East",
+      "borough": "MN",
+      "jobs_reachable_45min_median": 3056740,
+      "jobs_reachable_45min_q1": 2976636,
+      "jobs_reachable_45min_q3": 3092975,
+      "tract_count": 27,
+      "share_of_city_jobs_pct": 68.4
+    },
+    {
+      "boro_cd": "301",
+      "name": "Williamsburg / Greenpoint",
+      "borough": "BK",
+      "jobs_reachable_45min_median": 1483162,
+      "jobs_reachable_45min_q1": 1037254,
+      "jobs_reachable_45min_q3": 2237851,
+      "tract_count": 54,
+      "share_of_city_jobs_pct": 33.2
+    },
+    {
+      "boro_cd": "212",
+      "name": "Wakefield / Williamsbridge",
+      "borough": "BX",
+      "jobs_reachable_45min_median": 93350,
+      "jobs_reachable_45min_q1": 68902,
+      "jobs_reachable_45min_q3": 159921,
+      "tract_count": 49,
+      "share_of_city_jobs_pct": 2.1
+    },
+    {
+      "boro_cd": "410",
+      "name": "South Ozone Park / Howard Beach",
+      "borough": "QN",
+      "jobs_reachable_45min_median": 62697,
+      "jobs_reachable_45min_q1": 40145,
+      "jobs_reachable_45min_q3": 192522,
+      "tract_count": 38,
+      "share_of_city_jobs_pct": 1.4
+    },
+    {
+      "boro_cd": "414",
+      "name": "Rockaway",
+      "borough": "QN",
+      "jobs_reachable_45min_median": 18661,
+      "jobs_reachable_45min_q1": 10409,
+      "jobs_reachable_45min_q3": 26804,
+      "tract_count": 29,
+      "share_of_city_jobs_pct": 0.4
+    }
+  ],
+  "headline": {
+    "best_cd": {
+      "boro_cd": "105",
+      "jobs_reachable_median": 3056740
+    },
+    "worst_cd": {
+      "boro_cd": "503",
+      "jobs_reachable_median": 13352
+    },
+    "ratio_jobs": 228.9
+  }
+}

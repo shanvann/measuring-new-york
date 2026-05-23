@@ -6,6 +6,166 @@
 
 ---
 
+## 2026-05-23 — Chapter 1 shipped (Mobility & Access)
+**Repo:** measuring-new-york (+ artifacts handed off to personal-website)
+**Phase / chapter:** Phase 3a / Ch. 1 — **Chapter shipped**
+**Session length:** ~2h (Day 3 on top of Day 2)
+
+**What changed (shipped):**
+- `pipelines/lehd_lodes.py` (new) — fetcher for LEHD LODES Workplace
+  Area Characteristics, NY state, with caching + manifest. Downloads
+  the LODES8 v2022 release (~2.7 MB compressed, 4.47M NYC jobs across
+  25k blocks → 2,303 tracts).
+- `MANIFEST.json` — pinned LODES vintage (year 2022, LODES8 release).
+- `analyses/chapter-01/notebook.py` — major refactor: computes
+  isochrones **per Census tract** (2,303 NYC tracts in ~2 min) and
+  aggregates to CDs via median + Q1/Q3. Replaces the single-centroid
+  approach that was producing misleading CD-level numbers for big
+  outer-borough CDs (Flushing, Jamaica, etc.). Adds the
+  `population_weighted_origins()` helper.
+- `shared/isochrone.py` — bumped `WALK_TO_ORIGIN_MAX_FT` to 5280
+  (1.0 mi, TCRP Synthesis 95 upper bound). The wider catchment is
+  honest about outer CDs whose pop-weighted centroids land 0.8-1.0
+  mi from any station; the cost shows up in the walking-time charge
+  (1.0 mi network ≈ 28 min), so distant origins still get small
+  isochrones.
+- Output artifacts in `analyses/chapter-01/out/` + published to
+  `../personal-website/public/measuring-new-york/chapter-01/`:
+  - `job-access.geojson` (288 KB) — CD choropleth with median +
+    Q1/Q3 jobs reachable per CD.
+  - `isochrones-45min.geojson` (522 KB) — 5 anchor-CD reach
+    polygons (anchor breakdown, not used in the current MDX but
+    kept for future use).
+  - `facts.json` — headline numbers + per-anchor breakdowns.
+- `make publish CHAPTER=1` proven end-to-end.
+
+**Headline (per-tract median, aggregated to CD):**
+- Best CD: Midtown East (CD 105) = 3,056,740 jobs reachable (68.4% of NYC)
+- Worst CD: SI Tottenville (CD 503) = 13,352 jobs reachable
+- **229× median variance** between best and worst CD.
+- Largest intra-CD spread: South Ozone Park (CD 410) Q3/Q1 = 4.8×.
+
+**Tried but didn't ship:**
+- Initial 0.5 mi and 0.75 mi catchments produced 9+ CDs with zero
+  reachable stops because pop-weighted centroids land far from
+  actual stations in big outer CDs. Bumped to 1.0 mi; reduced zeros
+  to 6 (genuine subway-less CDs like Bayside / Queens Village).
+- Initial per-CD-centroid approach (Day 2): replaced with per-tract
+  approach because single centroids don't represent residents living
+  on the subway-rich side of a CD.
+- Did NOT integrate bus GTFS. Documented as the top MethodologyFooter
+  caveat in the chapter MDX.
+- Did NOT swap straight-line walking for an OSM walk graph. Within
+  ±10% in most NYC neighborhoods; logged as caveat.
+- Did NOT add GTFS-Realtime reliability variance. Logged as caveat;
+  that analysis is deferred to Ch. 8.
+
+**Blocked / partial:**
+- (none structural)
+
+**Next action:**
+- Phase 3b — Chapter 2 (Housing). See STATUS.md.
+
+**Notes for next agent:**
+- Per-tract isochrone runtime is ~2 min for all 2,303 NYC tracts.
+  No intermediate caching yet — re-running the notebook recomputes
+  from scratch. If Ch. 9's synthesis chapter needs many "what-if"
+  isochrones (different departure times, different cutoffs), worth
+  adding a parquet cache keyed on (tract, departure_hour,
+  max_minutes).
+- The 5 anchor CDs from plan §10 turned out to be a great
+  selection — they span 3M → 18K jobs reachable cleanly.
+- The "South Ozone Park has 4.8× intra-CD spread" finding is the
+  chapter's most original insight. Worth reusing in Ch. 2 (Housing)
+  — same data approach (per-tract → CD-level aggregate with
+  quartiles) can surface micro-geography of rent and HPD violations.
+- LEHD LODES is published annually; 2022 is the latest at vintage
+  freeze. When 2023 data drops (typically Q3 of the following year),
+  Ch. 1 should be re-run against the newer vintage; the chapter
+  text references "2022 LODES" explicitly so the update is mechanical.
+
+---
+
+## 2026-05-23 — Phase 3a Day 2: real GTFS isochrones + ACS smoke-test
+**Repo:** measuring-new-york (+ artifacts shipped to personal-website)
+**Phase / chapter:** Phase 3a / Ch. 1
+**Session length:** ~1h
+
+**What changed (shipped):**
+- `shared/isochrone.py` — replaced the Phase-1 stub with a real
+  ~280-LOC time-dependent Dijkstra. Three modules of helpers
+  (precompute / reachable_stops / polygonize) + an end-to-end
+  `compute()` convenience + the original `precompute_isochrones()`
+  signature kept for API stability. Performance: precompute is 0.7s
+  once; routing is <0.1s per origin (we can do all 59 CDs in seconds).
+- `analyses/chapter-01/notebook.py` — first real chapter-1 artifact.
+  Computes 45-min AM-peak isochrones for all 5 anchor CDs (Midtown
+  East, Williamsburg, Wakefield, South Ozone Park, Rockaway) on the
+  feed's latest typical Tuesday (2026-09-01). Outputs a
+  FeatureCollection + a facts.json with the headline ratio.
+- **Headline:** Midtown East reaches 385 subway stops in 45 min;
+  Rockaway reaches 23. **16.7× variance.** This is real evidence for
+  the Ch. 1 hypothesis from plan §10 (job-access shed variance dwarfs
+  median-commute variance — though we need LODES for the "jobs"
+  denominator to make the second clause rigorous).
+- `make publish CHAPTER=1` worked end-to-end. Artifacts at
+  `../personal-website/public/measuring-new-york/chapter-01/`:
+  `isochrones-45min.geojson` (448 KB), `facts.json` (1 KB).
+- ACS smoke-test: pulled B19013 (median household income, 5 boroughs)
+  + B08303 (travel-time-to-work, 2327 tracts). Both cached + manifested.
+  Bronx $49,036, Manhattan $104,553 — 2.1× borough-level income range.
+- Updated `.env` (gitignored) with the Census API key for local use.
+
+**Tried but didn't ship:**
+- Initial isochrone run gave CD 212 (Wakefield) zero reachable stops.
+  Diagnosis: nearest subway stop is 0.63 mi from the centroid; my
+  catchment was 0.50 mi. Bumped `WALK_TO_ORIGIN_MAX_FT` to the
+  standard APTA/TCRP 95 0.75 mi subway-stop figure. Wakefield went to
+  28 stops, all other CDs ticked up too. The 0.5 mi figure is from
+  bus planning; 0.75 mi is the right subway figure.
+- Did NOT integrate bus GTFS. Subway-only model excludes a meaningful
+  chunk of NYC mobility (bus is ~50% of trips). Logged as caveat for
+  the Ch. 1 MethodologyFooter; will revisit if time allows.
+- Did NOT build the job-access overlay yet. Needs LEHD LODES origin-
+  destination employment data; vintage not yet pinned in `MANIFEST.json`.
+- Did NOT replace straight-line walking with the real `osmnx` walk
+  graph. Straight-line × 1.4 is within ~10% in most NYC neighborhoods;
+  the polish is worth doing but isn't blocking the headline numbers.
+
+**Blocked / partial:**
+- (none structural). The 5 anchor CDs all have nonzero reachable
+  stops; the visual map renders for desktop browsers (headless can't
+  do WebGL on this machine — graceful error fallback works).
+
+**Next action:**
+- See STATUS.md "Next action" — pick between (a) the LODES job-access
+  overlay or (b) polish (osmnx walk graph + bus integration). The
+  hypothesis already has real support so (a) is the higher-value next
+  step.
+
+**Notes for next agent:**
+- Service date the algorithm picks is the latest matching Tuesday in
+  the feed's calendar range (2026-09-01 right now). That's forward-
+  looking; if a quarterly GTFS refresh changes the calendar, the
+  service_date will shift. Lock it by passing `service_date=` to
+  `precompute()` if reproducibility matters across runs.
+- The boarding heuristic considers any trip departing within the next
+  `MAX_BOARD_WAIT_MIN` = 20 minutes. Off-peak Sunday at 3am would need
+  a longer window; if we ever do a late-night isochrone, raise this.
+- Walking-transfer pairs are precomputed pairwise (O(N²) over parent
+  stations). At ~500 NYC parent stations this is ~125k pair checks,
+  done once in ~0.5s. If a future chapter loads NJT or Metro-North
+  stations on top, this loop may want a kd-tree, but at NYC subway
+  scale it's fine.
+- The polygon union step is the slowest part of `compute()` —
+  shapely's unary_union on 300+ buffers is ~50ms. Could be sped up
+  with a small-then-big merge tree, but not worth optimizing yet.
+- 16.7× variance is just the *count* of reachable stops; the real
+  Ch. 1 metric should be jobs-reachable (LODES). The two will
+  correlate strongly but the units matter for the prose.
+
+---
+
 ## 2026-05-23 — Phase 3a Day 1: GTFS cached + gtfs-kit verified
 **Repo:** measuring-new-york
 **Phase / chapter:** Phase 3a / Ch. 1

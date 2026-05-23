@@ -1,5 +1,17 @@
 {
   "entries": {
+    "acs/B08303-tract-2023-2026-06-01.json": {
+      "bytes": 1072843,
+      "fetched_at": "2026-05-23T21:39:30+00:00",
+      "sha256": "516881d20293869aaf06486d9f034506f5d8291a96833fdce35abaef9d9e8f3b",
+      "source_url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,group(B08303),for=tract:*,in=state:36 county:005,047,061,081,085"
+    },
+    "acs/B19013-borough-2023-2026-06-01.json": {
+      "bytes": 692,
+      "fetched_at": "2026-05-23T21:39:13+00:00",
+      "sha256": "8703697a097e436d5968b923fc7de4979d52e4407faee8e9670a06ea6e4a9c22",
+      "source_url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,group(B19013),for=county:005,047,061,081,085,in=state:36"
+    },
     "geographies/census_tracts_2020.geojson": {
       "bytes": 7766393,
       "fetched_at": "2026-05-23T12:33:02+00:00",
@@ -23,6 +35,12 @@
       "fetched_at": "2026-05-23T12:33:00+00:00",
       "sha256": "bb5f1759872c8fa7ed18f7430c971b3b238a68927e0046d06d1ddb4ce90fc26b",
       "source_url": "https://data.cityofnewyork.us/api/geospatial/9nt8-h7nd?method=export&format=GeoJSON"
+    },
+    "lodes/ny_wac_S000_JT00_2022.csv.gz": {
+      "bytes": 2730593,
+      "fetched_at": "2026-05-23T22:01:03+00:00",
+      "sha256": "b4f824362357316cecbd211d2ecc6210a500316085e9c40c38fac8f4812c55cc",
+      "source_url": "https://lehd.ces.census.gov/data/lodes/LODES8/ny/wac/ny_wac_S000_JT00_2022.csv.gz"
     },
     "mta_gtfs/subway-2026-06-01.zip": {
       "bytes": 5793709,

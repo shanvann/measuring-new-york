@@ -1,11 +1,12 @@
 # Measuring New York (data) — Status
 
 **Last updated:** 2026-05-23
-**Phase:** 2 — Pilot **shipped** (Ch. 0 published in website repo;
-  artifacts live at `../personal-website/public/measuring-new-york/chapter-00/`).
-  Next: Phase 3a — Chapter 1 (Mobility & Access).
-**Active chapter:** none in flight
-**Active repo:** measuring-new-york (Ch. 1 data work is next)
+**Phase:** 3a — **Chapter 1 (Mobility & Access)** active. Ch. 0 shipped
+  2026-05-23 (commit `52a3ae1`). See website-repo plan §10 for the
+  full Ch. 1 spec.
+**Active chapter:** Ch. 1
+**Active repo:** measuring-new-york (GTFS + ACS + OSM pipelines) +
+  personal-website (real MapLibre `<NycMap>`)
 
 ## Working agreements
 - **Hold commits until Chapter 0 is ready** (mirrors website-repo agreement).
@@ -37,31 +38,33 @@ NYC Open Data half has been run for real. The remaining two require a
 the chapters that actually consume them.
 
 ## Next action
-Start Chapter 1 (Mobility & Access). Three concrete steps:
-1. `make fetch-gtfs` to pull the MTA subway GTFS bundle (~50MB; bus
-   bundles deferred until needed).
-2. Sign up for `CENSUS_API_KEY` and `export` it; smoke-test
-   `pipelines.acs_census --table B08303 --geo tract` (travel-time-to-
-   work).
-3. Build the first cut of `shared/isochrone.py` — input: GTFS feed +
-   origin lat/lon + departure window; output: a GeoJSON polygon of
-   the area reachable in N minutes. Start with N=45 minutes from a
-   single CD centroid (CD 414 / Rockaway is a good torture test —
-   famously transit-isolated; should produce a small isochrone).
+Build the first real GTFS isochrone in `shared/isochrone.py`.
+- Input: GTFS feed + origin (lat, lon) + departure window + max minutes.
+- Output: a GeoJSON polygon of the area reachable in N minutes by
+  transit + walk legs.
+- Smoke test targets: CD 414 (Rockaway, transit-isolated → small
+  polygon) and CD 105 (Midtown East → covers most of dense subway
+  grid).
+
+Pragmatic MVP path: gtfs-kit's walk-network helpers + a `networkx`
+Dijkstra over (stop, time) nodes. More rigorous path: `r5py` (wraps
+Conveyal R5; JVM dep but battle-tested). Decide on arrival.
+
+After isochrone: ACS commute pull (B08303, B08301) — needs the
+Census API key (see Open blockers).
 
 ## Recently shipped
-- 2026-05-23 — **Phase 1 scaffold + end-to-end proof:** directory layout,
-  Makefile, requirements.txt, venv (Python 3.9), shared modules
-  (palette, basemap, cache, isochrone stub, publish), six pipeline
-  modules (mta_gtfs, doh_air, hpd_violations, three_one_one, acs_census,
-  osm_overpass), geography downloader, all four canonical boundary files
-  (~19MB), 311 fetch proven on CD 301.
-- 2026-05-23 — **Chapter 0 shipped:** notebook produces `teaser.png`
-  (static PNG choropleth, 161KB) + `facts.json` from real 30-day 311
-  data (296,426 calls across NYC). `make publish CHAPTER=0` handoff
-  proven. Website MDX drafted in `personal-website/content/posts/
-  measuring-new-york-00-what-is-livable.mdx`, build green, hub auto-
-  advanced to "1 of 11 published".
+- 2026-05-23 — **Phase 1 scaffold + end-to-end proof** (commit
+  `52a3ae1` on github).
+- 2026-05-23 — **Chapter 0 shipped** (commit `e693e1f` on website
+  repo): 161KB static PNG + facts.json from 296,426 real 311 calls.
+- 2026-05-23 — **Phase 3a Day 1:**
+  - MTA subway GTFS cached (5.8MB; smaller than estimated). gtfs-kit
+    installed; loads 1488 stops / 29 routes / 21459 trips end-to-end.
+  - 30-day 311 data now cached at the pinned 2026-06-01 snapshot for
+    all 59 CDs (under cache/three_one_one/cd-*-2026-06-01-last30d.json).
+  - Website-side: real interactive `<NycMap>` shipped with MapLibre +
+    deck.gl. See website-repo WORKLOG for the full breakdown.
 
 ## Open blockers
 - **Census API key** — required for Ch. 1 (commute) and Ch. 2 (rent

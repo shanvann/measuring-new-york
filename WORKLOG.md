@@ -6,6 +6,54 @@
 
 ---
 
+## 2026-05-23 — Phase 3a Day 1: GTFS cached + gtfs-kit verified
+**Repo:** measuring-new-york
+**Phase / chapter:** Phase 3a / Ch. 1
+**Session length:** ~30min (rest of the session was in the website repo)
+
+**What changed (shipped):**
+- `make fetch-gtfs --bundle subway` ran. MTA subway-only GTFS bundle
+  cached at `cache/mta_gtfs/subway-2026-06-01.zip` — 5.8MB (much
+  smaller than my Phase 1 estimate of ~50MB; the subway-only feed is
+  modest). Manifested with SHA-256 in cache/MANIFEST.json.
+- Installed `gtfs-kit` in venv.
+- Verified `pipelines.mta_gtfs.load_subway()` returns a usable
+  gtfs-kit Feed: 1 agency, 29 routes, 1488 stops (including N/S
+  platform records), 21459 trips. Stop sample showed sensible names
+  (Van Cortlandt Park-242 St at the top of the 1 line).
+- Real 30-day 311 data pulled for all 59 CDs at the pinned
+  2026-06-01 snapshot — for use by the website-side smoke test of
+  the new interactive `<NycMap>` component. Cache grew by ~50MB
+  across `cache/three_one_one/cd-*-2026-06-01-last30d.json`.
+
+**Tried but didn't ship:**
+- No isochrone work yet — that's the next concrete deliverable.
+- No ACS work — gated on Census API key.
+
+**Blocked / partial:**
+- (none on the data side)
+
+**Next action:**
+- Build the first real GTFS isochrone in `shared/isochrone.py`. See
+  STATUS.md for the design call to make (gtfs-kit + networkx vs
+  r5py).
+
+**Notes for next agent:**
+- The 30-day 311 cache for all 59 CDs at snapshot 2026-06-01 means
+  any chapter that wants per-CD 311 density now hits the cache for
+  free (no re-fetching). If a chapter needs a different window/date,
+  `pipelines.three_one_one.fetch(...)` with new args will populate
+  the cache with new files.
+- The website-side interactive `<NycMap>` was wired in the same
+  session — see `personal-website/WORKLOG.md` for that side. The
+  component reads a chapter's `*.geojson` from
+  `/public/measuring-new-york/chapter-N/`, so the analysis-repo
+  `make publish CHAPTER=N` step now has two flavors of artifact to
+  ship: static (PNG/SVG, picked up via `fallbackImage`) or
+  interactive (GeoJSON, picked up by the dynamic MapLibre component).
+
+---
+
 ## 2026-05-23 — Chapter 0 shipped (Pilot)
 **Repo:** measuring-new-york
 **Phase / chapter:** Phase 2 / Ch. 0

@@ -54,19 +54,18 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from pipelines import acs_census, hpd_violations, oca_evictions  # noqa: E402
 from shared import basemap  # noqa: E402
+from shared.cd_names import name_for  # noqa: E402
 
 OUT = HERE / "out"
 OUT.mkdir(exist_ok=True)
 
 # Anchor CDs per plan §10 (finalized 2026-05-24 against first-pass data).
 # Each anchors a distinct (burden, structural-distress) position.
-ANCHOR_NAMES = {
-    "206": "Belmont / East Tremont",            # everything bad — #1 burden + #1 distress
-    "313": "Brownsville",                       # high burden, low-mid distress (surprise 1)
-    "109": "Manhattanville / Hamilton Heights", # low-mid burden, high distress (surprise 2)
-    "108": "Upper East Side",                   # high rent, low everything else
-    "411": "Bayside / Douglaston",              # homeownership baseline
-}
+# Names are pulled from shared/cd_names.py so the chapter prose can't
+# drift away from the canonical labels (an earlier draft mislabelled
+# CD 313 as "Brownsville" — Brownsville is CD 316; CD 313 is
+# Coney Island / Brighton Beach).
+ANCHOR_NAMES = {cd: name_for(cd) for cd in ("206", "313", "109", "108", "411")}
 
 # OCA filings window. The 2020-2022 era is heavily distorted by the
 # state eviction moratorium + court backlog clearance; restrict to
@@ -302,8 +301,12 @@ def render_headline_choropleth(facts: "pd.DataFrame") -> Path:
     # ``rent_burden_30_pct`` (×100, rounded) is the field consumed by the
     # interactive ``<NycMap>`` tooltip — the raw proportion ``rent_burden_30``
     # is preserved alongside for reproducibility / non-display callers.
+    # ``name`` carries the canonical neighborhood label (shared/cd_names.py)
+    # so the map tooltip shows "CD 206 · Belmont / East Tremont", matching
+    # Ch. 1's convention.
     geo_cds = cds[["boro_cd", "rent_burden_30", "geometry"]].copy()
     geo_cds["rent_burden_30_pct"] = (geo_cds["rent_burden_30"] * 100).round(1)
+    geo_cds["name"] = geo_cds["boro_cd"].map(name_for)
     basemap.to_display(geo_cds).to_file(OUT / "rent-burden.geojson", driver="GeoJSON")
 
     values = cds["rent_burden_30"].astype(float)

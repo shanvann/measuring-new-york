@@ -1,9 +1,9 @@
 # measuring-new-york
 
-Data, pipelines, and notebooks behind the **Measuring New York** blog series on
-[shanvannala.com](https://shanvannala.com). Articles live in a sibling website
-repo; this repo is the upstream source of truth for every chart, map, and
-number that ships in the series.
+Data, pipelines, and notebooks behind the **Measuring New York** blog series at
+[shanitvannala.org/series/measuring-new-york](https://www.shanitvannala.org/series/measuring-new-york/).
+Articles live in a sibling website repo; this repo is the upstream source of
+truth for every chart, map, and number that ships in the series.
 
 ## Setup
 

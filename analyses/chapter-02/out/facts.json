@@ -1,0 +1,617 @@
+{
+  "snapshot": "2026-05-10",
+  "oca_window": [
+    "2024-01-01",
+    "2026-05-10"
+  ],
+  "n_cds": 59,
+  "spearman": {
+    "rent_burden_30": {
+      "rent_burden_30": 1.0,
+      "median_rent": -0.774,
+      "filings_per_1k_renter_hh_per_yr": 0.665
+    },
+    "median_rent": {
+      "rent_burden_30": -0.774,
+      "median_rent": 1.0,
+      "filings_per_1k_renter_hh_per_yr": -0.768
+    },
+    "filings_per_1k_renter_hh_per_yr": {
+      "rent_burden_30": 0.665,
+      "median_rent": -0.768,
+      "filings_per_1k_renter_hh_per_yr": 1.0
+    }
+  },
+  "per_cd": {
+    "101": {
+      "rent_burden_30": 0.3964,
+      "rent_burden_50": 0.1915,
+      "rent_eligible_hh": 23098.0,
+      "renter_hh": 23379.0,
+      "median_rent": 3413.0,
+      "median_income": 209648.0,
+      "filings_window_total": 1080.0,
+      "filings_per_1k_renter_hh_per_yr": 19.62
+    },
+    "102": {
+      "rent_burden_30": 0.4081,
+      "rent_burden_50": 0.1979,
+      "rent_eligible_hh": 31080.0,
+      "renter_hh": 32436.0,
+      "median_rent": 2899.0,
+      "median_income": 165773.0,
+      "filings_window_total": 1064.0,
+      "filings_per_1k_renter_hh_per_yr": 13.93
+    },
+    "103": {
+      "rent_burden_30": 0.4934,
+      "rent_burden_50": 0.2385,
+      "rent_eligible_hh": 58343.0,
+      "renter_hh": 61596.0,
+      "median_rent": 1583.0,
+      "median_income": 75100.0,
+      "filings_window_total": 3086.0,
+      "filings_per_1k_renter_hh_per_yr": 21.28
+    },
+    "104": {
+      "rent_burden_30": 0.4451,
+      "rent_burden_50": 0.1946,
+      "rent_eligible_hh": 53504.0,
+      "renter_hh": 54870.0,
+      "median_rent": 2538.0,
+      "median_income": 114517.0,
+      "filings_window_total": 2525.0,
+      "filings_per_1k_renter_hh_per_yr": 19.54
+    },
+    "105": {
+      "rent_burden_30": 0.3973,
+      "rent_burden_50": 0.2095,
+      "rent_eligible_hh": 27066.0,
+      "renter_hh": 28291.0,
+      "median_rent": 3046.0,
+      "median_income": 164188.0,
+      "filings_window_total": 2236.0,
+      "filings_per_1k_renter_hh_per_yr": 33.57
+    },
+    "106": {
+      "rent_burden_30": 0.4433,
+      "rent_burden_50": 0.2197,
+      "rent_eligible_hh": 43794.0,
+      "renter_hh": 45926.0,
+      "median_rent": 3094.0,
+      "median_income": 157667.0,
+      "filings_window_total": 1743.0,
+      "filings_per_1k_renter_hh_per_yr": 16.12
+    },
+    "107": {
+      "rent_burden_30": 0.4368,
+      "rent_burden_50": 0.2237,
+      "rent_eligible_hh": 65412.0,
+      "renter_hh": 68627.0,
+      "median_rent": 2585.0,
+      "median_income": 155339.0,
+      "filings_window_total": 3378.0,
+      "filings_per_1k_renter_hh_per_yr": 20.91
+    },
+    "108": {
+      "rent_burden_30": 0.4084,
+      "rent_burden_50": 0.2256,
+      "rent_eligible_hh": 67074.0,
+      "renter_hh": 69527.0,
+      "median_rent": 2768.0,
+      "median_income": 160080.0,
+      "filings_window_total": 2776.0,
+      "filings_per_1k_renter_hh_per_yr": 16.96
+    },
+    "109": {
+      "rent_burden_30": 0.5148,
+      "rent_burden_50": 0.309,
+      "rent_eligible_hh": 32105.0,
+      "renter_hh": 34170.0,
+      "median_rent": 1796.0,
+      "median_income": 65806.0,
+      "filings_window_total": 5892.0,
+      "filings_per_1k_renter_hh_per_yr": 73.23
+    },
+    "110": {
+      "rent_burden_30": 0.5066,
+      "rent_burden_50": 0.2831,
+      "rent_eligible_hh": 46445.0,
+      "renter_hh": 48792.0,
+      "median_rent": 1486.0,
+      "median_income": 71833.0,
+      "filings_window_total": 7104.0,
+      "filings_per_1k_renter_hh_per_yr": 61.84
+    },
+    "111": {
+      "rent_burden_30": 0.5538,
+      "rent_burden_50": 0.3107,
+      "rent_eligible_hh": 46648.0,
+      "renter_hh": 49330.0,
+      "median_rent": 1310.0,
+      "median_income": 39950.0,
+      "filings_window_total": 3171.0,
+      "filings_per_1k_renter_hh_per_yr": 27.3
+    },
+    "112": {
+      "rent_burden_30": 0.5308,
+      "rent_burden_50": 0.2907,
+      "rent_eligible_hh": 60762.0,
+      "renter_hh": 63386.0,
+      "median_rent": 1641.0,
+      "median_income": 70986.0,
+      "filings_window_total": 11659.0,
+      "filings_per_1k_renter_hh_per_yr": 78.12
+    },
+    "201": {
+      "rent_burden_30": 0.6198,
+      "rent_burden_50": 0.3508,
+      "rent_eligible_hh": 33163.0,
+      "renter_hh": 34444.0,
+      "median_rent": 1054.0,
+      "median_income": 31820.0,
+      "filings_window_total": 8073.0,
+      "filings_per_1k_renter_hh_per_yr": 99.54
+    },
+    "202": {
+      "rent_burden_30": 0.6002,
+      "rent_burden_50": 0.3618,
+      "rent_eligible_hh": 18436.0,
+      "renter_hh": 19122.0,
+      "median_rent": 1239.0,
+      "median_income": 36438.0,
+      "filings_window_total": 3995.0,
+      "filings_per_1k_renter_hh_per_yr": 88.73
+    },
+    "203": {
+      "rent_burden_30": 0.5988,
+      "rent_burden_50": 0.3315,
+      "rent_eligible_hh": 28345.0,
+      "renter_hh": 29679.0,
+      "median_rent": 1167.0,
+      "median_income": 34958.0,
+      "filings_window_total": 8098.0,
+      "filings_per_1k_renter_hh_per_yr": 115.88
+    },
+    "204": {
+      "rent_burden_30": 0.6036,
+      "rent_burden_50": 0.3736,
+      "rent_eligible_hh": 49143.0,
+      "renter_hh": 51967.0,
+      "median_rent": 1380.0,
+      "median_income": 45292.0,
+      "filings_window_total": 13126.0,
+      "filings_per_1k_renter_hh_per_yr": 107.27
+    },
+    "205": {
+      "rent_burden_30": 0.6195,
+      "rent_burden_50": 0.3694,
+      "rent_eligible_hh": 42359.0,
+      "renter_hh": 45174.0,
+      "median_rent": 1419.0,
+      "median_income": 43900.0,
+      "filings_window_total": 11334.0,
+      "filings_per_1k_renter_hh_per_yr": 106.56
+    },
+    "206": {
+      "rent_burden_30": 0.6299,
+      "rent_burden_50": 0.3967,
+      "rent_eligible_hh": 27356.0,
+      "renter_hh": 28785.0,
+      "median_rent": 1301.0,
+      "median_income": 28955.0,
+      "filings_window_total": 9313.0,
+      "filings_per_1k_renter_hh_per_yr": 137.41
+    },
+    "207": {
+      "rent_burden_30": 0.628,
+      "rent_burden_50": 0.3777,
+      "rent_eligible_hh": 44493.0,
+      "renter_hh": 46472.0,
+      "median_rent": 1580.0,
+      "median_income": 44065.0,
+      "filings_window_total": 10522.0,
+      "filings_per_1k_renter_hh_per_yr": 96.16
+    },
+    "208": {
+      "rent_burden_30": 0.5356,
+      "rent_burden_50": 0.2906,
+      "rent_eligible_hh": 26885.0,
+      "renter_hh": 28156.0,
+      "median_rent": 1663.0,
+      "median_income": 86672.0,
+      "filings_window_total": 4006.0,
+      "filings_per_1k_renter_hh_per_yr": 60.43
+    },
+    "209": {
+      "rent_burden_30": 0.5908,
+      "rent_burden_50": 0.3376,
+      "rent_eligible_hh": 46360.0,
+      "renter_hh": 49559.0,
+      "median_rent": 1387.0,
+      "median_income": 52808.0,
+      "filings_window_total": 9168.0,
+      "filings_per_1k_renter_hh_per_yr": 78.57
+    },
+    "210": {
+      "rent_burden_30": 0.5384,
+      "rent_burden_50": 0.28,
+      "rent_eligible_hh": 26135.0,
+      "renter_hh": 27312.0,
+      "median_rent": 1557.0,
+      "median_income": 78435.0,
+      "filings_window_total": 2111.0,
+      "filings_per_1k_renter_hh_per_yr": 32.83
+    },
+    "211": {
+      "rent_burden_30": 0.5824,
+      "rent_burden_50": 0.3214,
+      "rent_eligible_hh": 29111.0,
+      "renter_hh": 30497.0,
+      "median_rent": 1562.0,
+      "median_income": 70418.0,
+      "filings_window_total": 5626.0,
+      "filings_per_1k_renter_hh_per_yr": 78.35
+    },
+    "212": {
+      "rent_burden_30": 0.577,
+      "rent_burden_50": 0.3229,
+      "rent_eligible_hh": 32716.0,
+      "renter_hh": 34804.0,
+      "median_rent": 1516.0,
+      "median_income": 70468.0,
+      "filings_window_total": 7218.0,
+      "filings_per_1k_renter_hh_per_yr": 88.08
+    },
+    "301": {
+      "rent_burden_30": 0.4338,
+      "rent_burden_50": 0.2242,
+      "rent_eligible_hh": 67825.0,
+      "renter_hh": 69952.0,
+      "median_rent": 2372.0,
+      "median_income": 108428.0,
+      "filings_window_total": 3340.0,
+      "filings_per_1k_renter_hh_per_yr": 20.28
+    },
+    "302": {
+      "rent_burden_30": 0.4008,
+      "rent_burden_50": 0.1986,
+      "rent_eligible_hh": 39011.0,
+      "renter_hh": 40455.0,
+      "median_rent": 2725.0,
+      "median_income": 153890.0,
+      "filings_window_total": 2921.0,
+      "filings_per_1k_renter_hh_per_yr": 30.67
+    },
+    "303": {
+      "rent_burden_30": 0.5086,
+      "rent_burden_50": 0.2666,
+      "rent_eligible_hh": 52125.0,
+      "renter_hh": 54673.0,
+      "median_rent": 1976.0,
+      "median_income": 80953.0,
+      "filings_window_total": 6130.0,
+      "filings_per_1k_renter_hh_per_yr": 47.62
+    },
+    "304": {
+      "rent_burden_30": 0.5535,
+      "rent_burden_50": 0.2787,
+      "rent_eligible_hh": 35781.0,
+      "renter_hh": 37096.0,
+      "median_rent": 2145.0,
+      "median_income": 85741.0,
+      "filings_window_total": 3380.0,
+      "filings_per_1k_renter_hh_per_yr": 38.7
+    },
+    "305": {
+      "rent_burden_30": 0.5529,
+      "rent_burden_50": 0.2979,
+      "rent_eligible_hh": 49884.0,
+      "renter_hh": 54016.0,
+      "median_rent": 1370.0,
+      "median_income": 60197.0,
+      "filings_window_total": 9265.0,
+      "filings_per_1k_renter_hh_per_yr": 72.85
+    },
+    "306": {
+      "rent_burden_30": 0.3476,
+      "rent_burden_50": 0.144,
+      "rent_eligible_hh": 31385.0,
+      "renter_hh": 32689.0,
+      "median_rent": 2578.0,
+      "median_income": 162377.0,
+      "filings_window_total": 1212.0,
+      "filings_per_1k_renter_hh_per_yr": 15.75
+    },
+    "307": {
+      "rent_burden_30": 0.5225,
+      "rent_burden_50": 0.2721,
+      "rent_eligible_hh": 27743.0,
+      "renter_hh": 28648.0,
+      "median_rent": 2004.0,
+      "median_income": 77552.0,
+      "filings_window_total": 1349.0,
+      "filings_per_1k_renter_hh_per_yr": 20.0
+    },
+    "308": {
+      "rent_burden_30": 0.4692,
+      "rent_burden_50": 0.2344,
+      "rent_eligible_hh": 36796.0,
+      "renter_hh": 38075.0,
+      "median_rent": 1914.0,
+      "median_income": 90166.0,
+      "filings_window_total": 4123.0,
+      "filings_per_1k_renter_hh_per_yr": 45.99
+    },
+    "309": {
+      "rent_burden_30": 0.4919,
+      "rent_burden_50": 0.2628,
+      "rent_eligible_hh": 31978.0,
+      "renter_hh": 33317.0,
+      "median_rent": 1653.0,
+      "median_income": 71744.0,
+      "filings_window_total": 5182.0,
+      "filings_per_1k_renter_hh_per_yr": 66.06
+    },
+    "310": {
+      "rent_burden_30": 0.4863,
+      "rent_burden_50": 0.2925,
+      "rent_eligible_hh": 27740.0,
+      "renter_hh": 29377.0,
+      "median_rent": 1833.0,
+      "median_income": 83210.0,
+      "filings_window_total": 1603.0,
+      "filings_per_1k_renter_hh_per_yr": 23.17
+    },
+    "311": {
+      "rent_burden_30": 0.5567,
+      "rent_burden_50": 0.3173,
+      "rent_eligible_hh": 38551.0,
+      "renter_hh": 40582.0,
+      "median_rent": 1715.0,
+      "median_income": 70076.0,
+      "filings_window_total": 1937.0,
+      "filings_per_1k_renter_hh_per_yr": 20.27
+    },
+    "312": {
+      "rent_burden_30": 0.5847,
+      "rent_burden_50": 0.3542,
+      "rent_eligible_hh": 35855.0,
+      "renter_hh": 37756.0,
+      "median_rent": 1792.0,
+      "median_income": 68393.0,
+      "filings_window_total": 2611.0,
+      "filings_per_1k_renter_hh_per_yr": 29.37
+    },
+    "313": {
+      "rent_burden_30": 0.6187,
+      "rent_burden_50": 0.3436,
+      "rent_eligible_hh": 31375.0,
+      "renter_hh": 32785.0,
+      "median_rent": 1250.0,
+      "median_income": 50559.0,
+      "filings_window_total": 3099.0,
+      "filings_per_1k_renter_hh_per_yr": 40.15
+    },
+    "314": {
+      "rent_burden_30": 0.5201,
+      "rent_burden_50": 0.2836,
+      "rent_eligible_hh": 43930.0,
+      "renter_hh": 46036.0,
+      "median_rent": 1757.0,
+      "median_income": 76061.0,
+      "filings_window_total": 7110.0,
+      "filings_per_1k_renter_hh_per_yr": 65.59
+    },
+    "315": {
+      "rent_burden_30": 0.5416,
+      "rent_burden_50": 0.3142,
+      "rent_eligible_hh": 31366.0,
+      "renter_hh": 33276.0,
+      "median_rent": 1673.0,
+      "median_income": 73106.0,
+      "filings_window_total": 3030.0,
+      "filings_per_1k_renter_hh_per_yr": 38.67
+    },
+    "316": {
+      "rent_burden_30": 0.5663,
+      "rent_burden_50": 0.3186,
+      "rent_eligible_hh": 28902.0,
+      "renter_hh": 30727.0,
+      "median_rent": 1180.0,
+      "median_income": 45197.0,
+      "filings_window_total": 5814.0,
+      "filings_per_1k_renter_hh_per_yr": 80.36
+    },
+    "317": {
+      "rent_burden_30": 0.5581,
+      "rent_burden_50": 0.3164,
+      "rent_eligible_hh": 39519.0,
+      "renter_hh": 41265.0,
+      "median_rent": 1657.0,
+      "median_income": 74428.0,
+      "filings_window_total": 7375.0,
+      "filings_per_1k_renter_hh_per_yr": 75.91
+    },
+    "318": {
+      "rent_burden_30": 0.5176,
+      "rent_burden_50": 0.2766,
+      "rent_eligible_hh": 26462.0,
+      "renter_hh": 28836.0,
+      "median_rent": 1628.0,
+      "median_income": 92812.0,
+      "filings_window_total": 3603.0,
+      "filings_per_1k_renter_hh_per_yr": 53.07
+    },
+    "401": {
+      "rent_burden_30": 0.442,
+      "rent_burden_50": 0.2084,
+      "rent_eligible_hh": 61734.0,
+      "renter_hh": 63957.0,
+      "median_rent": 2027.0,
+      "median_income": 94996.0,
+      "filings_window_total": 3502.0,
+      "filings_per_1k_renter_hh_per_yr": 23.26
+    },
+    "402": {
+      "rent_burden_30": 0.4524,
+      "rent_burden_50": 0.1919,
+      "rent_eligible_hh": 39024.0,
+      "renter_hh": 40264.0,
+      "median_rent": 2244.0,
+      "median_income": 84561.0,
+      "filings_window_total": 2860.0,
+      "filings_per_1k_renter_hh_per_yr": 30.17
+    },
+    "403": {
+      "rent_burden_30": 0.5481,
+      "rent_burden_50": 0.2996,
+      "rent_eligible_hh": 31627.0,
+      "renter_hh": 32665.0,
+      "median_rent": 1894.0,
+      "median_income": 75526.0,
+      "filings_window_total": 2616.0,
+      "filings_per_1k_renter_hh_per_yr": 34.01
+    },
+    "404": {
+      "rent_burden_30": 0.5707,
+      "rent_burden_50": 0.311,
+      "rent_eligible_hh": 38458.0,
+      "renter_hh": 39812.0,
+      "median_rent": 1912.0,
+      "median_income": 68363.0,
+      "filings_window_total": 2890.0,
+      "filings_per_1k_renter_hh_per_yr": 30.83
+    },
+    "405": {
+      "rent_burden_30": 0.4906,
+      "rent_burden_50": 0.2455,
+      "rent_eligible_hh": 36600.0,
+      "renter_hh": 38668.0,
+      "median_rent": 1976.0,
+      "median_income": 91654.0,
+      "filings_window_total": 1613.0,
+      "filings_per_1k_renter_hh_per_yr": 17.72
+    },
+    "406": {
+      "rent_burden_30": 0.506,
+      "rent_burden_50": 0.2896,
+      "rent_eligible_hh": 26071.0,
+      "renter_hh": 27544.0,
+      "median_rent": 2054.0,
+      "median_income": 100668.0,
+      "filings_window_total": 2503.0,
+      "filings_per_1k_renter_hh_per_yr": 38.59
+    },
+    "407": {
+      "rent_burden_30": 0.6168,
+      "rent_burden_50": 0.3548,
+      "rent_eligible_hh": 43288.0,
+      "renter_hh": 47830.0,
+      "median_rent": 1810.0,
+      "median_income": 75465.0,
+      "filings_window_total": 3492.0,
+      "filings_per_1k_renter_hh_per_yr": 31.01
+    },
+    "408": {
+      "rent_burden_30": 0.4766,
+      "rent_burden_50": 0.2429,
+      "rent_eligible_hh": 28457.0,
+      "renter_hh": 30342.0,
+      "median_rent": 1812.0,
+      "median_income": 86058.0,
+      "filings_window_total": 4181.0,
+      "filings_per_1k_renter_hh_per_yr": 58.52
+    },
+    "409": {
+      "rent_burden_30": 0.5408,
+      "rent_burden_50": 0.3072,
+      "rent_eligible_hh": 21426.0,
+      "renter_hh": 22920.0,
+      "median_rent": 1897.0,
+      "median_income": 84109.0,
+      "filings_window_total": 1999.0,
+      "filings_per_1k_renter_hh_per_yr": 37.04
+    },
+    "410": {
+      "rent_burden_30": 0.5771,
+      "rent_burden_50": 0.341,
+      "rent_eligible_hh": 12385.0,
+      "renter_hh": 13084.0,
+      "median_rent": 1957.0,
+      "median_income": 92952.0,
+      "filings_window_total": 1185.0,
+      "filings_per_1k_renter_hh_per_yr": 38.47
+    },
+    "411": {
+      "rent_burden_30": 0.5051,
+      "rent_burden_50": 0.2713,
+      "rent_eligible_hh": 12173.0,
+      "renter_hh": 13761.0,
+      "median_rent": 2342.0,
+      "median_income": 100929.0,
+      "filings_window_total": 1048.0,
+      "filings_per_1k_renter_hh_per_yr": 32.34
+    },
+    "412": {
+      "rent_burden_30": 0.5784,
+      "rent_burden_50": 0.318,
+      "rent_eligible_hh": 38033.0,
+      "renter_hh": 39865.0,
+      "median_rent": 1637.0,
+      "median_income": 87021.0,
+      "filings_window_total": 4766.0,
+      "filings_per_1k_renter_hh_per_yr": 50.78
+    },
+    "413": {
+      "rent_burden_30": 0.5354,
+      "rent_burden_50": 0.2664,
+      "rent_eligible_hh": 16537.0,
+      "renter_hh": 17556.0,
+      "median_rent": 1991.0,
+      "median_income": 104940.0,
+      "filings_window_total": 2103.0,
+      "filings_per_1k_renter_hh_per_yr": 50.88
+    },
+    "414": {
+      "rent_burden_30": 0.5685,
+      "rent_burden_50": 0.3071,
+      "rent_eligible_hh": 26695.0,
+      "renter_hh": 28184.0,
+      "median_rent": 1438.0,
+      "median_income": 70299.0,
+      "filings_window_total": 6115.0,
+      "filings_per_1k_renter_hh_per_yr": 92.15
+    },
+    "501": {
+      "rent_burden_30": 0.5589,
+      "rent_burden_50": 0.3098,
+      "rent_eligible_hh": 26092.0,
+      "renter_hh": 28125.0,
+      "median_rent": 1517.0,
+      "median_income": 83807.0,
+      "filings_window_total": 3461.0,
+      "filings_per_1k_renter_hh_per_yr": 52.26
+    },
+    "502": {
+      "rent_burden_30": 0.5431,
+      "rent_burden_50": 0.3122,
+      "rent_eligible_hh": 12984.0,
+      "renter_hh": 14125.0,
+      "median_rent": 1700.0,
+      "median_income": 98583.0,
+      "filings_window_total": 2076.0,
+      "filings_per_1k_renter_hh_per_yr": 62.42
+    },
+    "503": {
+      "rent_burden_30": 0.5651,
+      "rent_burden_50": 0.3372,
+      "rent_eligible_hh": 10714.0,
+      "renter_hh": 12093.0,
+      "median_rent": 1923.0,
+      "median_income": 119347.0,
+      "filings_window_total": 742.0,
+      "filings_per_1k_renter_hh_per_yr": 26.06
+    }
+  }
+}

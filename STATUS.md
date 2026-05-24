@@ -1,3 +1,14 @@
+# Measuring New York (data) — Status (historical)
+
+> **As of 2026-05-23, work is tracked on the GitHub Project board:**
+> https://github.com/users/shanvann/projects/1
+>
+> The board has one item per phase with Status / Priority / Size / Target
+> date. This file is informational only and is no longer the primary
+> tracker — it may drift from the board.
+
+---
+
 # Measuring New York (data) — Status
 
 **Last updated:** 2026-05-23

@@ -246,6 +246,7 @@ def main() -> int:
 
     # Aggregate to CDs via median + quartiles
     from statistics import median, quantiles
+    city_total = sum(jobs_by_tract.values())
     per_cd: dict[str, dict] = {}
     cd_tracts: dict[str, list[int]] = {}
     for geoid, info in per_tract.items():
@@ -253,19 +254,35 @@ def main() -> int:
     for boro_cd, values in cd_tracts.items():
         if not values:
             continue
-        sorted_vals = sorted(values)
         q = quantiles(values, n=4) if len(values) >= 4 else [median(values)] * 3
+        median_jobs = int(median(values))
+        q1 = int(q[0])
+        q3 = int(q[2])
+        # Mobility Access Score: % of NYC jobs the median tract reaches.
+        # Single-dimension score (not a livability composite) per plan §10.
+        score = round(median_jobs / city_total * 100, 1) if city_total else 0
+        # Variance class from Q3/Q1 spread: surfaces the chapter's contradiction
+        # (intra-CD spread is itself the story for some CDs).
+        spread = (q3 / q1) if q1 > 0 else float("inf")
+        if spread < 1.5:
+            variance_class = "uniform"
+        elif spread < 3.0:
+            variance_class = "moderate"
+        else:
+            variance_class = "uneven"
         per_cd[boro_cd] = {
-            "jobs_reachable_45min": int(median(values)),
-            "jobs_reachable_45min_q1": int(q[0]),
-            "jobs_reachable_45min_q3": int(q[2]),
+            "jobs_reachable_45min": median_jobs,
+            "jobs_reachable_45min_q1": q1,
+            "jobs_reachable_45min_q3": q3,
             "jobs_reachable_45min_min": int(min(values)),
             "jobs_reachable_45min_max": int(max(values)),
             "tract_count": len(values),
-            # also surface the *best* tract in the CD (where stops are highest)
             "reachable_stops_max": max(per_tract[g]["reachable_stops"] for g in per_tract if per_tract[g]["boro_cd"] == boro_cd),
+            "mobility_access_score": score,
+            "variance_class": variance_class,
+            "q3_over_q1": round(spread, 2) if spread != float("inf") else None,
         }
-        per_cd[boro_cd]["reachable_stops"] = per_cd[boro_cd]["reachable_stops_max"]  # alias for choropleth
+        per_cd[boro_cd]["reachable_stops"] = per_cd[boro_cd]["reachable_stops_max"]
     print(f"  aggregated to {len(per_cd)} CDs")
 
     # Attach to CD polygons + write choropleth
@@ -273,10 +290,11 @@ def main() -> int:
     cds_out["jobs_reachable_45min"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["jobs_reachable_45min"])
     cds_out["jobs_reachable_q1"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["jobs_reachable_45min_q1"])
     cds_out["jobs_reachable_q3"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["jobs_reachable_45min_q3"])
+    cds_out["mobility_access_score"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["mobility_access_score"])
+    cds_out["variance_class"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["variance_class"])
     cds_out["tract_count"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["tract_count"])
     cds_out["is_anchor"] = cds_out["boro_cd"].isin(ANCHOR_BORO_CDS)
     cds_out["name"] = cds_out["boro_cd"].map(lambda c: ANCHOR_NAME.get(c, ""))
-    # simplify geometry for size
     cds_out["geometry"] = cds_out.geometry.simplify(0.00015, preserve_topology=True)
 
     geojson = json.loads(cds_out.to_json())
@@ -287,6 +305,8 @@ def main() -> int:
             "jobs_reachable_45min": props["jobs_reachable_45min"],
             "jobs_reachable_q1": props["jobs_reachable_q1"],
             "jobs_reachable_q3": props["jobs_reachable_q3"],
+            "mobility_access_score": props["mobility_access_score"],
+            "variance_class": props["variance_class"],
             "tract_count": props["tract_count"],
             "is_anchor": props["is_anchor"],
             "name": props["name"],
@@ -315,9 +335,9 @@ def main() -> int:
                 "jobs_reachable_45min_q1": per_cd[c]["jobs_reachable_45min_q1"],
                 "jobs_reachable_45min_q3": per_cd[c]["jobs_reachable_45min_q3"],
                 "tract_count": per_cd[c]["tract_count"],
-                "share_of_city_jobs_pct": round(
-                    per_cd[c]["jobs_reachable_45min"] / sum(jobs_by_tract.values()) * 100, 1
-                ),
+                "mobility_access_score": per_cd[c]["mobility_access_score"],
+                "variance_class": per_cd[c]["variance_class"],
+                "q3_over_q1": per_cd[c]["q3_over_q1"],
             }
             for c, name, b in ANCHOR_CDS
         ],

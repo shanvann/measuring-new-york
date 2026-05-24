@@ -12,7 +12,9 @@
       "jobs_reachable_45min_q1": 2976636,
       "jobs_reachable_45min_q3": 3092975,
       "tract_count": 27,
-      "share_of_city_jobs_pct": 68.4
+      "mobility_access_score": 68.4,
+      "variance_class": "uniform",
+      "q3_over_q1": 1.04
     },
     {
       "boro_cd": "301",
@@ -22,7 +24,9 @@
       "jobs_reachable_45min_q1": 1037254,
       "jobs_reachable_45min_q3": 2237851,
       "tract_count": 54,
-      "share_of_city_jobs_pct": 33.2
+      "mobility_access_score": 33.2,
+      "variance_class": "moderate",
+      "q3_over_q1": 2.16
     },
     {
       "boro_cd": "212",
@@ -32,7 +36,9 @@
       "jobs_reachable_45min_q1": 68902,
       "jobs_reachable_45min_q3": 159921,
       "tract_count": 49,
-      "share_of_city_jobs_pct": 2.1
+      "mobility_access_score": 2.1,
+      "variance_class": "moderate",
+      "q3_over_q1": 2.32
     },
     {
       "boro_cd": "410",
@@ -42,7 +48,9 @@
       "jobs_reachable_45min_q1": 40145,
       "jobs_reachable_45min_q3": 192522,
       "tract_count": 38,
-      "share_of_city_jobs_pct": 1.4
+      "mobility_access_score": 1.4,
+      "variance_class": "uneven",
+      "q3_over_q1": 4.8
     },
     {
       "boro_cd": "414",
@@ -52,7 +60,9 @@
       "jobs_reachable_45min_q1": 10409,
       "jobs_reachable_45min_q3": 26804,
       "tract_count": 29,
-      "share_of_city_jobs_pct": 0.4
+      "mobility_access_score": 0.4,
+      "variance_class": "moderate",
+      "q3_over_q1": 2.58
     }
   ],
   "headline": {

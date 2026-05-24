@@ -60,6 +60,12 @@
       "sha256": "bb5f1759872c8fa7ed18f7430c971b3b238a68927e0046d06d1ddb4ce90fc26b",
       "source_url": "https://data.cityofnewyork.us/api/geospatial/9nt8-h7nd?method=export&format=GeoJSON"
     },
+    "hpd_violations/counts-by-zip-2024-01-01_2026-05-10-2026-06-01.json": {
+      "bytes": 33533,
+      "fetched_at": "2026-05-24T14:22:14+00:00",
+      "sha256": "17db151bf891329013cc807323dddf23531adfabe3f31c18b3baa6f16207dd73",
+      "source_url": "https://data.cityofnewyork.us/resource/wvxf-dwi5.json?%24select=zip%2C+class%2C+count%28%2A%29+AS+n&%24where=inspectiondate+%3E%3D+%272024-01-01T00%3A00%3A00.000%27+AND+inspectiondate+%3C%3D+%272026-05-10T23%3A59%3A59.999%27+AND+inspectiondate+%3C%3D+%272026-06-01T00%3A00%3A00.000%27&%24group=zip%2C+class&%24limit=10000"
+    },
     "lodes/ny_wac_S000_JT00_2022.csv.gz": {
       "bytes": 2730593,
       "fetched_at": "2026-05-23T22:01:03+00:00",

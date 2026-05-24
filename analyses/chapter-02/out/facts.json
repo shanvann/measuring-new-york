@@ -9,17 +9,26 @@
     "rent_burden_30": {
       "rent_burden_30": 1.0,
       "median_rent": -0.774,
-      "filings_per_1k_renter_hh_per_yr": 0.665
+      "filings_per_1k_renter_hh_per_yr": 0.665,
+      "hpd_per_1k_renter_hh_per_yr": 0.609
     },
     "median_rent": {
       "rent_burden_30": -0.774,
       "median_rent": 1.0,
-      "filings_per_1k_renter_hh_per_yr": -0.768
+      "filings_per_1k_renter_hh_per_yr": -0.768,
+      "hpd_per_1k_renter_hh_per_yr": -0.691
     },
     "filings_per_1k_renter_hh_per_yr": {
       "rent_burden_30": 0.665,
       "median_rent": -0.768,
-      "filings_per_1k_renter_hh_per_yr": 1.0
+      "filings_per_1k_renter_hh_per_yr": 1.0,
+      "hpd_per_1k_renter_hh_per_yr": 0.817
+    },
+    "hpd_per_1k_renter_hh_per_yr": {
+      "rent_burden_30": 0.609,
+      "median_rent": -0.691,
+      "filings_per_1k_renter_hh_per_yr": 0.817,
+      "hpd_per_1k_renter_hh_per_yr": 1.0
     }
   },
   "per_cd": {
@@ -31,7 +40,11 @@
       "median_rent": 3413.0,
       "median_income": 209648.0,
       "filings_window_total": 1080.0,
-      "filings_per_1k_renter_hh_per_yr": 19.62
+      "filings_per_1k_renter_hh_per_yr": 19.62,
+      "hpd_window_total": 3251.0,
+      "hpd_class_c_total": 990.0,
+      "hpd_per_1k_renter_hh_per_yr": 59.06,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 17.98
     },
     "102": {
       "rent_burden_30": 0.4081,
@@ -41,7 +54,11 @@
       "median_rent": 2899.0,
       "median_income": 165773.0,
       "filings_window_total": 1064.0,
-      "filings_per_1k_renter_hh_per_yr": 13.93
+      "filings_per_1k_renter_hh_per_yr": 13.93,
+      "hpd_window_total": 11649.0,
+      "hpd_class_c_total": 3518.0,
+      "hpd_per_1k_renter_hh_per_yr": 152.53,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 46.06
     },
     "103": {
       "rent_burden_30": 0.4934,
@@ -51,7 +68,11 @@
       "median_rent": 1583.0,
       "median_income": 75100.0,
       "filings_window_total": 3086.0,
-      "filings_per_1k_renter_hh_per_yr": 21.28
+      "filings_per_1k_renter_hh_per_yr": 21.28,
+      "hpd_window_total": 16931.0,
+      "hpd_class_c_total": 5674.0,
+      "hpd_per_1k_renter_hh_per_yr": 116.74,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 39.12
     },
     "104": {
       "rent_burden_30": 0.4451,
@@ -61,7 +82,11 @@
       "median_rent": 2538.0,
       "median_income": 114517.0,
       "filings_window_total": 2525.0,
-      "filings_per_1k_renter_hh_per_yr": 19.54
+      "filings_per_1k_renter_hh_per_yr": 19.54,
+      "hpd_window_total": 12308.0,
+      "hpd_class_c_total": 3846.0,
+      "hpd_per_1k_renter_hh_per_yr": 95.27,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 29.77
     },
     "105": {
       "rent_burden_30": 0.3973,
@@ -71,7 +96,11 @@
       "median_rent": 3046.0,
       "median_income": 164188.0,
       "filings_window_total": 2236.0,
-      "filings_per_1k_renter_hh_per_yr": 33.57
+      "filings_per_1k_renter_hh_per_yr": 33.57,
+      "hpd_window_total": 10456.0,
+      "hpd_class_c_total": 3362.0,
+      "hpd_per_1k_renter_hh_per_yr": 156.97,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 50.47
     },
     "106": {
       "rent_burden_30": 0.4433,
@@ -81,7 +110,11 @@
       "median_rent": 3094.0,
       "median_income": 157667.0,
       "filings_window_total": 1743.0,
-      "filings_per_1k_renter_hh_per_yr": 16.12
+      "filings_per_1k_renter_hh_per_yr": 16.12,
+      "hpd_window_total": 9312.0,
+      "hpd_class_c_total": 2983.0,
+      "hpd_per_1k_renter_hh_per_yr": 86.11,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 27.59
     },
     "107": {
       "rent_burden_30": 0.4368,
@@ -91,7 +124,11 @@
       "median_rent": 2585.0,
       "median_income": 155339.0,
       "filings_window_total": 3378.0,
-      "filings_per_1k_renter_hh_per_yr": 20.91
+      "filings_per_1k_renter_hh_per_yr": 20.91,
+      "hpd_window_total": 22097.0,
+      "hpd_class_c_total": 7190.0,
+      "hpd_per_1k_renter_hh_per_yr": 136.75,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 44.5
     },
     "108": {
       "rent_burden_30": 0.4084,
@@ -101,7 +138,11 @@
       "median_rent": 2768.0,
       "median_income": 160080.0,
       "filings_window_total": 2776.0,
-      "filings_per_1k_renter_hh_per_yr": 16.96
+      "filings_per_1k_renter_hh_per_yr": 16.96,
+      "hpd_window_total": 14660.0,
+      "hpd_class_c_total": 4410.0,
+      "hpd_per_1k_renter_hh_per_yr": 89.55,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 26.94
     },
     "109": {
       "rent_burden_30": 0.5148,
@@ -111,7 +152,11 @@
       "median_rent": 1796.0,
       "median_income": 65806.0,
       "filings_window_total": 5892.0,
-      "filings_per_1k_renter_hh_per_yr": 73.23
+      "filings_per_1k_renter_hh_per_yr": 73.23,
+      "hpd_window_total": 58455.0,
+      "hpd_class_c_total": 19890.0,
+      "hpd_per_1k_renter_hh_per_yr": 726.55,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 247.22
     },
     "110": {
       "rent_burden_30": 0.5066,
@@ -121,7 +166,11 @@
       "median_rent": 1486.0,
       "median_income": 71833.0,
       "filings_window_total": 7104.0,
-      "filings_per_1k_renter_hh_per_yr": 61.84
+      "filings_per_1k_renter_hh_per_yr": 61.84,
+      "hpd_window_total": 63903.0,
+      "hpd_class_c_total": 22504.0,
+      "hpd_per_1k_renter_hh_per_yr": 556.24,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 195.89
     },
     "111": {
       "rent_burden_30": 0.5538,
@@ -131,7 +180,11 @@
       "median_rent": 1310.0,
       "median_income": 39950.0,
       "filings_window_total": 3171.0,
-      "filings_per_1k_renter_hh_per_yr": 27.3
+      "filings_per_1k_renter_hh_per_yr": 27.3,
+      "hpd_window_total": 37211.0,
+      "hpd_class_c_total": 12225.0,
+      "hpd_per_1k_renter_hh_per_yr": 320.37,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 105.25
     },
     "112": {
       "rent_burden_30": 0.5308,
@@ -141,7 +194,11 @@
       "median_rent": 1641.0,
       "median_income": 70986.0,
       "filings_window_total": 11659.0,
-      "filings_per_1k_renter_hh_per_yr": 78.12
+      "filings_per_1k_renter_hh_per_yr": 78.12,
+      "hpd_window_total": 102174.0,
+      "hpd_class_c_total": 35704.0,
+      "hpd_per_1k_renter_hh_per_yr": 684.6,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 239.23
     },
     "201": {
       "rent_burden_30": 0.6198,
@@ -151,7 +208,11 @@
       "median_rent": 1054.0,
       "median_income": 31820.0,
       "filings_window_total": 8073.0,
-      "filings_per_1k_renter_hh_per_yr": 99.54
+      "filings_per_1k_renter_hh_per_yr": 99.54,
+      "hpd_window_total": 58276.0,
+      "hpd_class_c_total": 19735.0,
+      "hpd_per_1k_renter_hh_per_yr": 718.57,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 243.34
     },
     "202": {
       "rent_burden_30": 0.6002,
@@ -161,7 +222,11 @@
       "median_rent": 1239.0,
       "median_income": 36438.0,
       "filings_window_total": 3995.0,
-      "filings_per_1k_renter_hh_per_yr": 88.73
+      "filings_per_1k_renter_hh_per_yr": 88.73,
+      "hpd_window_total": 37402.0,
+      "hpd_class_c_total": 12170.0,
+      "hpd_per_1k_renter_hh_per_yr": 830.72,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 270.3
     },
     "203": {
       "rent_burden_30": 0.5988,
@@ -171,7 +236,11 @@
       "median_rent": 1167.0,
       "median_income": 34958.0,
       "filings_window_total": 8098.0,
-      "filings_per_1k_renter_hh_per_yr": 115.88
+      "filings_per_1k_renter_hh_per_yr": 115.88,
+      "hpd_window_total": 71979.0,
+      "hpd_class_c_total": 24655.0,
+      "hpd_per_1k_renter_hh_per_yr": 1030.03,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 352.82
     },
     "204": {
       "rent_burden_30": 0.6036,
@@ -181,7 +250,11 @@
       "median_rent": 1380.0,
       "median_income": 45292.0,
       "filings_window_total": 13126.0,
-      "filings_per_1k_renter_hh_per_yr": 107.27
+      "filings_per_1k_renter_hh_per_yr": 107.27,
+      "hpd_window_total": 103375.0,
+      "hpd_class_c_total": 36455.0,
+      "hpd_per_1k_renter_hh_per_yr": 844.85,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 297.93
     },
     "205": {
       "rent_burden_30": 0.6195,
@@ -191,7 +264,11 @@
       "median_rent": 1419.0,
       "median_income": 43900.0,
       "filings_window_total": 11334.0,
-      "filings_per_1k_renter_hh_per_yr": 106.56
+      "filings_per_1k_renter_hh_per_yr": 106.56,
+      "hpd_window_total": 93492.0,
+      "hpd_class_c_total": 33545.0,
+      "hpd_per_1k_renter_hh_per_yr": 878.98,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 315.38
     },
     "206": {
       "rent_burden_30": 0.6299,
@@ -201,7 +278,11 @@
       "median_rent": 1301.0,
       "median_income": 28955.0,
       "filings_window_total": 9313.0,
-      "filings_per_1k_renter_hh_per_yr": 137.41
+      "filings_per_1k_renter_hh_per_yr": 137.41,
+      "hpd_window_total": 87098.0,
+      "hpd_class_c_total": 30319.0,
+      "hpd_per_1k_renter_hh_per_yr": 1285.09,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 447.34
     },
     "207": {
       "rent_burden_30": 0.628,
@@ -211,7 +292,11 @@
       "median_rent": 1580.0,
       "median_income": 44065.0,
       "filings_window_total": 10522.0,
-      "filings_per_1k_renter_hh_per_yr": 96.16
+      "filings_per_1k_renter_hh_per_yr": 96.16,
+      "hpd_window_total": 95773.0,
+      "hpd_class_c_total": 33333.0,
+      "hpd_per_1k_renter_hh_per_yr": 875.27,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 304.63
     },
     "208": {
       "rent_burden_30": 0.5356,
@@ -221,7 +306,11 @@
       "median_rent": 1663.0,
       "median_income": 86672.0,
       "filings_window_total": 4006.0,
-      "filings_per_1k_renter_hh_per_yr": 60.43
+      "filings_per_1k_renter_hh_per_yr": 60.43,
+      "hpd_window_total": 30132.0,
+      "hpd_class_c_total": 10069.0,
+      "hpd_per_1k_renter_hh_per_yr": 454.52,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 151.88
     },
     "209": {
       "rent_burden_30": 0.5908,
@@ -231,7 +320,11 @@
       "median_rent": 1387.0,
       "median_income": 52808.0,
       "filings_window_total": 9168.0,
-      "filings_per_1k_renter_hh_per_yr": 78.57
+      "filings_per_1k_renter_hh_per_yr": 78.57,
+      "hpd_window_total": 63905.0,
+      "hpd_class_c_total": 20308.0,
+      "hpd_per_1k_renter_hh_per_yr": 547.65,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 174.03
     },
     "210": {
       "rent_burden_30": 0.5384,
@@ -241,7 +334,11 @@
       "median_rent": 1557.0,
       "median_income": 78435.0,
       "filings_window_total": 2111.0,
-      "filings_per_1k_renter_hh_per_yr": 32.83
+      "filings_per_1k_renter_hh_per_yr": 32.83,
+      "hpd_window_total": 15716.0,
+      "hpd_class_c_total": 4004.0,
+      "hpd_per_1k_renter_hh_per_yr": 244.39,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 62.26
     },
     "211": {
       "rent_burden_30": 0.5824,
@@ -251,7 +348,11 @@
       "median_rent": 1562.0,
       "median_income": 70418.0,
       "filings_window_total": 5626.0,
-      "filings_per_1k_renter_hh_per_yr": 78.35
+      "filings_per_1k_renter_hh_per_yr": 78.35,
+      "hpd_window_total": 43686.0,
+      "hpd_class_c_total": 13264.0,
+      "hpd_per_1k_renter_hh_per_yr": 608.38,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 184.72
     },
     "212": {
       "rent_burden_30": 0.577,
@@ -261,7 +362,11 @@
       "median_rent": 1516.0,
       "median_income": 70468.0,
       "filings_window_total": 7218.0,
-      "filings_per_1k_renter_hh_per_yr": 88.08
+      "filings_per_1k_renter_hh_per_yr": 88.08,
+      "hpd_window_total": 61595.0,
+      "hpd_class_c_total": 18877.0,
+      "hpd_per_1k_renter_hh_per_yr": 751.64,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 230.35
     },
     "301": {
       "rent_burden_30": 0.4338,
@@ -271,7 +376,11 @@
       "median_rent": 2372.0,
       "median_income": 108428.0,
       "filings_window_total": 3340.0,
-      "filings_per_1k_renter_hh_per_yr": 20.28
+      "filings_per_1k_renter_hh_per_yr": 20.28,
+      "hpd_window_total": 40518.0,
+      "hpd_class_c_total": 8824.0,
+      "hpd_per_1k_renter_hh_per_yr": 246.0,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 53.57
     },
     "302": {
       "rent_burden_30": 0.4008,
@@ -281,7 +390,11 @@
       "median_rent": 2725.0,
       "median_income": 153890.0,
       "filings_window_total": 2921.0,
-      "filings_per_1k_renter_hh_per_yr": 30.67
+      "filings_per_1k_renter_hh_per_yr": 30.67,
+      "hpd_window_total": 22774.0,
+      "hpd_class_c_total": 4686.0,
+      "hpd_per_1k_renter_hh_per_yr": 239.09,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 49.2
     },
     "303": {
       "rent_burden_30": 0.5086,
@@ -291,7 +404,11 @@
       "median_rent": 1976.0,
       "median_income": 80953.0,
       "filings_window_total": 6130.0,
-      "filings_per_1k_renter_hh_per_yr": 47.62
+      "filings_per_1k_renter_hh_per_yr": 47.62,
+      "hpd_window_total": 61711.0,
+      "hpd_class_c_total": 15537.0,
+      "hpd_per_1k_renter_hh_per_yr": 479.38,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 120.69
     },
     "304": {
       "rent_burden_30": 0.5535,
@@ -301,7 +418,11 @@
       "median_rent": 2145.0,
       "median_income": 85741.0,
       "filings_window_total": 3380.0,
-      "filings_per_1k_renter_hh_per_yr": 38.7
+      "filings_per_1k_renter_hh_per_yr": 38.7,
+      "hpd_window_total": 36132.0,
+      "hpd_class_c_total": 9391.0,
+      "hpd_per_1k_renter_hh_per_yr": 413.67,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 107.52
     },
     "305": {
       "rent_burden_30": 0.5529,
@@ -311,7 +432,11 @@
       "median_rent": 1370.0,
       "median_income": 60197.0,
       "filings_window_total": 9265.0,
-      "filings_per_1k_renter_hh_per_yr": 72.85
+      "filings_per_1k_renter_hh_per_yr": 72.85,
+      "hpd_window_total": 56203.0,
+      "hpd_class_c_total": 15491.0,
+      "hpd_per_1k_renter_hh_per_yr": 441.9,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 121.8
     },
     "306": {
       "rent_burden_30": 0.3476,
@@ -321,7 +446,11 @@
       "median_rent": 2578.0,
       "median_income": 162377.0,
       "filings_window_total": 1212.0,
-      "filings_per_1k_renter_hh_per_yr": 15.75
+      "filings_per_1k_renter_hh_per_yr": 15.75,
+      "hpd_window_total": 21657.0,
+      "hpd_class_c_total": 3593.0,
+      "hpd_per_1k_renter_hh_per_yr": 281.38,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 46.68
     },
     "307": {
       "rent_burden_30": 0.5225,
@@ -331,7 +460,11 @@
       "median_rent": 2004.0,
       "median_income": 77552.0,
       "filings_window_total": 1349.0,
-      "filings_per_1k_renter_hh_per_yr": 20.0
+      "filings_per_1k_renter_hh_per_yr": 20.0,
+      "hpd_window_total": 32991.0,
+      "hpd_class_c_total": 7598.0,
+      "hpd_per_1k_renter_hh_per_yr": 489.09,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 112.64
     },
     "308": {
       "rent_burden_30": 0.4692,
@@ -341,7 +474,11 @@
       "median_rent": 1914.0,
       "median_income": 90166.0,
       "filings_window_total": 4123.0,
-      "filings_per_1k_renter_hh_per_yr": 45.99
+      "filings_per_1k_renter_hh_per_yr": 45.99,
+      "hpd_window_total": 44754.0,
+      "hpd_class_c_total": 12667.0,
+      "hpd_per_1k_renter_hh_per_yr": 499.21,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 141.29
     },
     "309": {
       "rent_burden_30": 0.4919,
@@ -351,7 +488,11 @@
       "median_rent": 1653.0,
       "median_income": 71744.0,
       "filings_window_total": 5182.0,
-      "filings_per_1k_renter_hh_per_yr": 66.06
+      "filings_per_1k_renter_hh_per_yr": 66.06,
+      "hpd_window_total": 54477.0,
+      "hpd_class_c_total": 17262.0,
+      "hpd_per_1k_renter_hh_per_yr": 694.45,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 220.05
     },
     "310": {
       "rent_burden_30": 0.4863,
@@ -361,7 +502,11 @@
       "median_rent": 1833.0,
       "median_income": 83210.0,
       "filings_window_total": 1603.0,
-      "filings_per_1k_renter_hh_per_yr": 23.17
+      "filings_per_1k_renter_hh_per_yr": 23.17,
+      "hpd_window_total": 29115.0,
+      "hpd_class_c_total": 6721.0,
+      "hpd_per_1k_renter_hh_per_yr": 420.92,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 97.17
     },
     "311": {
       "rent_burden_30": 0.5567,
@@ -371,7 +516,11 @@
       "median_rent": 1715.0,
       "median_income": 70076.0,
       "filings_window_total": 1937.0,
-      "filings_per_1k_renter_hh_per_yr": 20.27
+      "filings_per_1k_renter_hh_per_yr": 20.27,
+      "hpd_window_total": 29191.0,
+      "hpd_class_c_total": 6154.0,
+      "hpd_per_1k_renter_hh_per_yr": 305.5,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 64.4
     },
     "312": {
       "rent_burden_30": 0.5847,
@@ -381,7 +530,11 @@
       "median_rent": 1792.0,
       "median_income": 68393.0,
       "filings_window_total": 2611.0,
-      "filings_per_1k_renter_hh_per_yr": 29.37
+      "filings_per_1k_renter_hh_per_yr": 29.37,
+      "hpd_window_total": 46035.0,
+      "hpd_class_c_total": 10776.0,
+      "hpd_per_1k_renter_hh_per_yr": 517.84,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 121.22
     },
     "313": {
       "rent_burden_30": 0.6187,
@@ -391,7 +544,11 @@
       "median_rent": 1250.0,
       "median_income": 50559.0,
       "filings_window_total": 3099.0,
-      "filings_per_1k_renter_hh_per_yr": 40.15
+      "filings_per_1k_renter_hh_per_yr": 40.15,
+      "hpd_window_total": 18795.0,
+      "hpd_class_c_total": 4831.0,
+      "hpd_per_1k_renter_hh_per_yr": 243.48,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 62.58
     },
     "314": {
       "rent_burden_30": 0.5201,
@@ -401,7 +558,11 @@
       "median_rent": 1757.0,
       "median_income": 76061.0,
       "filings_window_total": 7110.0,
-      "filings_per_1k_renter_hh_per_yr": 65.59
+      "filings_per_1k_renter_hh_per_yr": 65.59,
+      "hpd_window_total": 74854.0,
+      "hpd_class_c_total": 23732.0,
+      "hpd_per_1k_renter_hh_per_yr": 690.57,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 218.94
     },
     "315": {
       "rent_burden_30": 0.5416,
@@ -411,7 +572,11 @@
       "median_rent": 1673.0,
       "median_income": 73106.0,
       "filings_window_total": 3030.0,
-      "filings_per_1k_renter_hh_per_yr": 38.67
+      "filings_per_1k_renter_hh_per_yr": 38.67,
+      "hpd_window_total": 27126.0,
+      "hpd_class_c_total": 7077.0,
+      "hpd_per_1k_renter_hh_per_yr": 346.22,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 90.33
     },
     "316": {
       "rent_burden_30": 0.5663,
@@ -421,7 +586,11 @@
       "median_rent": 1180.0,
       "median_income": 45197.0,
       "filings_window_total": 5814.0,
-      "filings_per_1k_renter_hh_per_yr": 80.36
+      "filings_per_1k_renter_hh_per_yr": 80.36,
+      "hpd_window_total": 45672.0,
+      "hpd_class_c_total": 13169.0,
+      "hpd_per_1k_renter_hh_per_yr": 631.28,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 182.02
     },
     "317": {
       "rent_burden_30": 0.5581,
@@ -431,7 +600,11 @@
       "median_rent": 1657.0,
       "median_income": 74428.0,
       "filings_window_total": 7375.0,
-      "filings_per_1k_renter_hh_per_yr": 75.91
+      "filings_per_1k_renter_hh_per_yr": 75.91,
+      "hpd_window_total": 72404.0,
+      "hpd_class_c_total": 22270.0,
+      "hpd_per_1k_renter_hh_per_yr": 745.2,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 229.21
     },
     "318": {
       "rent_burden_30": 0.5176,
@@ -441,7 +614,11 @@
       "median_rent": 1628.0,
       "median_income": 92812.0,
       "filings_window_total": 3603.0,
-      "filings_per_1k_renter_hh_per_yr": 53.07
+      "filings_per_1k_renter_hh_per_yr": 53.07,
+      "hpd_window_total": 20695.0,
+      "hpd_class_c_total": 5127.0,
+      "hpd_per_1k_renter_hh_per_yr": 304.81,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 75.51
     },
     "401": {
       "rent_burden_30": 0.442,
@@ -451,7 +628,11 @@
       "median_rent": 2027.0,
       "median_income": 94996.0,
       "filings_window_total": 3502.0,
-      "filings_per_1k_renter_hh_per_yr": 23.26
+      "filings_per_1k_renter_hh_per_yr": 23.26,
+      "hpd_window_total": 35443.0,
+      "hpd_class_c_total": 8297.0,
+      "hpd_per_1k_renter_hh_per_yr": 235.36,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 55.1
     },
     "402": {
       "rent_burden_30": 0.4524,
@@ -461,7 +642,11 @@
       "median_rent": 2244.0,
       "median_income": 84561.0,
       "filings_window_total": 2860.0,
-      "filings_per_1k_renter_hh_per_yr": 30.17
+      "filings_per_1k_renter_hh_per_yr": 30.17,
+      "hpd_window_total": 23538.0,
+      "hpd_class_c_total": 6481.0,
+      "hpd_per_1k_renter_hh_per_yr": 248.28,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 68.36
     },
     "403": {
       "rent_burden_30": 0.5481,
@@ -471,7 +656,11 @@
       "median_rent": 1894.0,
       "median_income": 75526.0,
       "filings_window_total": 2616.0,
-      "filings_per_1k_renter_hh_per_yr": 34.01
+      "filings_per_1k_renter_hh_per_yr": 34.01,
+      "hpd_window_total": 27697.0,
+      "hpd_class_c_total": 8413.0,
+      "hpd_per_1k_renter_hh_per_yr": 360.12,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 109.39
     },
     "404": {
       "rent_burden_30": 0.5707,
@@ -481,7 +670,11 @@
       "median_rent": 1912.0,
       "median_income": 68363.0,
       "filings_window_total": 2890.0,
-      "filings_per_1k_renter_hh_per_yr": 30.83
+      "filings_per_1k_renter_hh_per_yr": 30.83,
+      "hpd_window_total": 23107.0,
+      "hpd_class_c_total": 6113.0,
+      "hpd_per_1k_renter_hh_per_yr": 246.5,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 65.21
     },
     "405": {
       "rent_burden_30": 0.4906,
@@ -491,7 +684,11 @@
       "median_rent": 1976.0,
       "median_income": 91654.0,
       "filings_window_total": 1613.0,
-      "filings_per_1k_renter_hh_per_yr": 17.72
+      "filings_per_1k_renter_hh_per_yr": 17.72,
+      "hpd_window_total": 26196.0,
+      "hpd_class_c_total": 5508.0,
+      "hpd_per_1k_renter_hh_per_yr": 287.72,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 60.5
     },
     "406": {
       "rent_burden_30": 0.506,
@@ -501,7 +698,11 @@
       "median_rent": 2054.0,
       "median_income": 100668.0,
       "filings_window_total": 2503.0,
-      "filings_per_1k_renter_hh_per_yr": 38.59
+      "filings_per_1k_renter_hh_per_yr": 38.59,
+      "hpd_window_total": 14876.0,
+      "hpd_class_c_total": 5053.0,
+      "hpd_per_1k_renter_hh_per_yr": 229.38,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 77.91
     },
     "407": {
       "rent_burden_30": 0.6168,
@@ -511,7 +712,11 @@
       "median_rent": 1810.0,
       "median_income": 75465.0,
       "filings_window_total": 3492.0,
-      "filings_per_1k_renter_hh_per_yr": 31.01
+      "filings_per_1k_renter_hh_per_yr": 31.01,
+      "hpd_window_total": 30064.0,
+      "hpd_class_c_total": 8696.0,
+      "hpd_per_1k_renter_hh_per_yr": 266.96,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 77.22
     },
     "408": {
       "rent_burden_30": 0.4766,
@@ -521,7 +726,11 @@
       "median_rent": 1812.0,
       "median_income": 86058.0,
       "filings_window_total": 4181.0,
-      "filings_per_1k_renter_hh_per_yr": 58.52
+      "filings_per_1k_renter_hh_per_yr": 58.52,
+      "hpd_window_total": 22180.0,
+      "hpd_class_c_total": 6787.0,
+      "hpd_per_1k_renter_hh_per_yr": 310.46,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 95.0
     },
     "409": {
       "rent_burden_30": 0.5408,
@@ -531,7 +740,11 @@
       "median_rent": 1897.0,
       "median_income": 84109.0,
       "filings_window_total": 1999.0,
-      "filings_per_1k_renter_hh_per_yr": 37.04
+      "filings_per_1k_renter_hh_per_yr": 37.04,
+      "hpd_window_total": 16690.0,
+      "hpd_class_c_total": 3809.0,
+      "hpd_per_1k_renter_hh_per_yr": 309.27,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 70.58
     },
     "410": {
       "rent_burden_30": 0.5771,
@@ -541,7 +754,11 @@
       "median_rent": 1957.0,
       "median_income": 92952.0,
       "filings_window_total": 1185.0,
-      "filings_per_1k_renter_hh_per_yr": 38.47
+      "filings_per_1k_renter_hh_per_yr": 38.47,
+      "hpd_window_total": 10582.0,
+      "hpd_class_c_total": 1913.0,
+      "hpd_per_1k_renter_hh_per_yr": 343.49,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 62.1
     },
     "411": {
       "rent_burden_30": 0.5051,
@@ -551,7 +768,11 @@
       "median_rent": 2342.0,
       "median_income": 100929.0,
       "filings_window_total": 1048.0,
-      "filings_per_1k_renter_hh_per_yr": 32.34
+      "filings_per_1k_renter_hh_per_yr": 32.34,
+      "hpd_window_total": 5279.0,
+      "hpd_class_c_total": 1031.0,
+      "hpd_per_1k_renter_hh_per_yr": 162.93,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 31.82
     },
     "412": {
       "rent_burden_30": 0.5784,
@@ -561,7 +782,11 @@
       "median_rent": 1637.0,
       "median_income": 87021.0,
       "filings_window_total": 4766.0,
-      "filings_per_1k_renter_hh_per_yr": 50.78
+      "filings_per_1k_renter_hh_per_yr": 50.78,
+      "hpd_window_total": 24397.0,
+      "hpd_class_c_total": 5937.0,
+      "hpd_per_1k_renter_hh_per_yr": 259.92,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 63.25
     },
     "413": {
       "rent_burden_30": 0.5354,
@@ -571,7 +796,11 @@
       "median_rent": 1991.0,
       "median_income": 104940.0,
       "filings_window_total": 2103.0,
-      "filings_per_1k_renter_hh_per_yr": 50.88
+      "filings_per_1k_renter_hh_per_yr": 50.88,
+      "hpd_window_total": 10474.0,
+      "hpd_class_c_total": 2298.0,
+      "hpd_per_1k_renter_hh_per_yr": 253.38,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 55.59
     },
     "414": {
       "rent_burden_30": 0.5685,
@@ -581,7 +810,11 @@
       "median_rent": 1438.0,
       "median_income": 70299.0,
       "filings_window_total": 6115.0,
-      "filings_per_1k_renter_hh_per_yr": 92.15
+      "filings_per_1k_renter_hh_per_yr": 92.15,
+      "hpd_window_total": 24894.0,
+      "hpd_class_c_total": 6849.0,
+      "hpd_per_1k_renter_hh_per_yr": 375.13,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 103.21
     },
     "501": {
       "rent_burden_30": 0.5589,
@@ -591,7 +824,11 @@
       "median_rent": 1517.0,
       "median_income": 83807.0,
       "filings_window_total": 3461.0,
-      "filings_per_1k_renter_hh_per_yr": 52.26
+      "filings_per_1k_renter_hh_per_yr": 52.26,
+      "hpd_window_total": 24767.0,
+      "hpd_class_c_total": 6119.0,
+      "hpd_per_1k_renter_hh_per_yr": 374.0,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 92.4
     },
     "502": {
       "rent_burden_30": 0.5431,
@@ -601,7 +838,11 @@
       "median_rent": 1700.0,
       "median_income": 98583.0,
       "filings_window_total": 2076.0,
-      "filings_per_1k_renter_hh_per_yr": 62.42
+      "filings_per_1k_renter_hh_per_yr": 62.42,
+      "hpd_window_total": 14742.0,
+      "hpd_class_c_total": 3864.0,
+      "hpd_per_1k_renter_hh_per_yr": 443.26,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 116.18
     },
     "503": {
       "rent_burden_30": 0.5651,
@@ -611,7 +852,11 @@
       "median_rent": 1923.0,
       "median_income": 119347.0,
       "filings_window_total": 742.0,
-      "filings_per_1k_renter_hh_per_yr": 26.06
+      "filings_per_1k_renter_hh_per_yr": 26.06,
+      "hpd_window_total": 3456.0,
+      "hpd_class_c_total": 503.0,
+      "hpd_per_1k_renter_hh_per_yr": 121.38,
+      "hpd_class_c_per_1k_renter_hh_per_yr": 17.67
     }
   }
 }

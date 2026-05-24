@@ -52,20 +52,20 @@ HERE = Path(__file__).resolve().parent
 REPO_ROOT = HERE.parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from pipelines import acs_census, oca_evictions  # noqa: E402
+from pipelines import acs_census, hpd_violations, oca_evictions  # noqa: E402
 from shared import basemap  # noqa: E402
 
 OUT = HERE / "out"
 OUT.mkdir(exist_ok=True)
 
-# Anchor CDs per plan §10 (provisional). The point is to see whether
-# the data actually places these at the extremes of each axis.
+# Anchor CDs per plan §10 (finalized 2026-05-24 against first-pass data).
+# Each anchors a distinct (burden, structural-distress) position.
 ANCHOR_NAMES = {
-    "108": "Upper East Side",
-    "204": "University Heights / Fordham",
-    "304": "Bushwick",
-    "112": "Washington Heights / Inwood",
-    "411": "Bayside / Douglaston",
+    "206": "Belmont / East Tremont",            # everything bad — #1 burden + #1 distress
+    "313": "Brownsville",                       # high burden, low-mid distress (surprise 1)
+    "109": "Manhattanville / Hamilton Heights", # low-mid burden, high distress (surprise 2)
+    "108": "Upper East Side",                   # high rent, low everything else
+    "411": "Bayside / Douglaston",              # homeownership baseline
 }
 
 # OCA filings window. The 2020-2022 era is heavily distorted by the
@@ -189,6 +189,50 @@ def per_cd_median_income(t2c: "pd.Series") -> "pd.Series":
     return df.groupby("borocd")["inc"].median().round(0).astype(int)
 
 
+def per_cd_hpd(renter_hh: "pd.Series") -> "pd.DataFrame":
+    """HPD violations per CD over the post-moratorium window.
+
+    Allocates ZIP-level counts (per class) to CDs via the area-weighted
+    zip→CD crosswalk. Returns total per CD plus a class-C-only series
+    (immediately hazardous — the most consequential).
+    """
+    import pandas as pd
+
+    df = hpd_violations.load_counts_by_zip(
+        start_date=OCA_WINDOW_START, end_date=OCA_WINDOW_END,
+    )
+    df["n"] = pd.to_numeric(df["n"], errors="coerce").fillna(0).astype(int)
+    df["zip5"] = df["zip"].str[:5]
+
+    xwalk = pd.read_csv(REPO_ROOT / "geographies" / "zip_cd_crosswalk.csv",
+                        dtype={"modzcta": str, "borocd": str})
+
+    # Total (all classes) per zip
+    by_zip_all = df.groupby("zip5")["n"].sum().rename("count_all")
+    by_zip_c = df[df["class"] == "C"].groupby("zip5")["n"].sum().rename("count_c")
+
+    def allocate(by_zip: "pd.Series") -> "pd.Series":
+        x = xwalk.merge(by_zip, left_on="modzcta", right_index=True, how="inner")
+        x["allocated"] = x["count_all" if by_zip.name == "count_all" else "count_c"] * x["area_weight"]
+        return x.groupby("borocd")["allocated"].sum().round(0).astype(int)
+
+    by_cd_all = allocate(by_zip_all)
+    by_cd_c = allocate(by_zip_c)
+
+    matched_zips = set(xwalk["modzcta"])
+    lost = by_zip_all.loc[~by_zip_all.index.isin(matched_zips)].sum()
+    print(f"  hpd: {by_zip_all.sum():,} violations in window; "
+          f"{int(lost):,} dropped from non-NYC/invalid ZIPs")
+
+    years = (pd.Timestamp(OCA_WINDOW_END) - pd.Timestamp(OCA_WINDOW_START)).days / 365.25
+    return pd.DataFrame({
+        "hpd_window_total": by_cd_all,
+        "hpd_class_c_total": by_cd_c,
+        "hpd_per_1k_renter_hh_per_yr": (by_cd_all / renter_hh * 1000 / years).round(2),
+        "hpd_class_c_per_1k_renter_hh_per_yr": (by_cd_c / renter_hh * 1000 / years).round(2),
+    })
+
+
 def per_cd_filings(renter_hh: "pd.Series") -> "pd.DataFrame":
     """OCA filings per CD over the post-moratorium window.
 
@@ -228,15 +272,127 @@ def per_cd_filings(renter_hh: "pd.Series") -> "pd.DataFrame":
     })
 
 
+# ---------- visuals ----------
+
+def render_headline_choropleth(facts: "pd.DataFrame") -> Path:
+    """Static SVG of the Ch. 2 headline choropleth: rent burden ≥30% per CD.
+
+    Series palette sequential ramp, 5–95th pctile clip, 50-ft polygon
+    simplification (matching Ch. 1's _write_chapter_png treatment).
+    Also writes an out/rent-burden.geojson with the per-CD value for
+    reproducibility.
+    """
+    import matplotlib.pyplot as plt
+    import matplotlib.colors as mcolors
+    from matplotlib.colors import LinearSegmentedColormap
+    from shared import palette
+    from shared.zip_to_cd import is_real_cd
+
+    palette.for_matplotlib()
+
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
+    cds = cds.merge(
+        facts[["rent_burden_30"]].reset_index().rename(columns={"borocd": "boro_cd"}),
+        on="boro_cd", how="left",
+    )
+    cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
+
+    # Per-CD geojson for reproducibility (display CRS = WGS84).
+    geo_out = basemap.to_display(cds[["boro_cd", "rent_burden_30", "geometry"]])
+    geo_out.to_file(OUT / "rent-burden.geojson", driver="GeoJSON")
+
+    values = cds["rent_burden_30"].astype(float)
+    vmin = float(values.quantile(0.05))
+    vmax = float(values.quantile(0.95))
+    cmap = LinearSegmentedColormap.from_list("mny_seq", palette.RAMP_SEQUENTIAL, N=256)
+
+    fig, ax = plt.subplots(figsize=(8.5, 9.5))
+    cds.plot(
+        column="rent_burden_30",
+        cmap=cmap,
+        vmin=vmin,
+        vmax=vmax,
+        ax=ax,
+        edgecolor=palette.BORDER,
+        linewidth=0.4,
+        missing_kwds={"color": palette.SURFACE, "edgecolor": palette.BORDER},
+    )
+
+    # Anchor labels — small text at each anchor CD's representative point.
+    for cd_row in cds.itertuples(index=False):
+        if cd_row.boro_cd not in ANCHOR_NAMES:
+            continue
+        p = cd_row.geometry.representative_point()
+        ax.annotate(
+            f"CD {cd_row.boro_cd}\n{int(cd_row.rent_burden_30 * 100)}%",
+            xy=(p.x, p.y),
+            ha="center",
+            va="center",
+            fontsize=8,
+            color=palette.TEXT,
+            bbox=dict(boxstyle="round,pad=0.25", facecolor=palette.BG,
+                      edgecolor=palette.BORDER, linewidth=0.5),
+        )
+
+    ax.set_axis_off()
+    ax.set_title(
+        "Rent burden by community district",
+        fontsize=14,
+        color=palette.TEXT,
+        pad=10,
+        loc="left",
+    )
+    ax.text(
+        0.0, 1.005,
+        "Share of renter households spending ≥30% of household income on gross rent · ACS 2019–2023 5-yr",
+        transform=ax.transAxes,
+        fontsize=9,
+        color=palette.TEXT_SECONDARY,
+        ha="left",
+        va="bottom",
+    )
+
+    sm = plt.cm.ScalarMappable(
+        cmap=cmap, norm=mcolors.Normalize(vmin=vmin, vmax=vmax),
+    )
+    sm.set_array([])
+    cbar = fig.colorbar(
+        sm, ax=ax, orientation="horizontal",
+        fraction=0.035, pad=0.02, shrink=0.55,
+        format=lambda x, _pos: f"{int(x * 100)}%",
+    )
+    cbar.outline.set_visible(False)
+    cbar.ax.tick_params(labelsize=8, colors=palette.TEXT_SECONDARY)
+    cbar.set_label(
+        "rent-burdened share (5th–95th pct clip)",
+        fontsize=9,
+        color=palette.TEXT_SECONDARY,
+    )
+
+    path = OUT / "rent-burden-cd.svg"
+    fig.savefig(path, format="svg")
+    plt.close(fig)
+    print(f"[wrote] {path}  ({path.stat().st_size:,} bytes)")
+    return path
+
+
 # ---------- correlations + summary ----------
 
 def axis_correlations(facts: "pd.DataFrame") -> dict:
-    """Spearman rank correlation between the three housing-stress axes.
+    """Spearman rank correlation matrix across the four housing-stress axes.
 
-    The chapter's hypothesis demands these be **low** (<~0.6). If any
-    pair is >0.8, that axis is redundant.
+    Plan §10 kill criterion: any pair with |ρ|>0.8 means that axis is
+    redundant. The "three independent axes" claim becomes "axes A and B
+    are independent of each other but C duplicates A" — the chapter's
+    spine has to be reframed.
     """
-    cols = ["rent_burden_30", "median_rent", "filings_per_1k_renter_hh_per_yr"]
+    cols = [
+        "rent_burden_30",
+        "median_rent",
+        "filings_per_1k_renter_hh_per_yr",
+        "hpd_per_1k_renter_hh_per_yr",
+    ]
     rho = facts[cols].corr(method="spearman").round(3)
     return rho.to_dict()
 
@@ -251,6 +407,8 @@ def summarize(facts: "pd.DataFrame", rho: dict) -> None:
         ("rent_burden_50", "Severe rent burden ≥50% (top 5)"),
         ("median_rent", "Median rent $ (top 5)"),
         ("filings_per_1k_renter_hh_per_yr", "Eviction filings per 1k renter HH / yr (top 5)"),
+        ("hpd_per_1k_renter_hh_per_yr", "HPD violations per 1k renter HH / yr (top 5)"),
+        ("hpd_class_c_per_1k_renter_hh_per_yr", "HPD class-C (severe) per 1k renter HH / yr (top 5)"),
     ]:
         print(f"\n{label}")
         top = facts.sort_values(axis, ascending=False).head(5)
@@ -259,12 +417,21 @@ def summarize(facts: "pd.DataFrame", rho: dict) -> None:
             print(f"  CD {borocd}  {row[axis]:>10}{anchor}")
 
     print("\nSpearman rank correlation between axes")
-    print(f"  burden_30  ↔  median_rent              {rho['rent_burden_30']['median_rent']}")
-    print(f"  burden_30  ↔  filings_per_1k_per_yr    {rho['rent_burden_30']['filings_per_1k_renter_hh_per_yr']}")
-    print(f"  median_rent ↔ filings_per_1k_per_yr   {rho['median_rent']['filings_per_1k_renter_hh_per_yr']}")
+    axes = [
+        ("burden_30", "rent_burden_30"),
+        ("median_rent", "median_rent"),
+        ("filings", "filings_per_1k_renter_hh_per_yr"),
+        ("hpd", "hpd_per_1k_renter_hh_per_yr"),
+    ]
+    for i in range(len(axes)):
+        for j in range(i + 1, len(axes)):
+            a_label, a_col = axes[i]
+            b_label, b_col = axes[j]
+            r = rho[a_col][b_col]
+            mark = "  ⚠ collinear" if abs(r) > 0.8 else ""
+            print(f"  {a_label:<12} ↔ {b_label:<12}  ρ = {r:+.3f}{mark}")
     print()
-    print("Hypothesis check: each |ρ| should be moderate (<0.6). |ρ|>0.8 means")
-    print("that pair of axes is redundant and the chapter's spine has to shift.")
+    print("Kill criterion (plan §10): any |ρ|>0.8 collapses that axis.")
 
     print("\nAnchor CDs (plan §10) · where do they actually rank?")
     n = len(facts)
@@ -275,6 +442,7 @@ def summarize(facts: "pd.DataFrame", rho: dict) -> None:
         ranks = {a: int(facts[a].rank(ascending=False)[borocd]) for a in [
             "rent_burden_30", "rent_burden_50", "median_rent",
             "filings_per_1k_renter_hh_per_yr",
+            "hpd_per_1k_renter_hh_per_yr",
         ]}
         print(
             f"  CD {borocd} {name:<32}"
@@ -282,6 +450,7 @@ def summarize(facts: "pd.DataFrame", rho: dict) -> None:
             f"  burden50 #{ranks['rent_burden_50']:>2}/{n}"
             f"  rent #{ranks['median_rent']:>2}/{n}"
             f"  filings #{ranks['filings_per_1k_renter_hh_per_yr']:>2}/{n}"
+            f"  hpd #{ranks['hpd_per_1k_renter_hh_per_yr']:>2}/{n}"
         )
 
 
@@ -308,12 +477,16 @@ def main() -> int:
     print("[load] OCA filings")
     filings = per_cd_filings(renter_hh)
 
+    print("[load] HPD violations")
+    hpd = per_cd_hpd(renter_hh)
+
     facts = pd.concat([
         burden,
         renter_hh.rename("renter_hh"),
         med_rent.rename("median_rent"),
         med_inc.rename("median_income"),
         filings,
+        hpd,
     ], axis=1).sort_index()
 
     rho = axis_correlations(facts)
@@ -333,6 +506,9 @@ def main() -> int:
     facts.to_csv(OUT / "rankings.csv")
     print(f"\n[wrote] {OUT / 'facts.json'}")
     print(f"[wrote] {OUT / 'rankings.csv'}")
+
+    print("[render] headline choropleth (static SVG)")
+    render_headline_choropleth(facts)
 
     summarize(facts, rho)
     return 0

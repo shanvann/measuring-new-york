@@ -5,12 +5,6 @@ Data, pipelines, and notebooks behind the **Measuring New York** blog series on
 (`personal-website`); this repo is the upstream source of truth for every
 chart, map, and number that ships in the series.
 
-The plan, including the agent operating protocol, lives in the website repo at
-`personal-website/MEASURING_NEW_YORK_PLAN.md`. **Read it before editing
-anything here.** A trimmed copy of the protocol is duplicated in this repo's
-`STATUS.md` and `WORKLOG.md` so the data-side workflow does not depend on the
-website repo being checked out.
-
 ## Setup
 
 ```bash

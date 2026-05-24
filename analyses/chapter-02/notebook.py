@@ -299,8 +299,12 @@ def render_headline_choropleth(facts: "pd.DataFrame") -> Path:
     cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
 
     # Per-CD geojson for reproducibility (display CRS = WGS84).
-    geo_out = basemap.to_display(cds[["boro_cd", "rent_burden_30", "geometry"]])
-    geo_out.to_file(OUT / "rent-burden.geojson", driver="GeoJSON")
+    # ``rent_burden_30_pct`` (×100, rounded) is the field consumed by the
+    # interactive ``<NycMap>`` tooltip — the raw proportion ``rent_burden_30``
+    # is preserved alongside for reproducibility / non-display callers.
+    geo_cds = cds[["boro_cd", "rent_burden_30", "geometry"]].copy()
+    geo_cds["rent_burden_30_pct"] = (geo_cds["rent_burden_30"] * 100).round(1)
+    basemap.to_display(geo_cds).to_file(OUT / "rent-burden.geojson", driver="GeoJSON")
 
     values = cds["rent_burden_30"].astype(float)
     vmin = float(values.quantile(0.05))

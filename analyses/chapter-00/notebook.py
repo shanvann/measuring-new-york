@@ -66,19 +66,31 @@ def _round_coords(obj, ndigits: int):
 
 
 def write_teaser_geojson(counts: dict[str, int]) -> Path:
-    cds = basemap.to_display(basemap.load("cd"))
+    """Emit the per-CD choropleth as GeoJSON for the interactive ``<NycMap>``.
+
+    Computes ``calls_per_sqmi`` (matching the PNG render's metric) so the
+    interactive tooltip shows the same density number the headline visual
+    is built around. Geometry is simplified at 50 ft and reprojected to
+    WGS84; coordinates are rounded to keep the payload small.
+    """
+    cds = basemap.load("cd")  # EPSG:2263
     cds["boro_cd"] = cds["boro_cd"].astype(str).str.zfill(3)
     cds["calls_30d"] = cds["boro_cd"].map(counts).fillna(0).astype(int)
+    cds = cds[cds["boro_cd"].astype(int) < 600].copy()
 
-    # Drop JIAs (parks/airports — codes >= 164 ish); keep only the 59 CDs by
-    # filtering on the BoroCD codes the population lives in.
-    cds = cds[cds["boro_cd"].astype(int) < 600]
+    area_sqmi = cds.geometry.area / (5280.0 ** 2)
+    cds["calls_per_sqmi"] = (cds["calls_30d"] / area_sqmi).round(1)
+    cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
+    cds = basemap.to_display(cds)
 
     geojson = json.loads(cds.to_json())
     for feat in geojson["features"]:
-        # keep only the columns we'll use
         props = feat["properties"]
-        feat["properties"] = {"boro_cd": props["boro_cd"], "calls_30d": props["calls_30d"]}
+        feat["properties"] = {
+            "boro_cd": props["boro_cd"],
+            "calls_30d": props["calls_30d"],
+            "calls_per_sqmi": props["calls_per_sqmi"],
+        }
         feat["geometry"]["coordinates"] = _round_coords(
             feat["geometry"]["coordinates"], GEOMETRY_PRECISION_DECIMALS
         )
@@ -207,6 +219,9 @@ def main() -> int:
 
     print("[chapter-0] writing teaser PNG...")
     write_teaser_png(counts, lookback_days=days)
+
+    print("[chapter-0] writing teaser GeoJSON for interactive <NycMap>...")
+    write_teaser_geojson(counts)
 
     print("[chapter-0] writing facts...")
     write_facts(counts, lookback_days=days)

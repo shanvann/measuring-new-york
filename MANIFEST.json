@@ -30,6 +30,15 @@
       "totals": {"nyc_jobs": 4466975, "nyc_blocks_with_jobs": 25279, "nyc_tracts_after_agg": 2303},
       "note": "Workplace Area Characteristics (WAC) — jobs per Census block. Aggregated to tract for spatial joins. 2022 is the latest year published in LODES8 at vintage freeze. C000 column = total jobs across all NAICS."
     },
+    "oca_evictions": {
+      "snapshot": "2026-05-10",
+      "source": "https://oca-2-dev.s3.amazonaws.com/public/",
+      "last_updated_url": "https://oca-2-dev.s3.amazonaws.com/public/last-updated-date.txt",
+      "tables_used": ["oca_index.csv", "oca_addresses.csv"],
+      "vintage_exception": "Series freeze is 2026-06-01; HDC's S3 publish at time of Ch. 2 work is 2026-05-10. The OCA ETL runs ~monthly off an OCA SFTP feed, so a fresher snapshot may not exist by 2026-06-01. Re-pin the snapshot in this manifest if a 2026-06-01-or-later release is available when Ch. 2 finalizes.",
+      "geography": "ZIP-only (postalcode in oca_addresses.csv). No BBL/BIN. CD aggregation via zip→CD crosswalk in shared/zip_to_cd.py.",
+      "note": "True court filings, not marshal-executed evictions. Same source the Furman Center, Right to Counsel NYC, and the Cornell ILR dashboard use. ETL repo: https://github.com/housing-data-coalition/oca"
+    },
     "geographies": {
       "community_districts_59": {
         "source": "https://data.cityofnewyork.us/api/geospatial/5crt-au7u?method=export&format=GeoJSON",

@@ -1,9 +1,9 @@
 # measuring-new-york
 
 Data, pipelines, and notebooks behind the **Measuring New York** blog series on
-[shanvannala.com](https://shanvannala.com). Articles live in a sibling repo
-(`personal-website`); this repo is the upstream source of truth for every
-chart, map, and number that ships in the series.
+[shanvannala.com](https://shanvannala.com). Articles live in a sibling website
+repo; this repo is the upstream source of truth for every chart, map, and
+number that ships in the series.
 
 ## Setup
 
@@ -12,7 +12,11 @@ make venv             # one-time: create .venv with Python 3.9 + install deps
 source .venv/bin/activate
 make geographies      # one-time: pull canonical boundary files (~50MB)
 make chapter-0        # rebuild Ch. 0 artifacts from cache (idempotent)
-make publish CHAPTER=0  # copy artifacts into ../personal-website
+
+# Point at the sibling website repo where artifacts get copied. Set once
+# per shell, or persist in your shell rc / a .env you source.
+export WEBSITE_REPO_PATH=../<your-website-repo>
+make publish CHAPTER=0  # copies into $WEBSITE_REPO_PATH/public/measuring-new-york/chapter-0/
 ```
 
 Set `FRESH=1` on any `chapter-N` target to re-fetch from upstream sources
@@ -40,8 +44,9 @@ MANIFEST.json     pinned dataset vintages — all chapters use these
   with URL, fetch timestamp, SHA-256, size. Every artifact shipped to the
   website repo carries a comment pointing back at its source notebook cell.
 - **Handoff:** `shared/publish.py` (driven by `make publish`) is the only
-  sanctioned path from this repo to `personal-website`. No submodules, no
-  build-time coupling.
+  sanctioned path from this repo to the website repo. Configurable via the
+  `WEBSITE_REPO_PATH` env var or the `--website-repo` flag. No submodules,
+  no build-time coupling.
 
 ## Pinned vintages
 

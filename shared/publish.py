@@ -1,7 +1,12 @@
-"""Artifact handoff: analyses/chapter-N/out/ -> personal-website/.
+"""Artifact handoff: analyses/chapter-N/out/ -> the website repo.
 
 Per plan §3.3, this is the **only** sanctioned copy path between the two
 repos. No submodules, no build-time coupling.
+
+The target path is read from (in priority order):
+  1. `--website-repo /path/to/site` CLI flag
+  2. `WEBSITE_REPO_PATH` environment variable
+There is no hardcoded default — set one of the two before running.
 
 Usage::
 
@@ -13,12 +18,12 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_WEBSITE_REPO = REPO_ROOT.parent / "personal-website"
 
 
 def _chapter_dir(chapter: int) -> Path:
@@ -58,20 +63,34 @@ def publish(chapter: int, website_repo: Path, dry_run: bool = False) -> list[Pat
     return copied
 
 
+def _resolve_website_repo(cli_arg: Path | None) -> Path:
+    """Pick the website repo path from --website-repo flag or env var."""
+    if cli_arg is not None:
+        return cli_arg
+    env = os.environ.get("WEBSITE_REPO_PATH")
+    if env:
+        return Path(env)
+    raise FileNotFoundError(
+        "no website repo path provided. set WEBSITE_REPO_PATH in your "
+        "environment, or pass --website-repo /path/to/site."
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--chapter", type=int, required=True, help="0..10")
     ap.add_argument(
         "--website-repo",
         type=Path,
-        default=DEFAULT_WEBSITE_REPO,
-        help=f"default: {DEFAULT_WEBSITE_REPO}",
+        default=None,
+        help="path to the website repo root. overrides $WEBSITE_REPO_PATH.",
     )
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args(argv)
 
     try:
-        publish(args.chapter, args.website_repo.resolve(), dry_run=args.dry_run)
+        website_repo = _resolve_website_repo(args.website_repo)
+        publish(args.chapter, website_repo.resolve(), dry_run=args.dry_run)
     except FileNotFoundError as e:
         print(f"error: {e}", file=sys.stderr)
         return 2

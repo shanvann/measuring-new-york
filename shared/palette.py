@@ -1,9 +1,8 @@
 """Series-wide color tokens.
 
-Mirrors the brand tokens defined in
-`personal-website/src/app/globals.css` so static charts produced here read as
-part of the same publication. If a token changes on the website side, update
-it here too.
+Mirrors the brand tokens defined in the website repo's global CSS so static
+charts produced here read as part of the same publication. If a token
+changes on the website side, update it here too.
 """
 
 # Light theme — primary publication context for static charts.

@@ -9,7 +9,7 @@
   currently uncommitted.
 **Active chapter:** none in flight; Ch. 2 (Housing) is next.
 **Active repo:** measuring-new-york (Phase 3b data work) +
-  personal-website (Ch. 2 prose later).
+  the website repo (Ch. 2 prose later).
 
 ## Working agreements
 - Commit per chapter or per logical scaffolding change. Ch. 0 shipped
@@ -64,8 +64,8 @@ Plan window: Aug 8–28.
     CDs (Wakefield's nearest stop is 0.63 mi from the centroid).
     Bumped `WALK_TO_ORIGIN_MAX_FT` to 0.75 mi — the APTA/TCRP 95
     subway-stop standard. CD 212 went from 0 to 28 reachable stops.
-  - `make publish CHAPTER=1` landed artifacts at
-    `personal-website/public/measuring-new-york/chapter-01/`.
+  - `make publish CHAPTER=1` landed artifacts at the website repo's
+    `public/measuring-new-york/chapter-01/`.
   - Census API key smoke-tested: B19013 (borough income) + B08303
     (travel-time-to-work, 2327 tracts) cached. Key set in `.env`
     (gitignored).
@@ -94,9 +94,9 @@ Plan window: Aug 8–28.
   transcript. Rotate it (sign up again at the same URL) when convenient.
 
 ## Pointers
-- Plan (canonical): `../personal-website/MEASURING_NEW_YORK_PLAN.md`
-- Website worklog: `../personal-website/WORKLOG.md`
-- Website status: `../personal-website/STATUS.md`
+- Plan (canonical): website repo, `MEASURING_NEW_YORK_PLAN.md` at root
+- Website worklog + status: website repo, `WORKLOG.md` and `STATUS.md`
 - This repo's worklog: `./WORKLOG.md`
 - Pinned vintages: `./MANIFEST.json`
 - Cache manifest: `./cache/MANIFEST.json`
+- Publish target: set `$WEBSITE_REPO_PATH` to the sibling website repo

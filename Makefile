@@ -18,7 +18,10 @@ PYTHON       ?= /usr/bin/python3
 VENV         := .venv
 VENV_PY      := $(VENV)/bin/python
 VENV_PIP     := $(VENV)/bin/pip
-WEBSITE_REPO ?= ../personal-website
+# WEBSITE_REPO falls back to $WEBSITE_REPO_PATH from the environment.
+# Set one of them (`export WEBSITE_REPO_PATH=../my-blog` or
+# `make publish WEBSITE_REPO=../my-blog CHAPTER=N`) for `make publish`.
+WEBSITE_REPO ?= $(WEBSITE_REPO_PATH)
 CHAPTER      ?=
 FRESH        ?= 0
 

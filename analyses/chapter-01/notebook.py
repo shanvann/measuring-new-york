@@ -47,7 +47,9 @@ from shared import basemap, isochrone  # noqa: E402
 OUT = HERE / "out"
 OUT.mkdir(exist_ok=True)
 
-# Plan §10: the 5 anchor CDs for Ch. 1.
+# Plan §10: the 5 anchor CDs for Ch. 1 — surfaced specifically in the prose
+# / table. Names are slightly more specific than the all-CDs map below
+# (e.g., "Midtown East" vs the broader "Midtown").
 ANCHOR_CDS = [
     ("105", "Midtown East", "MN"),
     ("301", "Williamsburg / Greenpoint", "BK"),
@@ -57,6 +59,75 @@ ANCHOR_CDS = [
 ]
 ANCHOR_BORO_CDS = {c for c, _, _ in ANCHOR_CDS}
 ANCHOR_NAME = {c: name for c, name, _ in ANCHOR_CDS}
+
+# Common-use neighborhood names for all 59 NYC residential CDs.
+# Source: NYC DCP Community District neighborhood listings.
+CD_NEIGHBORHOOD = {
+    # Manhattan
+    "101": "Financial District / Battery Park City",
+    "102": "Greenwich Village / Soho",
+    "103": "Lower East Side / Chinatown",
+    "104": "Chelsea / Hell's Kitchen",
+    "105": "Midtown",
+    "106": "Stuyvesant Town / Turtle Bay",
+    "107": "Upper West Side",
+    "108": "Upper East Side",
+    "109": "Manhattanville / Hamilton Heights",
+    "110": "Central Harlem",
+    "111": "East Harlem",
+    "112": "Washington Heights / Inwood",
+    # Bronx
+    "201": "Mott Haven / Melrose",
+    "202": "Hunts Point / Longwood",
+    "203": "Morrisania / Crotona",
+    "204": "Highbridge / Concourse",
+    "205": "University Heights / Fordham",
+    "206": "Belmont / East Tremont",
+    "207": "Kingsbridge Heights / Bedford Park",
+    "208": "Riverdale / Fieldston",
+    "209": "Soundview / Parkchester",
+    "210": "Throgs Neck / Co-op City",
+    "211": "Pelham Parkway / Morris Park",
+    "212": "Williamsbridge / Baychester",
+    # Brooklyn
+    "301": "Williamsburg / Greenpoint",
+    "302": "Fort Greene / Brooklyn Heights",
+    "303": "Bedford-Stuyvesant",
+    "304": "Bushwick",
+    "305": "East New York / Cypress Hills",
+    "306": "Park Slope / Carroll Gardens",
+    "307": "Sunset Park",
+    "308": "Crown Heights / Prospect Heights",
+    "309": "South Crown Heights / Lefferts Gardens",
+    "310": "Bay Ridge / Dyker Heights",
+    "311": "Bensonhurst / Bath Beach",
+    "312": "Borough Park",
+    "313": "Coney Island / Brighton Beach",
+    "314": "Flatbush / Midwood",
+    "315": "Sheepshead Bay / Manhattan Beach",
+    "316": "Brownsville",
+    "317": "East Flatbush / Farragut",
+    "318": "Canarsie / Flatlands",
+    # Queens
+    "401": "Astoria",
+    "402": "Sunnyside / Woodside",
+    "403": "Jackson Heights / North Corona",
+    "404": "Elmhurst / Corona",
+    "405": "Ridgewood / Maspeth",
+    "406": "Forest Hills / Rego Park",
+    "407": "Flushing / Bay Terrace",
+    "408": "Hillcrest / Fresh Meadows",
+    "409": "Kew Gardens / Woodhaven",
+    "410": "South Ozone Park / Howard Beach",
+    "411": "Bayside / Little Neck",
+    "412": "Jamaica / Hollis",
+    "413": "Queens Village / Cambria Heights",
+    "414": "Rockaway / Broad Channel",
+    # Staten Island
+    "501": "St. George / Stapleton",
+    "502": "South Beach / Willowbrook",
+    "503": "Tottenville / Great Kills",
+}
 
 DEFAULT_MAX_MINUTES = 45
 DEFAULT_DEPARTURE_HOUR = 8
@@ -294,7 +365,7 @@ def main() -> int:
     cds_out["variance_class"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["variance_class"])
     cds_out["tract_count"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["tract_count"])
     cds_out["is_anchor"] = cds_out["boro_cd"].isin(ANCHOR_BORO_CDS)
-    cds_out["name"] = cds_out["boro_cd"].map(lambda c: ANCHOR_NAME.get(c, ""))
+    cds_out["name"] = cds_out["boro_cd"].map(lambda c: CD_NEIGHBORHOOD.get(c, c))
     cds_out["geometry"] = cds_out.geometry.simplify(0.00015, preserve_topology=True)
 
     geojson = json.loads(cds_out.to_json())
@@ -302,6 +373,7 @@ def main() -> int:
         props = feat["properties"]
         feat["properties"] = {
             "boro_cd": props["boro_cd"],
+            "name": props["name"],
             "jobs_reachable_45min": props["jobs_reachable_45min"],
             "jobs_reachable_q1": props["jobs_reachable_q1"],
             "jobs_reachable_q3": props["jobs_reachable_q3"],
@@ -309,7 +381,6 @@ def main() -> int:
             "variance_class": props["variance_class"],
             "tract_count": props["tract_count"],
             "is_anchor": props["is_anchor"],
-            "name": props["name"],
         }
     job_path = OUT / "job-access.geojson"
     job_path.write_text(json.dumps(geojson, separators=(",", ":")))

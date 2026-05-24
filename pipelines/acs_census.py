@@ -82,6 +82,12 @@ def build_url(table: str, geo: GeoLevel) -> tuple[str, dict]:
 def fetch(table: str, geo: GeoLevel, *, snapshot: str = "2026-06-01") -> Path:
     import requests
 
+    cache_name = f"acs/{table}-{geo}-{YEAR}-{snapshot}.json"
+    path = cache.path_for(cache_name)
+    if cache.is_cached(cache_name):
+        print(f"[cache hit] {cache_name}")
+        return path
+
     url, params = build_url(table, geo)
     key = os.environ.get("CENSUS_API_KEY")
     if not key:
@@ -90,12 +96,6 @@ def fetch(table: str, geo: GeoLevel, *, snapshot: str = "2026-06-01") -> Path:
             "https://api.census.gov/data/key_signup.html"
         )
     params["key"] = key
-
-    cache_name = f"acs/{table}-{geo}-{YEAR}-{snapshot}.json"
-    path = cache.path_for(cache_name)
-    if cache.is_cached(cache_name):
-        print(f"[cache hit] {cache_name}")
-        return path
     print(f"[fetch] ACS {table}  geo={geo}  year={YEAR}")
     r = requests.get(url, params=params, timeout=120)
     r.raise_for_status()

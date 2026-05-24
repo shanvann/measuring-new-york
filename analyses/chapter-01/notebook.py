@@ -175,6 +175,63 @@ def population_weighted_origins(cds_gdf, tracts_gdf) -> dict[str, tuple[float, f
     return out
 
 
+def _write_chapter_png(cds_out) -> Path:
+    """Static PNG of the Ch.1 choropleth, for the homepage feature card.
+
+    Mirrors the interactive map's color logic (sequential ramp, 5-95 pct
+    clipped) using the series palette via matplotlib.
+    """
+    import matplotlib.pyplot as plt
+    import matplotlib.colors as mcolors
+    from matplotlib.colors import LinearSegmentedColormap
+    from shared import palette, basemap
+
+    palette.for_matplotlib()
+
+    cds = cds_out.copy().to_crs(basemap.EPSG_ANALYSIS)
+    # Smooth the polygon line a touch — 50 ft tolerance reads cleaner at
+    # small sizes
+    cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
+
+    cmap = LinearSegmentedColormap.from_list("mny_seq", palette.RAMP_SEQUENTIAL, N=256)
+    values = cds["jobs_reachable_45min"].astype(float)
+    vmax = float(values.quantile(0.95))
+    vmin = float(values.quantile(0.05))
+
+    fig, ax = plt.subplots(figsize=(8.5, 8.5))
+    cds.plot(
+        column="jobs_reachable_45min",
+        cmap=cmap,
+        vmin=vmin,
+        vmax=vmax,
+        ax=ax,
+        edgecolor=palette.BORDER,
+        linewidth=0.4,
+    )
+    ax.set_axis_off()
+    ax.set_title(
+        "Jobs reachable in 45 min by subway · median tract per CD",
+        fontsize=12,
+        color=palette.TEXT,
+        pad=12,
+    )
+    sm = plt.cm.ScalarMappable(cmap=cmap, norm=mcolors.Normalize(vmin=vmin, vmax=vmax))
+    sm.set_array([])
+    cbar = fig.colorbar(sm, ax=ax, orientation="horizontal", fraction=0.04, pad=0.02, shrink=0.6)
+    cbar.outline.set_visible(False)
+    cbar.ax.tick_params(labelsize=8, colors=palette.TEXT_SECONDARY)
+    cbar.set_label(
+        "median jobs reachable (5th–95th pct)",
+        fontsize=9,
+        color=palette.TEXT_SECONDARY,
+    )
+
+    path = OUT / "teaser.png"
+    fig.savefig(path, format="png", dpi=144)
+    plt.close(fig)
+    return path
+
+
 def jobs_reachable(
     polygon,
     tracts_gdf,
@@ -415,6 +472,12 @@ def main() -> int:
     job_path = OUT / "job-access.geojson"
     job_path.write_text(json.dumps(geojson, separators=(",", ":")))
     print(f"  wrote {job_path} ({job_path.stat().st_size:,} bytes)")
+
+    # Also render a static PNG version for non-interactive surfaces (the
+    # homepage feature card, social previews, etc.). Same series palette
+    # and percentile clipping as the interactive map.
+    png_path = _write_chapter_png(cds_out)
+    print(f"  wrote {png_path} ({png_path.stat().st_size:,} bytes)")
 
     # Facts
     sorted_by_jobs = sorted(per_cd.items(), key=lambda kv: -kv[1]["jobs_reachable_45min"])

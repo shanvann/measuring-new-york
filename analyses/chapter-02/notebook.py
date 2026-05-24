@@ -384,6 +384,45 @@ def render_headline_choropleth(facts: "pd.DataFrame") -> Path:
     return path
 
 
+# ---------- housing-stress score ----------
+
+# Weight scheme C (burden-dominant). Picked over 50/50 and over a
+# distress-dominant variant because HUD's federal "Worst Case Housing
+# Needs" framework (2025 Report to Congress) shows 97.2% of worst-case
+# households qualify through severe rent burden rather than inadequate
+# physical condition — affordability is the empirically dominant
+# dimension of housing crisis at the household level. Filings + HPD
+# are kept as a single combined "structural distress" axis because at
+# the CD level they're collinear (ρ = +0.82); treating them as two
+# independent components would double-count the same signal.
+SCORE_WEIGHTS = {"burden": 0.7, "distress": 0.3}
+
+
+def compute_housing_stress_score(facts: "pd.DataFrame") -> "pd.DataFrame":
+    """Return the per-CD housing-stress score + its rank within NYC.
+
+    Score is a weighted average of CD ranks (1 = most stressed, 59 = least)
+    so the number is interpretable as a position within the city without
+    requiring assumptions about distribution shape.
+    """
+    out = facts[[]].copy()  # preserve the borocd index
+    out["rk_burden"]   = facts["rent_burden_30"].rank(ascending=False)
+    out["rk_filings"]  = facts["filings_per_1k_renter_hh_per_yr"].rank(ascending=False)
+    out["rk_hpd"]      = facts["hpd_per_1k_renter_hh_per_yr"].rank(ascending=False)
+    out["rk_distress"] = (out["rk_filings"] + out["rk_hpd"]) / 2
+
+    score = (
+        SCORE_WEIGHTS["burden"] * out["rk_burden"]
+        + SCORE_WEIGHTS["distress"] * out["rk_distress"]
+    )
+    out["housing_stress_score"] = score.round(2)
+    out["housing_stress_rank"] = score.rank(method="min").astype(int)
+    return out[[
+        "rk_burden", "rk_filings", "rk_hpd", "rk_distress",
+        "housing_stress_score", "housing_stress_rank",
+    ]]
+
+
 # ---------- correlations + summary ----------
 
 def axis_correlations(facts: "pd.DataFrame") -> dict:
@@ -496,6 +535,10 @@ def main() -> int:
         hpd,
     ], axis=1).sort_index()
 
+    print("[compute] housing-stress score (scheme C: 70/30 burden-dominant)")
+    score = compute_housing_stress_score(facts)
+    facts = facts.join(score[["housing_stress_score", "housing_stress_rank"]])
+
     rho = axis_correlations(facts)
 
     out_facts = {
@@ -503,6 +546,7 @@ def main() -> int:
         "oca_window": [OCA_WINDOW_START, OCA_WINDOW_END],
         "n_cds": int(facts.shape[0]),
         "spearman": rho,
+        "housing_stress_score_weights": SCORE_WEIGHTS,
         "per_cd": {
             cd: {k: (None if pd.isna(v) else (float(v) if isinstance(v, float) else int(v)))
                  for k, v in row.items()}

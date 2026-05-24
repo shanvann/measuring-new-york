@@ -59,8 +59,18 @@ def fetch(year: int = 2022, snapshot: str = "2026-06-01") -> Path:
     return path
 
 
+# Job columns we use from WAC. C000 = all jobs; CE01/CE02/CE03 = earnings tiers.
+#   CE01: monthly earnings ≤ $1,250  (~ ≤ $15K/yr)
+#   CE02: monthly earnings $1,251 – $3,333  (~ $15K – $40K/yr)
+#   CE03: monthly earnings ≥ $3,334  (~ ≥ $40K/yr)
+# By construction, C000 = CE01 + CE02 + CE03.
+JOB_COLUMNS = ["C000", "CE01", "CE02", "CE03"]
+
+
 def load(year: int = 2022, nyc_only: bool = True):
-    """Return a pandas DataFrame of block-level jobs (column C000).
+    """Return a pandas DataFrame of block-level jobs.
+
+    Columns returned: ``w_geocode`` + every column in ``JOB_COLUMNS``.
 
     With ``nyc_only=True`` (default), filtered to the 5 NYC counties — drops
     ~95% of rows and keeps only the ones we need.
@@ -68,21 +78,28 @@ def load(year: int = 2022, nyc_only: bool = True):
     import pandas as pd
 
     path = fetch(year=year)
-    df = pd.read_csv(path, dtype={"w_geocode": str}, usecols=["w_geocode", "C000"])
-    df.rename(columns={"C000": "jobs"}, inplace=True)
+    df = pd.read_csv(path, dtype={"w_geocode": str}, usecols=["w_geocode", *JOB_COLUMNS])
     if nyc_only:
-        # w_geocode starts with state(2)+county(3) = "36xxx"
         prefix = df["w_geocode"].str[:5]
         df = df[prefix.isin({f"36{c}" for c in NYC_COUNTY_FIPS})].copy()
     return df
 
 
-def aggregate_to_tracts(df) -> dict[str, int]:
-    """Sum jobs per tract (11-digit GEOID)."""
+def aggregate_to_tracts(df, columns: list[str] | None = None) -> dict[str, dict[str, int]]:
+    """Sum job-count columns per tract (11-digit GEOID).
+
+    Returns ``{tract_geoid: {col: count}}``. Backward-compatible behavior:
+    if a caller treats the return value as ``dict[str, int]`` it'll error
+    loudly rather than silently shifting semantics.
+    """
+    cols = columns or JOB_COLUMNS
     df = df.copy()
     df["tract_geoid"] = df["w_geocode"].str[:11]
-    agg = df.groupby("tract_geoid", as_index=False)["jobs"].sum()
-    return dict(zip(agg["tract_geoid"], agg["jobs"].astype(int)))
+    agg = df.groupby("tract_geoid", as_index=False)[cols].sum()
+    out: dict[str, dict[str, int]] = {}
+    for r in agg.itertuples(index=False):
+        out[r.tract_geoid] = {c: int(getattr(r, c)) for c in cols}
+    return out
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -98,10 +115,11 @@ def main(argv: list[str] | None = None) -> int:
     fetch(year=args.year)
     df = load(year=args.year)
     jobs_by_tract = aggregate_to_tracts(df)
-    total = sum(jobs_by_tract.values())
+    totals = {c: sum(t[c] for t in jobs_by_tract.values()) for c in JOB_COLUMNS}
     print(f"  loaded {len(df):,} NYC block rows")
     print(f"  aggregated to {len(jobs_by_tract):,} tracts")
-    print(f"  total NYC jobs: {total:,}")
+    for c in JOB_COLUMNS:
+        print(f"  {c}: {totals[c]:,}")
     return 0
 
 

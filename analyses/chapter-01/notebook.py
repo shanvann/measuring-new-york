@@ -175,33 +175,43 @@ def population_weighted_origins(cds_gdf, tracts_gdf) -> dict[str, tuple[float, f
     return out
 
 
-def jobs_reachable(polygon, tracts_gdf, jobs_by_tract: dict[str, int]) -> int:
-    """Sum jobs in tracts intersecting the polygon, weighted by area share.
+def jobs_reachable(
+    polygon,
+    tracts_gdf,
+    jobs_by_tract: dict[str, dict[str, int]],
+    columns: list[str],
+) -> dict[str, int]:
+    """Sum each `column` of LODES jobs in tracts intersecting the polygon,
+    area-weighted by intersection share.
 
     Inputs in EPSG:4326. Internally projects to EPSG:2263 for area math
     (state plane feet — accurate at NYC scale).
+
+    Returns ``{col: int}`` with one entry per requested column.
     """
+    out = {c: 0.0 for c in columns}
     candidates_idx = tracts_gdf.sindex.query(polygon, predicate="intersects")
     if len(candidates_idx) == 0:
-        return 0
+        return {c: 0 for c in columns}
     candidates = tracts_gdf.iloc[candidates_idx]
-    # Project for area math
     poly_proj = (
         candidates.iloc[[0]].set_geometry([polygon], crs=4326).to_crs(2263).geometry.iloc[0]
     )
     candidates_proj = candidates.to_crs(2263)
-    total = 0.0
     for tract in candidates_proj.itertuples(index=False):
         geoid = getattr(tract, "geoid")
-        jobs = jobs_by_tract.get(geoid, 0)
-        if jobs == 0:
+        tier_jobs = jobs_by_tract.get(geoid)
+        if not tier_jobs:
             continue
         inter = tract.geometry.intersection(poly_proj)
         if inter.is_empty:
             continue
         share = inter.area / tract.geometry.area
-        total += jobs * share
-    return int(round(total))
+        for col in columns:
+            v = tier_jobs.get(col, 0)
+            if v:
+                out[col] += v * share
+    return {c: int(round(v)) for c, v in out.items()}
 
 
 def main() -> int:
@@ -238,7 +248,10 @@ def main() -> int:
     print("  loading LEHD LODES 2022 NY WAC...")
     lodes_df = lehd_lodes.load(year=2022)
     jobs_by_tract = lehd_lodes.aggregate_to_tracts(lodes_df)
-    print(f"  jobs_by_tract: {len(jobs_by_tract)} tracts, {sum(jobs_by_tract.values()):,} total jobs")
+    nyc_totals = {c: sum(t.get(c, 0) for t in jobs_by_tract.values()) for c in lehd_lodes.JOB_COLUMNS}
+    print(f"  jobs_by_tract: {len(jobs_by_tract)} tracts")
+    for c, total in nyc_totals.items():
+        print(f"    {c}: {total:,}")
 
     print(f"\n[chapter-1] precomputing routing indexes...")
     t0 = _t.time()
@@ -305,35 +318,53 @@ def main() -> int:
         pt = centroids_by_tract[geoid]
         origin = (pt.y, pt.x)
         result = isochrone.compute(feed, origin, departure, max_minutes=max_min, pre=pre)
-        jobs = jobs_reachable(result.polygon, tracts, jobs_by_tract)
+        tier_jobs = jobs_reachable(result.polygon, tracts, jobs_by_tract, lehd_lodes.JOB_COLUMNS)
         per_tract[geoid] = {
             "reachable_stops": len(result.reachable_stops),
-            "jobs_reachable_45min": jobs,
+            "jobs_reachable_45min": tier_jobs["C000"],
+            "ce01_reachable": tier_jobs["CE01"],
+            "ce02_reachable": tier_jobs["CE02"],
+            "ce03_reachable": tier_jobs["CE03"],
             "boro_cd": tract_to_cd[geoid],
         }
         if (i + 1) % 200 == 0:
             print(f"  ... {i + 1}/{len(tract_to_cd)} tracts done ({_t.time()-t0:.0f}s elapsed)")
     print(f"  all {len(per_tract)} tracts done in {_t.time()-t0:.1f}s")
 
-    # Aggregate to CDs via median + quartiles
+    # Aggregate to CDs via median + quartiles, per tier
     from statistics import median, quantiles
-    city_total = sum(jobs_by_tract.values())
     per_cd: dict[str, dict] = {}
-    cd_tracts: dict[str, list[int]] = {}
+    cd_tract_geoids: dict[str, list[str]] = {}
     for geoid, info in per_tract.items():
-        cd_tracts.setdefault(info["boro_cd"], []).append(info["jobs_reachable_45min"])
-    for boro_cd, values in cd_tracts.items():
-        if not values:
+        cd_tract_geoids.setdefault(info["boro_cd"], []).append(geoid)
+
+    TIER_KEYS = [
+        ("jobs_reachable_45min", "C000"),
+        ("ce01_reachable", "CE01"),
+        ("ce02_reachable", "CE02"),
+        ("ce03_reachable", "CE03"),
+    ]
+    for boro_cd, geoids in cd_tract_geoids.items():
+        if not geoids:
             continue
-        q = quantiles(values, n=4) if len(values) >= 4 else [median(values)] * 3
-        median_jobs = int(median(values))
-        q1 = int(q[0])
-        q3 = int(q[2])
-        # Mobility Access Score: % of NYC jobs the median tract reaches.
-        # Single-dimension score (not a livability composite) per plan §10.
-        score = round(median_jobs / city_total * 100, 1) if city_total else 0
-        # Variance class from Q3/Q1 spread: surfaces the chapter's contradiction
-        # (intra-CD spread is itself the story for some CDs).
+        entry: dict = {
+            "tract_count": len(geoids),
+            "reachable_stops_max": max(per_tract[g]["reachable_stops"] for g in geoids),
+        }
+        for field, tier_col in TIER_KEYS:
+            values = [per_tract[g][field] for g in geoids]
+            entry[field] = int(median(values))
+            entry[f"{field}_q1"] = int(quantiles(values, n=4)[0]) if len(values) >= 4 else int(median(values))
+            entry[f"{field}_q3"] = int(quantiles(values, n=4)[2]) if len(values) >= 4 else int(median(values))
+            # % of NYC's tier total
+            tier_total = nyc_totals[tier_col]
+            entry[f"{field}_score"] = round(entry[field] / tier_total * 100, 1) if tier_total else 0
+
+        # Mobility Access Score = % of total NYC jobs (single-dimension).
+        # The variance class uses the all-jobs (C000) spread; tier-specific
+        # variance is implied by the tier scores below.
+        entry["mobility_access_score"] = entry["jobs_reachable_45min_score"]
+        q1, q3 = entry["jobs_reachable_45min_q1"], entry["jobs_reachable_45min_q3"]
         spread = (q3 / q1) if q1 > 0 else float("inf")
         if spread < 1.5:
             variance_class = "uniform"
@@ -341,24 +372,17 @@ def main() -> int:
             variance_class = "moderate"
         else:
             variance_class = "uneven"
-        per_cd[boro_cd] = {
-            "jobs_reachable_45min": median_jobs,
-            "jobs_reachable_45min_q1": q1,
-            "jobs_reachable_45min_q3": q3,
-            "jobs_reachable_45min_min": int(min(values)),
-            "jobs_reachable_45min_max": int(max(values)),
-            "tract_count": len(values),
-            "reachable_stops_max": max(per_tract[g]["reachable_stops"] for g in per_tract if per_tract[g]["boro_cd"] == boro_cd),
-            "mobility_access_score": score,
-            "variance_class": variance_class,
-            "q3_over_q1": round(spread, 2) if spread != float("inf") else None,
-        }
-        per_cd[boro_cd]["reachable_stops"] = per_cd[boro_cd]["reachable_stops_max"]
+        entry["variance_class"] = variance_class
+        entry["q3_over_q1"] = round(spread, 2) if spread != float("inf") else None
+        entry["reachable_stops"] = entry["reachable_stops_max"]
+        per_cd[boro_cd] = entry
     print(f"  aggregated to {len(per_cd)} CDs")
 
     # Attach to CD polygons + write choropleth
     cds_out = cds_pop.copy()
-    cds_out["jobs_reachable_45min"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["jobs_reachable_45min"])
+    for field, _ in TIER_KEYS:
+        cds_out[field] = cds_out["boro_cd"].map(lambda c, f=field: per_cd[c][f])
+        cds_out[f"{field}_score"] = cds_out["boro_cd"].map(lambda c, f=field: per_cd[c][f"{f}_score"])
     cds_out["jobs_reachable_q1"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["jobs_reachable_45min_q1"])
     cds_out["jobs_reachable_q3"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["jobs_reachable_45min_q3"])
     cds_out["mobility_access_score"] = cds_out["boro_cd"].map(lambda c: per_cd[c]["mobility_access_score"])
@@ -378,6 +402,12 @@ def main() -> int:
             "jobs_reachable_q1": props["jobs_reachable_q1"],
             "jobs_reachable_q3": props["jobs_reachable_q3"],
             "mobility_access_score": props["mobility_access_score"],
+            "ce01_reachable": props["ce01_reachable"],
+            "ce02_reachable": props["ce02_reachable"],
+            "ce03_reachable": props["ce03_reachable"],
+            "ce01_score": props["ce01_reachable_score"],
+            "ce02_score": props["ce02_reachable_score"],
+            "ce03_score": props["ce03_reachable_score"],
             "variance_class": props["variance_class"],
             "tract_count": props["tract_count"],
             "is_anchor": props["is_anchor"],
@@ -398,7 +428,12 @@ def main() -> int:
         "service_date": service_date.strftime("%Y-%m-%d"),
         "departure": departure.isoformat(),
         "max_minutes": max_min,
-        "city_total_jobs_2022_lodes": sum(jobs_by_tract.values()),
+        "city_total_jobs_2022_lodes": nyc_totals["C000"],
+        "city_total_by_tier": {
+            "ce01_lte_15k": nyc_totals["CE01"],
+            "ce02_15k_to_40k": nyc_totals["CE02"],
+            "ce03_gte_40k": nyc_totals["CE03"],
+        },
         "anchor_cds": [
             {
                 "boro_cd": c, "name": name, "borough": b,
@@ -409,6 +444,16 @@ def main() -> int:
                 "mobility_access_score": per_cd[c]["mobility_access_score"],
                 "variance_class": per_cd[c]["variance_class"],
                 "q3_over_q1": per_cd[c]["q3_over_q1"],
+                "tier_scores": {
+                    "ce01": per_cd[c]["ce01_reachable_score"],
+                    "ce02": per_cd[c]["ce02_reachable_score"],
+                    "ce03": per_cd[c]["ce03_reachable_score"],
+                },
+                "tier_reachable": {
+                    "ce01": per_cd[c]["ce01_reachable"],
+                    "ce02": per_cd[c]["ce02_reachable"],
+                    "ce03": per_cd[c]["ce03_reachable"],
+                },
             }
             for c, name, b in ANCHOR_CDS
         ],

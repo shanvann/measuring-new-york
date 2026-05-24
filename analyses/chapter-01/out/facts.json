@@ -3,6 +3,11 @@
   "departure": "2026-09-01T08:00:00",
   "max_minutes": 45.0,
   "city_total_jobs_2022_lodes": 4466975,
+  "city_total_by_tier": {
+    "ce01_lte_15k": 644071,
+    "ce02_15k_to_40k": 1012180,
+    "ce03_gte_40k": 2810724
+  },
   "anchor_cds": [
     {
       "boro_cd": "105",
@@ -14,7 +19,17 @@
       "tract_count": 27,
       "mobility_access_score": 68.4,
       "variance_class": "uniform",
-      "q3_over_q1": 1.04
+      "q3_over_q1": 1.04,
+      "tier_scores": {
+        "ce01": 60.6,
+        "ce02": 54.0,
+        "ce03": 75.3
+      },
+      "tier_reachable": {
+        "ce01": 390304,
+        "ce02": 546951,
+        "ce03": 2115578
+      }
     },
     {
       "boro_cd": "301",
@@ -26,7 +41,17 @@
       "tract_count": 54,
       "mobility_access_score": 33.2,
       "variance_class": "moderate",
-      "q3_over_q1": 2.16
+      "q3_over_q1": 2.16,
+      "tier_scores": {
+        "ce01": 31.1,
+        "ce02": 26.3,
+        "ce03": 35.5
+      },
+      "tier_reachable": {
+        "ce01": 200128,
+        "ce02": 266149,
+        "ce03": 998461
+      }
     },
     {
       "boro_cd": "212",
@@ -38,7 +63,17 @@
       "tract_count": 49,
       "mobility_access_score": 2.1,
       "variance_class": "moderate",
-      "q3_over_q1": 2.32
+      "q3_over_q1": 2.32,
+      "tier_scores": {
+        "ce01": 2.2,
+        "ce02": 2.8,
+        "ce03": 1.8
+      },
+      "tier_reachable": {
+        "ce01": 13941,
+        "ce02": 28366,
+        "ce03": 50991
+      }
     },
     {
       "boro_cd": "410",
@@ -50,7 +85,17 @@
       "tract_count": 38,
       "mobility_access_score": 1.4,
       "variance_class": "uneven",
-      "q3_over_q1": 4.8
+      "q3_over_q1": 4.8,
+      "tier_scores": {
+        "ce01": 1.5,
+        "ce02": 2.1,
+        "ce03": 1.1
+      },
+      "tier_reachable": {
+        "ce01": 9393,
+        "ce02": 21578,
+        "ce03": 31725
+      }
     },
     {
       "boro_cd": "414",
@@ -62,7 +107,17 @@
       "tract_count": 29,
       "mobility_access_score": 0.4,
       "variance_class": "moderate",
-      "q3_over_q1": 2.58
+      "q3_over_q1": 2.58,
+      "tier_scores": {
+        "ce01": 0.4,
+        "ce02": 0.6,
+        "ce03": 0.3
+      },
+      "tier_reachable": {
+        "ce01": 2788,
+        "ce02": 6076,
+        "ce03": 9795
+      }
     }
   ],
   "headline": {

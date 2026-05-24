@@ -6,6 +6,64 @@
 
 ---
 
+## 2026-05-24 (afternoon) — Ch. 2 data foundation; HPD collinearity → 2-axis pivot
+**Repo:** measuring-new-york
+**Phase / chapter:** Phase 3b / Ch. 2 — **data foundation complete; SVG headline rendered**
+**Session length:** ~2h (follow-on to the morning OCA-pipeline-shell session)
+
+**What changed (shipped):**
+- `shared/zip_to_cd.py` + `geographies/zip_cd_crosswalk.csv` (commit `848992e`) — area-weighted MODZCTA → CD crosswalk. 178 zips × 59 CDs → 349 (zip, CD) pairs. 108 zips (61%) span 2+ CDs, validating the choice over a centroid-only join.
+- OCA bundle pulled (700 MB) to `cache/oca/` at snapshot 2026-05-10. ETag-stable; manifest updated automatically by `cache.record()`.
+- ACS B25070 / B25064 / B25003 / B19013 cached at tract level via the existing `pipelines.acs_census` module (commit `848992e`). 2,327 rows per table.
+- `pipelines/hpd_violations.py::fetch_counts_by_zip()` (commit `0ec26a8`) — server-side aggregated count per (zip, class) for a window. One Socrata request, ~600-row response. The existing per-CD `fetch()` is preserved for Ch. 0 backwards-compat.
+- `analyses/chapter-02/notebook.py` (commits `848992e` + `0ec26a8`):
+  - tract→CD via centroid sjoin matching Ch. 1's pattern (22 tracts unassigned — water / airport — acceptable).
+  - Per-CD rent burden (B25070 brackets), median rent (renter-HH-weighted mean of tract medians), median income, renter HH count, OCA filings rate (via zip→CD crosswalk), HPD violations rate (total + class-C, same crosswalk).
+  - Full 4-axis Spearman matrix with collinearity flagging in the printed summary.
+  - `render_headline_choropleth()` — static SVG, series palette sequential ramp, 5–95 pct clip, 50-ft polygon simplification (Ch. 1 pattern), 5 anchor CDs labelled inline with the burden %.
+- `pipelines/acs_census.py` (commit `3c48dba`) — small bugfix: cache check moved before the CENSUS_API_KEY check so cached loads work offline.
+
+**Verified:**
+- Full notebook run is ~30s warm (everything cached).
+- Headline numbers (window 2024-01-01 → 2026-05-10):
+  - 268,566 NYC residential eviction filings (1,182 dropped from non-NYC ZIPs)
+  - 2,268,788 HPD violations (5,643 dropped)
+  - rent burden ≥30%: 35%–63% range across CDs
+  - severe rent burden ≥50%: 16%–40% range
+- 4-axis Spearman matrix:
+  - burden_30    ↔ median_rent   ρ = −0.774
+  - burden_30    ↔ filings       ρ = +0.665
+  - burden_30    ↔ hpd           ρ = +0.609
+  - median_rent  ↔ filings       ρ = −0.768
+  - median_rent  ↔ hpd           ρ = −0.691
+  - filings      ↔ hpd           ρ = **+0.817**  ⚠ kill criterion fired
+- 5 new anchor CDs each anchor a distinct (burden, distress) quadrant — see plan §10.
+- `out/rent-burden-cd.svg` 234 KB; `out/rent-burden.geojson` ~190 KB; `out/facts.json` carries the full 4-axis numbers + the spearman matrix; `out/rankings.csv` is the same in long form.
+
+**Tried but didn't ship:**
+- `fetch_window()` (paginated raw rows) in hpd_violations.py — initial implementation 400'd because the schema didn't match (the existing per-CD code's assumed columns `communityboard` and `postcode` don't exist in the dataset; the real columns are `zip` and `boro`+`boroid` with no CD field). Replaced with the server-side aggregated approach. The replacement is strictly better for the use case (~600 rows vs 2.27M).
+- A tract→CD area-weighted aggregation (alternative to centroid sjoin). Centroid is fine here because CDs are larger than tracts; deferred unless a future chapter needs sub-tract precision.
+
+**Blocked / partial:**
+- (none — data foundation is complete; the chapter is ready for prose drafting)
+
+**Next action:**
+- Hand off to the website repo: draft `content/posts/measuring-new-york-02-housing.mdx` using the per-chapter template (plan §7). Run `make publish CHAPTER=2` to copy `out/rent-burden-cd.svg` + `out/rent-burden.geojson` + `out/facts.json` into the website's `public/measuring-new-york/chapter-02/`.
+
+**Notes for next agent:**
+- The kill-criterion fire is a feature, not a bug. The "two axes + HPD as confirmer" framing is sharper than "three independent axes" would have been. Don't try to resurrect the three-axis claim in the prose.
+- The 5 anchor CDs span the (burden, distress) 2D plane:
+  - 206 Belmont — high burden + high distress (bottom-right)
+  - 313 Brownsville — high burden + low-mid distress (bottom-left)
+  - 109 Hamilton Heights — low-mid burden + high distress (top-right)
+  - 108 UES — low burden + low distress (top-left) + high rent
+  - 411 Bayside — low burden + low distress (top-left) + low-mid rent / homeownership
+- HPD **class-C** (immediately hazardous) numbers are computed but not in the headline. CD 206 has 447 class-C violations per 1,000 renter HH per year — roughly one per two units per year. That's an extreme number worth quoting in the prose if a sharper quality signal is needed.
+- Cache freshness: OCA is pinned to 2026-05-10 (explicit vintage exception); HPD + ACS pinned to the standard 2026-06-01 freeze. If a fresher OCA publish lands before prose ships, re-run `pipelines.oca_evictions --snapshot-info` and re-pin in `MANIFEST.json`.
+- `pandas.DataFrameGroupBy.apply` emits a FutureWarning in the weighted-median-rent function on pandas ≥2.2; functionally fine, cosmetically loud. Suppress with `include_groups=False` if it becomes annoying.
+
+---
+
 ## 2026-05-24 — Phase 3b kickoff: OCA eviction-filings pipeline shipped
 **Repo:** measuring-new-york
 **Phase / chapter:** Phase 3b / Ch. 2 — **pipeline shell only; no data fetched yet**

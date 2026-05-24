@@ -6,6 +6,91 @@
 
 ---
 
+## 2026-05-24 — Phase 3b kickoff: OCA eviction-filings pipeline shipped
+**Repo:** measuring-new-york
+**Phase / chapter:** Phase 3b / Ch. 2 — **pipeline shell only; no data fetched yet**
+**Session length:** ~1.5h (shared with the website-repo session that drafted Ch. 2 §10 spec)
+
+**What changed (shipped):**
+- `pipelines/oca_evictions.py` (new, commit `1302b31`) — streaming
+  CSV fetcher for the Housing Data Coalition's OCA Housing Court
+  filings bundle. S3 base `https://oca-2-dev.s3.amazonaws.com/public/`.
+  Handles two tables only (oca_index 497 MB + oca_addresses 203 MB);
+  the other 9 tables in the bundle are noted in the module docstring
+  for future chapters. `load_nyc_filings()` does a chunked filter
+  (court ∈ NYC five courts + classification ∈ {Non-Payment, Holdover}
+  + Residential + optional date window) and an inner join on
+  indexnumberid against the address table. Snapshot date is fetched
+  from `last-updated-date.txt` so cache filenames pin the actual
+  data vintage rather than the series freeze.
+- `MANIFEST.json` (same commit) — added `oca_evictions` vintage entry
+  pinned at 2026-05-10 as an explicit exception to the 2026-06-01
+  series freeze. Noted ZIP-only geography (no BBL/BIN), pointer to
+  the HDC ETL repo, and the rationale.
+
+**Verified:**
+- `python -m pipelines.oca_evictions --snapshot-info` returns
+  `2026-05-10` (HTTP 200 from S3).
+- `python -m pipelines.oca_evictions --table index --dry-run` and
+  `--table addresses --dry-run` both print the expected URL + cache
+  key (`oca/oca_index-2026-05-10.csv`, `oca/oca_addresses-2026-05-10.csv`).
+- `python -c "import json; json.loads(open('MANIFEST.json').read())"`
+  parses cleanly.
+- Did NOT actually pull the 700 MB. Deferred to the chapter-02
+  notebook session (one-time cost, cached forever after).
+
+**Tried but didn't ship:**
+- Marshal-executed evictions (NYC Open Data `6z8x-wfk4`) as the
+  displacement signal — would have been a smaller Socrata-pattern
+  pipeline mirroring `hpd_violations.py`, but executions are only
+  ~10–20% of filings and undersell the "displacement pressure" axis
+  the chapter is built around. User chose OCA over Socrata; logged
+  for posterity in case Ch. 6 (Safety) ever wants the execution
+  endpoint for a different angle.
+- The other 9 OCA tables (causes / parties / events / appearances /
+  appearance_outcomes / motions / decisions / judgments / warrants)
+  are noted in the module docstring but not wired up — none are
+  needed for the Ch. 2 headline rate.
+
+**Blocked / partial:**
+- (none — pipeline shell is complete; download is deferred but the
+  module runs end-to-end on `--dry-run`)
+
+**Next action:**
+- Build `shared/zip_to_cd.py` (area-weighted spatial join from the
+  cached MODZCTA geometry to the cached DCP CD geometry — both
+  geographies are already cached from Phase 1). Then fetch the
+  OCA bundle and cache ACS B25070 + B25064 + B25003 + B19013 at
+  tract level. Then start `analyses/chapter-02/notebook.py` with a
+  per-CD rent-burden + filings-rate first pass to test the
+  hypothesis that the three axes don't co-rank.
+
+**Notes for next agent:**
+- The OCA snapshot (2026-05-10) is older than the series vintage
+  freeze (2026-06-01). This is an **explicit** exception logged in
+  `MANIFEST.json` — same handling Ch. 0 used for its 2026-05-01
+  311 snapshot. If a fresher HDC publish lands before Ch. 2 prose
+  finalizes, re-pin the snapshot in `MANIFEST.json` and rerun
+  `pipelines.oca_evictions --table index --table addresses` — the
+  cache key auto-bumps because the snapshot date is in the filename.
+- OCA addresses carry only ZIP. No BBL, no BIN, no street. CD
+  aggregation has to go through a zip→CD crosswalk; some NYC ZIPs
+  straddle multiple CDs (the area-weighting in `shared/zip_to_cd.py`
+  is non-negotiable — a centroid join would mis-allocate ~10% of
+  filings in CDs like 110/111 or 305/306).
+- The 700 MB cache pull is a one-time cost. After the first fetch,
+  `python -m pipelines.oca_evictions --table index` is instant
+  (manifest hit). The chapter notebook should be designed to
+  re-load via `load_nyc_filings(start_date=..., end_date=...)`
+  many times without re-fetching.
+- The `classification` field uses set-literal strings like
+  `{NYCHA}` or `{"Specialty 2 (HHP) Zipcodes"}` for the
+  `specialtydesignationtypes` column — Postgres array text format,
+  not JSON. Don't try to `json.loads()` it; treat as a string and
+  use `.str.contains("NYCHA")` for filters if needed.
+
+---
+
 ## 2026-05-23 — Chapter 1 shipped (Mobility & Access)
 **Repo:** measuring-new-york (+ artifacts handed off to personal-website)
 **Phase / chapter:** Phase 3a / Ch. 1 — **Chapter shipped**

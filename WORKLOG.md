@@ -6,6 +6,40 @@
 
 ---
 
+## 2026-05-30 — Ch. 3 kickoff: spec + axis 1 (ambient air) wired end-to-end
+**Repo:** measuring-new-york
+**Phase / chapter:** Phase 3c / Ch. 3 — **scaffold + air axis live; green-space + env-311 stubbed**
+**Session length:** ~1h
+
+**What changed (shipped, uncommitted):**
+- `analyses/chapter-03/notebook.py` (new) — first-pass scaffold mirroring Ch. 2's structure. Full spec docstring (hypothesis, 3 axes, kill criterion = |rho| >= 0.75). Axis 1 wired end-to-end; axes 2 and 3 are explicit stubs with TODOs pointing at the right pipelines.
+- `pipelines/osm_overpass.py` — Overpass started 406'ing requests with no User-Agent sometime in 2025. Added a `User-Agent` header (`measuring-new-york/0.1 (shanitpv@gmail.com)`) on the POST. Refetched parks: 2,772 elements cached.
+- DOHMH air-quality data cached: PM2.5 + NO2, dataset `c3uy-2p5r`, 6,345 rows each.
+
+**Verified:**
+- DOHMH `c3uy-2p5r` ships **CD-level data directly** (`geo_type_name == 'CD'`, `geo_join_id` == `boro_cd`). 2,655 of 6,345 rows are CD-keyed. The UHF42 → CD crosswalk we tentatively scoped is **unnecessary**.
+- Axis 1 numbers (Annual Average 2023, all 59 CDs):
+  - PM2.5: 6.11 – 8.37 mcg/m3.  Top: 105 Midtown, 102 Village/Soho, 104 Chelsea/HK, 106 Stuy/Turtle Bay, 101 FiDi.  Bottom: 503 Tottenville, 414 Rockaway, 502 South Beach SI, 315 Sheepshead Bay, 313 Coney Island.
+  - NO2: 9.36 – 26.11 ppb (much wider relative spread than PM2.5).
+- PM2.5 ↔ NO2 within-axis Spearman: **+0.840**. Same traffic + density driver. Not a spine-kill (it's intra-axis), but means we should pick **one** representative air metric or treat them as a composite — not as independent axes. Will note in the chapter MethodologyFooter.
+
+**Tried but didn't ship:**
+- Initial Overpass parks fetch 406'd before the UA fix. Fix verified against `[out:json][timeout:25];out count;` (200 OK after adding UA).
+
+**Blocked / partial:**
+- Axis 2 (green-space) — stub. The OSM parks query uses `out center tags` which gives centers, not polygons. For the chosen metric (% residents within 10-min walk of a 1+ acre park) we want NYC Parks Properties (NYC Open Data dataset `enfh-gkve`) for authoritative polygons + official acreage. Next session.
+- Axis 3 (env-311) — stub. Needs a server-side aggregated SoQL counts-by-(zip, complaint) extension in `pipelines.three_one_one`, mirroring `hpd_violations.fetch_counts_by_zip`. Window 2024-01-01 → 2026-06-01; complaint set: Noise (all types), Rat/Rodent, Illegal Dumping + Dirty Conditions, Idling + Air Quality. (User opted to include Idling/Air Quality despite the coupling risk with axis 1 — the spine test will surface that as a [KILL] flag if it fires, which is the right behavior.)
+
+**Next action:**
+- Pick one of axis 2 / axis 3 to wire next. Axis 3 is mechanically simpler (extend an existing pipeline + reuse zip→CD crosswalk); axis 2 is more novel work (Parks Properties pull + tract-walk-distance). Recommend axis 3 first since it lets the full spine test fire.
+
+**Notes for next agent:**
+- The chapter is **not yet runnable** as a green→publish pipeline; `make publish CHAPTER=3` will only carry the `out/facts.json` + `out/rankings.csv` that exist today (no SVG, no display geojson yet — by design; Ch. 2 pattern was to validate the spine first).
+- All three axes will live at CD geography. DOHMH publishes CD-level directly; 311 + parks reach CD via the existing `geographies/zip_cd_crosswalk.csv` (311) and tract-centroid + pop weight (parks, when implemented).
+- `pipelines.three_one_one.build_query` currently filters by `community_board = "01 BROOKLYN"`-style strings. For the chapter-3 counts-by-zip work, prefer `incident_zip` + the existing zip→CD crosswalk so the methodology is consistent with Ch. 2's HPD / OCA allocation.
+
+---
+
 ## 2026-05-24 (afternoon) — Ch. 2 data foundation; HPD collinearity → 2-axis pivot
 **Repo:** measuring-new-york
 **Phase / chapter:** Phase 3b / Ch. 2 — **data foundation complete; SVG headline rendered**

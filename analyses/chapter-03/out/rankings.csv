@@ -1,0 +1,119 @@
+axis,rank,borocd,name,value
+pm25_annual,1,105,Midtown,8.372
+pm25_annual,2,102,Greenwich Village / Soho,8.076
+pm25_annual,3,104,Chelsea / Hell's Kitchen,7.835
+pm25_annual,4,106,Stuyvesant Town / Turtle Bay,7.531
+pm25_annual,5,101,Financial District / Battery Park City,7.405
+pm25_annual,6,301,Williamsburg / Greenpoint,7.403
+pm25_annual,7,202,Hunts Point / Longwood,7.398
+pm25_annual,8,402,Sunnyside / Woodside,7.396
+pm25_annual,9,103,Lower East Side / Chinatown,7.353
+pm25_annual,10,306,Park Slope / Carroll Gardens,7.164
+pm25_annual,11,302,Fort Greene / Brooklyn Heights,7.154
+pm25_annual,12,304,Bushwick,7.109
+pm25_annual,13,201,Mott Haven / Melrose,7.093
+pm25_annual,14,307,Sunset Park,7.08
+pm25_annual,15,203,Morrisania / Crotona,7.048
+pm25_annual,16,206,Belmont / East Tremont,7.004
+pm25_annual,17,401,Astoria,6.999
+pm25_annual,18,108,Upper East Side,6.992
+pm25_annual,19,112,Washington Heights / Inwood,6.985
+pm25_annual,20,209,Soundview / Parkchester,6.952
+pm25_annual,21,303,Bedford-Stuyvesant,6.948
+pm25_annual,22,405,Ridgewood / Maspeth,6.939
+pm25_annual,23,109,Manhattanville / Hamilton Heights,6.937
+pm25_annual,24,308,Crown Heights / Prospect Heights,6.92
+pm25_annual,25,111,East Harlem,6.916
+pm25_annual,26,110,Central Harlem,6.905
+pm25_annual,27,404,Elmhurst / Corona,6.902
+pm25_annual,28,205,University Heights / Fordham,6.897
+pm25_annual,29,204,Highbridge / Concourse,6.885
+pm25_annual,30,207,Kingsbridge Heights / Bedford Park,6.869
+pm25_annual,31,107,Upper West Side,6.868
+pm25_annual,32,211,Pelham Parkway / Morris Park,6.86
+pm25_annual,33,212,Williamsbridge / Baychester,6.814
+pm25_annual,34,210,Throgs Neck / Co-op City,6.802
+pm25_annual,35,208,Riverdale / Fieldston,6.794
+pm25_annual,36,403,Jackson Heights / North Corona,6.794
+pm25_annual,37,316,Brownsville,6.754
+pm25_annual,38,305,East New York / Cypress Hills,6.739
+pm25_annual,39,409,Kew Gardens / Woodhaven,6.696
+pm25_annual,40,407,Flushing / Bay Terrace,6.695
+pm25_annual,41,317,East Flatbush / Farragut,6.637
+pm25_annual,42,312,Borough Park,6.619
+pm25_annual,43,309,South Crown Heights / Lefferts Gardens,6.608
+pm25_annual,44,310,Bay Ridge / Dyker Heights,6.604
+pm25_annual,45,406,Forest Hills / Rego Park,6.569
+pm25_annual,46,412,Jamaica / Hollis,6.567
+pm25_annual,47,314,Flatbush / Midwood,6.53
+pm25_annual,48,411,Bayside / Little Neck,6.482
+pm25_annual,49,408,Hillcrest / Fresh Meadows,6.464
+pm25_annual,50,311,Bensonhurst / Bath Beach,6.442
+pm25_annual,51,413,Queens Village / Cambria Heights,6.433
+pm25_annual,52,501,St. George / Stapleton,6.412
+pm25_annual,53,410,South Ozone Park / Howard Beach,6.406
+pm25_annual,54,318,Canarsie / Flatlands,6.397
+pm25_annual,55,313,Coney Island / Brighton Beach,6.356
+pm25_annual,56,315,Sheepshead Bay / Manhattan Beach,6.348
+pm25_annual,57,502,South Beach / Willowbrook,6.254
+pm25_annual,58,414,Rockaway / Broad Channel,6.124
+pm25_annual,59,503,Tottenville / Great Kills,6.11
+no2_annual,1,105,Midtown,26.109
+no2_annual,2,104,Chelsea / Hell's Kitchen,22.937
+no2_annual,3,101,Financial District / Battery Park City,21.924
+no2_annual,4,102,Greenwich Village / Soho,21.912
+no2_annual,5,106,Stuyvesant Town / Turtle Bay,21.894
+no2_annual,6,402,Sunnyside / Woodside,19.858
+no2_annual,7,301,Williamsburg / Greenpoint,19.359
+no2_annual,8,108,Upper East Side,19.051
+no2_annual,9,307,Sunset Park,18.85
+no2_annual,10,103,Lower East Side / Chinatown,18.617
+no2_annual,11,302,Fort Greene / Brooklyn Heights,18.53
+no2_annual,12,107,Upper West Side,18.434
+no2_annual,13,202,Hunts Point / Longwood,18.296
+no2_annual,14,306,Park Slope / Carroll Gardens,17.99
+no2_annual,15,304,Bushwick,17.851
+no2_annual,16,404,Elmhurst / Corona,17.738
+no2_annual,17,201,Mott Haven / Melrose,17.716
+no2_annual,18,310,Bay Ridge / Dyker Heights,17.715
+no2_annual,19,405,Ridgewood / Maspeth,17.621
+no2_annual,20,316,Brownsville,17.437
+no2_annual,21,112,Washington Heights / Inwood,17.245
+no2_annual,22,205,University Heights / Fordham,17.228
+no2_annual,23,204,Highbridge / Concourse,17.201
+no2_annual,24,305,East New York / Cypress Hills,17.081
+no2_annual,25,303,Bedford-Stuyvesant,17.041
+no2_annual,26,401,Astoria,17.041
+no2_annual,27,203,Morrisania / Crotona,16.96
+no2_annual,28,308,Crown Heights / Prospect Heights,16.952
+no2_annual,29,403,Jackson Heights / North Corona,16.804
+no2_annual,30,501,St. George / Stapleton,16.606
+no2_annual,31,317,East Flatbush / Farragut,16.603
+no2_annual,32,206,Belmont / East Tremont,16.596
+no2_annual,33,312,Borough Park,16.531
+no2_annual,34,406,Forest Hills / Rego Park,16.41
+no2_annual,35,109,Manhattanville / Hamilton Heights,16.39
+no2_annual,36,111,East Harlem,16.361
+no2_annual,37,209,Soundview / Parkchester,16.352
+no2_annual,38,409,Kew Gardens / Woodhaven,16.191
+no2_annual,39,110,Central Harlem,16.18
+no2_annual,40,309,South Crown Heights / Lefferts Gardens,16.069
+no2_annual,41,314,Flatbush / Midwood,15.905
+no2_annual,42,207,Kingsbridge Heights / Bedford Park,15.592
+no2_annual,43,311,Bensonhurst / Bath Beach,15.532
+no2_annual,44,407,Flushing / Bay Terrace,15.407
+no2_annual,45,412,Jamaica / Hollis,15.387
+no2_annual,46,408,Hillcrest / Fresh Meadows,15.11
+no2_annual,47,210,Throgs Neck / Co-op City,15.058
+no2_annual,48,411,Bayside / Little Neck,14.92
+no2_annual,49,211,Pelham Parkway / Morris Park,14.849
+no2_annual,50,413,Queens Village / Cambria Heights,14.843
+no2_annual,51,410,South Ozone Park / Howard Beach,14.797
+no2_annual,52,318,Canarsie / Flatlands,14.764
+no2_annual,53,208,Riverdale / Fieldston,14.556
+no2_annual,54,212,Williamsbridge / Baychester,14.374
+no2_annual,55,315,Sheepshead Bay / Manhattan Beach,14.097
+no2_annual,56,313,Coney Island / Brighton Beach,13.499
+no2_annual,57,502,South Beach / Willowbrook,12.661
+no2_annual,58,503,Tottenville / Great Kills,10.333
+no2_annual,59,414,Rockaway / Broad Channel,9.362

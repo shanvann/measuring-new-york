@@ -1,0 +1,393 @@
+{
+  "vintage": {
+    "pm25": "DOHMH c3uy-2p5r, Annual Average 2023",
+    "no2": "DOHMH c3uy-2p5r, Annual Average 2023"
+  },
+  "axes_status": {
+    "air": "wired",
+    "green_space": "stub",
+    "env_311": "stub"
+  },
+  "spine_test": {
+    "status": "ran",
+    "kill_threshold": 0.75,
+    "axes": [
+      "pm25_annual",
+      "no2_annual"
+    ],
+    "pairs": [
+      {
+        "a": "pm25_annual",
+        "b": "no2_annual",
+        "rho": 0.84,
+        "fires_kill": true
+      }
+    ],
+    "matrix": {
+      "pm25_annual": {
+        "pm25_annual": 1.0,
+        "no2_annual": 0.84
+      },
+      "no2_annual": {
+        "pm25_annual": 0.84,
+        "no2_annual": 1.0
+      }
+    }
+  },
+  "per_cd": [
+    {
+      "borocd": "101",
+      "pm25_annual": 7.405,
+      "no2_annual": 21.924,
+      "name": "Financial District / Battery Park City"
+    },
+    {
+      "borocd": "102",
+      "pm25_annual": 8.076,
+      "no2_annual": 21.912,
+      "name": "Greenwich Village / Soho"
+    },
+    {
+      "borocd": "103",
+      "pm25_annual": 7.353,
+      "no2_annual": 18.617,
+      "name": "Lower East Side / Chinatown"
+    },
+    {
+      "borocd": "104",
+      "pm25_annual": 7.835,
+      "no2_annual": 22.937,
+      "name": "Chelsea / Hell's Kitchen"
+    },
+    {
+      "borocd": "105",
+      "pm25_annual": 8.372,
+      "no2_annual": 26.109,
+      "name": "Midtown"
+    },
+    {
+      "borocd": "106",
+      "pm25_annual": 7.531,
+      "no2_annual": 21.894,
+      "name": "Stuyvesant Town / Turtle Bay"
+    },
+    {
+      "borocd": "107",
+      "pm25_annual": 6.868,
+      "no2_annual": 18.434,
+      "name": "Upper West Side"
+    },
+    {
+      "borocd": "108",
+      "pm25_annual": 6.992,
+      "no2_annual": 19.051,
+      "name": "Upper East Side"
+    },
+    {
+      "borocd": "109",
+      "pm25_annual": 6.937,
+      "no2_annual": 16.39,
+      "name": "Manhattanville / Hamilton Heights"
+    },
+    {
+      "borocd": "110",
+      "pm25_annual": 6.905,
+      "no2_annual": 16.18,
+      "name": "Central Harlem"
+    },
+    {
+      "borocd": "111",
+      "pm25_annual": 6.916,
+      "no2_annual": 16.361,
+      "name": "East Harlem"
+    },
+    {
+      "borocd": "112",
+      "pm25_annual": 6.985,
+      "no2_annual": 17.245,
+      "name": "Washington Heights / Inwood"
+    },
+    {
+      "borocd": "201",
+      "pm25_annual": 7.093,
+      "no2_annual": 17.716,
+      "name": "Mott Haven / Melrose"
+    },
+    {
+      "borocd": "202",
+      "pm25_annual": 7.398,
+      "no2_annual": 18.296,
+      "name": "Hunts Point / Longwood"
+    },
+    {
+      "borocd": "203",
+      "pm25_annual": 7.048,
+      "no2_annual": 16.96,
+      "name": "Morrisania / Crotona"
+    },
+    {
+      "borocd": "204",
+      "pm25_annual": 6.885,
+      "no2_annual": 17.201,
+      "name": "Highbridge / Concourse"
+    },
+    {
+      "borocd": "205",
+      "pm25_annual": 6.897,
+      "no2_annual": 17.228,
+      "name": "University Heights / Fordham"
+    },
+    {
+      "borocd": "206",
+      "pm25_annual": 7.004,
+      "no2_annual": 16.596,
+      "name": "Belmont / East Tremont"
+    },
+    {
+      "borocd": "207",
+      "pm25_annual": 6.869,
+      "no2_annual": 15.592,
+      "name": "Kingsbridge Heights / Bedford Park"
+    },
+    {
+      "borocd": "208",
+      "pm25_annual": 6.794,
+      "no2_annual": 14.556,
+      "name": "Riverdale / Fieldston"
+    },
+    {
+      "borocd": "209",
+      "pm25_annual": 6.952,
+      "no2_annual": 16.352,
+      "name": "Soundview / Parkchester"
+    },
+    {
+      "borocd": "210",
+      "pm25_annual": 6.802,
+      "no2_annual": 15.058,
+      "name": "Throgs Neck / Co-op City"
+    },
+    {
+      "borocd": "211",
+      "pm25_annual": 6.86,
+      "no2_annual": 14.849,
+      "name": "Pelham Parkway / Morris Park"
+    },
+    {
+      "borocd": "212",
+      "pm25_annual": 6.814,
+      "no2_annual": 14.374,
+      "name": "Williamsbridge / Baychester"
+    },
+    {
+      "borocd": "301",
+      "pm25_annual": 7.403,
+      "no2_annual": 19.359,
+      "name": "Williamsburg / Greenpoint"
+    },
+    {
+      "borocd": "302",
+      "pm25_annual": 7.154,
+      "no2_annual": 18.53,
+      "name": "Fort Greene / Brooklyn Heights"
+    },
+    {
+      "borocd": "303",
+      "pm25_annual": 6.948,
+      "no2_annual": 17.041,
+      "name": "Bedford-Stuyvesant"
+    },
+    {
+      "borocd": "304",
+      "pm25_annual": 7.109,
+      "no2_annual": 17.851,
+      "name": "Bushwick"
+    },
+    {
+      "borocd": "305",
+      "pm25_annual": 6.739,
+      "no2_annual": 17.081,
+      "name": "East New York / Cypress Hills"
+    },
+    {
+      "borocd": "306",
+      "pm25_annual": 7.164,
+      "no2_annual": 17.99,
+      "name": "Park Slope / Carroll Gardens"
+    },
+    {
+      "borocd": "307",
+      "pm25_annual": 7.08,
+      "no2_annual": 18.85,
+      "name": "Sunset Park"
+    },
+    {
+      "borocd": "308",
+      "pm25_annual": 6.92,
+      "no2_annual": 16.952,
+      "name": "Crown Heights / Prospect Heights"
+    },
+    {
+      "borocd": "309",
+      "pm25_annual": 6.608,
+      "no2_annual": 16.069,
+      "name": "South Crown Heights / Lefferts Gardens"
+    },
+    {
+      "borocd": "310",
+      "pm25_annual": 6.604,
+      "no2_annual": 17.715,
+      "name": "Bay Ridge / Dyker Heights"
+    },
+    {
+      "borocd": "311",
+      "pm25_annual": 6.442,
+      "no2_annual": 15.532,
+      "name": "Bensonhurst / Bath Beach"
+    },
+    {
+      "borocd": "312",
+      "pm25_annual": 6.619,
+      "no2_annual": 16.531,
+      "name": "Borough Park"
+    },
+    {
+      "borocd": "313",
+      "pm25_annual": 6.356,
+      "no2_annual": 13.499,
+      "name": "Coney Island / Brighton Beach"
+    },
+    {
+      "borocd": "314",
+      "pm25_annual": 6.53,
+      "no2_annual": 15.905,
+      "name": "Flatbush / Midwood"
+    },
+    {
+      "borocd": "315",
+      "pm25_annual": 6.348,
+      "no2_annual": 14.097,
+      "name": "Sheepshead Bay / Manhattan Beach"
+    },
+    {
+      "borocd": "316",
+      "pm25_annual": 6.754,
+      "no2_annual": 17.437,
+      "name": "Brownsville"
+    },
+    {
+      "borocd": "317",
+      "pm25_annual": 6.637,
+      "no2_annual": 16.603,
+      "name": "East Flatbush / Farragut"
+    },
+    {
+      "borocd": "318",
+      "pm25_annual": 6.397,
+      "no2_annual": 14.764,
+      "name": "Canarsie / Flatlands"
+    },
+    {
+      "borocd": "401",
+      "pm25_annual": 6.999,
+      "no2_annual": 17.041,
+      "name": "Astoria"
+    },
+    {
+      "borocd": "402",
+      "pm25_annual": 7.396,
+      "no2_annual": 19.858,
+      "name": "Sunnyside / Woodside"
+    },
+    {
+      "borocd": "403",
+      "pm25_annual": 6.794,
+      "no2_annual": 16.804,
+      "name": "Jackson Heights / North Corona"
+    },
+    {
+      "borocd": "404",
+      "pm25_annual": 6.902,
+      "no2_annual": 17.738,
+      "name": "Elmhurst / Corona"
+    },
+    {
+      "borocd": "405",
+      "pm25_annual": 6.939,
+      "no2_annual": 17.621,
+      "name": "Ridgewood / Maspeth"
+    },
+    {
+      "borocd": "406",
+      "pm25_annual": 6.569,
+      "no2_annual": 16.41,
+      "name": "Forest Hills / Rego Park"
+    },
+    {
+      "borocd": "407",
+      "pm25_annual": 6.695,
+      "no2_annual": 15.407,
+      "name": "Flushing / Bay Terrace"
+    },
+    {
+      "borocd": "408",
+      "pm25_annual": 6.464,
+      "no2_annual": 15.11,
+      "name": "Hillcrest / Fresh Meadows"
+    },
+    {
+      "borocd": "409",
+      "pm25_annual": 6.696,
+      "no2_annual": 16.191,
+      "name": "Kew Gardens / Woodhaven"
+    },
+    {
+      "borocd": "410",
+      "pm25_annual": 6.406,
+      "no2_annual": 14.797,
+      "name": "South Ozone Park / Howard Beach"
+    },
+    {
+      "borocd": "411",
+      "pm25_annual": 6.482,
+      "no2_annual": 14.92,
+      "name": "Bayside / Little Neck"
+    },
+    {
+      "borocd": "412",
+      "pm25_annual": 6.567,
+      "no2_annual": 15.387,
+      "name": "Jamaica / Hollis"
+    },
+    {
+      "borocd": "413",
+      "pm25_annual": 6.433,
+      "no2_annual": 14.843,
+      "name": "Queens Village / Cambria Heights"
+    },
+    {
+      "borocd": "414",
+      "pm25_annual": 6.124,
+      "no2_annual": 9.362,
+      "name": "Rockaway / Broad Channel"
+    },
+    {
+      "borocd": "501",
+      "pm25_annual": 6.412,
+      "no2_annual": 16.606,
+      "name": "St. George / Stapleton"
+    },
+    {
+      "borocd": "502",
+      "pm25_annual": 6.254,
+      "no2_annual": 12.661,
+      "name": "South Beach / Willowbrook"
+    },
+    {
+      "borocd": "503",
+      "pm25_annual": 6.11,
+      "no2_annual": 10.333,
+      "name": "Tottenville / Great Kills"
+    }
+  ]
+}

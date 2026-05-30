@@ -25,6 +25,9 @@ from shared import cache  # noqa: E402
 ENDPOINT = "https://overpass-api.de/api/interpreter"
 NYC_BBOX = "40.4774,-74.2591,40.9176,-73.7004"  # south, west, north, east
 
+# Overpass started 406'ing requests with no User-Agent in 2025.
+USER_AGENT = "measuring-new-york/0.1 (shanitpv@gmail.com)"
+
 QUERIES = {
     "parks": f"""
         [out:json][timeout:120];
@@ -77,7 +80,12 @@ def fetch(query: str, *, snapshot: str = "2026-06-01") -> Path:
         print(f"[cache hit] {cache_name}")
         return path
     print(f"[fetch] Overpass  query={query}")
-    r = requests.post(ENDPOINT, data={"data": payload}, timeout=180)
+    r = requests.post(
+        ENDPOINT,
+        data={"data": payload},
+        timeout=180,
+        headers={"User-Agent": USER_AGENT},
+    )
     r.raise_for_status()
     data = r.json()
     path.write_text(json.dumps(data))

@@ -36,6 +36,18 @@
       "sha256": "537104a61bfa8b979b6c6efab7e70d246e86bdd4d9661a2a865f9791b1bb555e",
       "source_url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,group(B25070),for=tract:*,in=state:36 county:005,047,061,081,085"
     },
+    "doh_air/fine-2026-06-01.json": {
+      "bytes": 1871269,
+      "fetched_at": "2026-05-30T18:11:54+00:00",
+      "sha256": "f09ae79fe8bc17607f23e0e486ca1b51e10e09a437c8370b7e02992c6479577b",
+      "source_url": "https://data.cityofnewyork.us/resource/c3uy-2p5r.json?%24select=indicator_id%2C+name%2C+measure%2C+measure_info%2C+geo_type_name%2C+geo_join_id%2C+geo_place_name%2C+time_period%2C+start_date%2C+data_value&%24where=name+%3D+%27Fine+particles+%28PM+2.5%29%27+AND+start_date+%3C%3D+%272026-06-01T00%3A00%3A00.000%27&%24limit=50000&%24order=start_date+DESC%2C+geo_place_name"
+    },
+    "doh_air/nitrogen-2026-06-01.json": {
+      "bytes": 1848872,
+      "fetched_at": "2026-05-30T18:12:10+00:00",
+      "sha256": "d33c21340b230fd93b66b0b34c71772a4ecc8ed62763a88a8cd50821c047a81f",
+      "source_url": "https://data.cityofnewyork.us/resource/c3uy-2p5r.json?%24select=indicator_id%2C+name%2C+measure%2C+measure_info%2C+geo_type_name%2C+geo_join_id%2C+geo_place_name%2C+time_period%2C+start_date%2C+data_value&%24where=name+%3D+%27Nitrogen+dioxide+%28NO2%29%27+AND+start_date+%3C%3D+%272026-06-01T00%3A00%3A00.000%27&%24limit=50000&%24order=start_date+DESC%2C+geo_place_name"
+    },
     "geographies/census_tracts_2020.geojson": {
       "bytes": 7766393,
       "fetched_at": "2026-05-23T12:33:02+00:00",
@@ -89,6 +101,12 @@
       "fetched_at": "2026-05-24T13:58:48+00:00",
       "sha256": "03528a24747cad4ee31e5268da0a0ffb4ae332cdeb9715262c412f5512ac5a47",
       "source_url": "https://oca-2-dev.s3.amazonaws.com/public/oca_index.csv"
+    },
+    "osm/parks-2026-06-01.json": {
+      "bytes": 727980,
+      "fetched_at": "2026-05-30T18:34:27+00:00",
+      "sha256": "c7b7574cb2d7b018c504bc506341625f773decce7d80dca182b54d3b84c9b665",
+      "source_url": "https://overpass-api.de/api/interpreter (POST query=parks)"
     },
     "three_one_one/cd-101-2025-12-01-last1d.json": {
       "bytes": 15912,

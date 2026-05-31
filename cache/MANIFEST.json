@@ -1,5 +1,11 @@
 {
   "entries": {
+    "acs/B01003-tract-2023-2026-06-01.json": {
+      "bytes": 389292,
+      "fetched_at": "2026-05-30T18:55:42+00:00",
+      "sha256": "b83c3748080853aa7a0dbfee7024583a3a0196bf470651f62de70fb7f7a21b91",
+      "source_url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,group(B01003),for=tract:*,in=state:36 county:005,047,061,081,085"
+    },
     "acs/B08303-tract-2023-2026-06-01.json": {
       "bytes": 1072843,
       "fetched_at": "2026-05-23T21:39:30+00:00",
@@ -89,6 +95,12 @@
       "fetched_at": "2026-05-23T19:44:38+00:00",
       "sha256": "bf7a36d35d4707d9981c9b18920ac44e7a83b5192fa513ac092c531312480f12",
       "source_url": "https://rrgtfsfeeds.s3.amazonaws.com/gtfs_subway.zip"
+    },
+    "nyc_parks/properties-2026-06-01.geojson": {
+      "bytes": 7201748,
+      "fetched_at": "2026-05-30T18:58:49+00:00",
+      "sha256": "e8971d212102c229212d27fe51dd6ba58d56f6ceafbb5d4d78ab5a9cac4100d9",
+      "source_url": "https://data.cityofnewyork.us/resource/enfh-gkve.geojson?%24select=gispropnum%2C+signname%2C+name311%2C+class%2C+typecategory%2C+subcategory%2C+borough%2C+communityboard%2C+acres%2C+multipolygon&%24limit=10000"
     },
     "oca/oca_addresses-2026-05-10.csv": {
       "bytes": 202943718,
@@ -1463,6 +1475,18 @@
       "fetched_at": "2026-05-23T19:53:50+00:00",
       "sha256": "2022eef822f2aa1528dc49bd97e3cc5866db6f7be01904167dda3ad6d5fb935a",
       "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json?%24select=unique_key%2C+created_date%2C+closed_date%2C+complaint_type%2C+descriptor%2C+agency%2C+status%2C+community_board%2C+borough%2C+latitude%2C+longitude&%24where=created_date+%3C%3D+%272026-06-01T00%3A00%3A00.000%27+AND+created_date+%3E%3D+%272026-05-02T00%3A00%3A00.000%27+AND+community_board+%3D+%2703+STATEN+ISLAND%27&%24limit=50000&%24order=created_date+DESC"
+    },
+    "three_one_one/env-counts-by-zip-2024-01-01_2026-06-01-2026-06-01.json": {
+      "bytes": 41041,
+      "fetched_at": "2026-05-30T18:55:18+00:00",
+      "sha256": "fad742523dd92e95685bdd1df65dcbe76cfe7d96e7f204ac1756951c75f8486b",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json (4 GROUP BY incident_zip aggregates)"
+    },
+    "three_one_one/env-distinct-addrs-by-zip-2024-01-01_2026-06-01-2026-06-01.json": {
+      "bytes": 44011,
+      "fetched_at": "2026-05-30T19:44:02+00:00",
+      "sha256": "3bf0fbee330012a2a0c08f39bc25a2afb8fc757fc5534de6d3be536c0e533786",
+      "source_url": "https://data.cityofnewyork.us/resource/erm2-nwe9.json (4 GROUP BY incident_zip aggregates, count(distinct incident_address))"
     }
   },
   "note": "Append-only manifest of every cached file. Written by shared/cache.py:record(). Read by pipelines to skip re-fetching. Committed to git so reproducibility survives a cache wipe."

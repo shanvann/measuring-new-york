@@ -117,3 +117,180 @@ no2_annual,56,313,Coney Island / Brighton Beach,13.499
 no2_annual,57,502,South Beach / Willowbrook,12.661
 no2_annual,58,503,Tottenville / Great Kills,10.333
 no2_annual,59,414,Rockaway / Broad Channel,9.362
+green_10min_pct,1,101,Financial District / Battery Park City,1.0
+green_10min_pct,2,313,Coney Island / Brighton Beach,1.0
+green_10min_pct,3,301,Williamsburg / Greenpoint,1.0
+green_10min_pct,4,302,Fort Greene / Brooklyn Heights,1.0
+green_10min_pct,5,303,Bedford-Stuyvesant,1.0
+green_10min_pct,6,304,Bushwick,1.0
+green_10min_pct,7,305,East New York / Cypress Hills,1.0
+green_10min_pct,8,102,Greenwich Village / Soho,1.0
+green_10min_pct,9,308,Crown Heights / Prospect Heights,1.0
+green_10min_pct,10,309,South Crown Heights / Lefferts Gardens,1.0
+green_10min_pct,11,316,Brownsville,1.0
+green_10min_pct,12,210,Throgs Neck / Co-op City,1.0
+green_10min_pct,13,403,Jackson Heights / North Corona,1.0
+green_10min_pct,14,405,Ridgewood / Maspeth,1.0
+green_10min_pct,15,406,Forest Hills / Rego Park,1.0
+green_10min_pct,16,407,Flushing / Bay Terrace,1.0
+green_10min_pct,17,408,Hillcrest / Fresh Meadows,1.0
+green_10min_pct,18,409,Kew Gardens / Woodhaven,1.0
+green_10min_pct,19,412,Jamaica / Hollis,1.0
+green_10min_pct,20,501,St. George / Stapleton,1.0
+green_10min_pct,21,211,Pelham Parkway / Morris Park,1.0
+green_10min_pct,22,306,Park Slope / Carroll Gardens,1.0
+green_10min_pct,23,209,Soundview / Parkchester,1.0
+green_10min_pct,24,112,Washington Heights / Inwood,1.0
+green_10min_pct,25,103,Lower East Side / Chinatown,1.0
+green_10min_pct,26,104,Chelsea / Hell's Kitchen,1.0
+green_10min_pct,27,105,Midtown,1.0
+green_10min_pct,28,106,Stuyvesant Town / Turtle Bay,1.0
+green_10min_pct,29,107,Upper West Side,1.0
+green_10min_pct,30,108,Upper East Side,1.0
+green_10min_pct,31,109,Manhattanville / Hamilton Heights,1.0
+green_10min_pct,32,110,Central Harlem,1.0
+green_10min_pct,33,111,East Harlem,1.0
+green_10min_pct,34,503,Tottenville / Great Kills,1.0
+green_10min_pct,35,202,Hunts Point / Longwood,1.0
+green_10min_pct,36,203,Morrisania / Crotona,1.0
+green_10min_pct,37,206,Belmont / East Tremont,1.0
+green_10min_pct,38,205,University Heights / Fordham,1.0
+green_10min_pct,39,204,Highbridge / Concourse,1.0
+green_10min_pct,40,207,Kingsbridge Heights / Bedford Park,1.0
+green_10min_pct,41,201,Mott Haven / Melrose,1.0
+green_10min_pct,42,208,Riverdale / Fieldston,0.993
+green_10min_pct,43,318,Canarsie / Flatlands,0.989
+green_10min_pct,44,404,Elmhurst / Corona,0.9851
+green_10min_pct,45,411,Bayside / Little Neck,0.9783
+green_10min_pct,46,402,Sunnyside / Woodside,0.9704
+green_10min_pct,47,315,Sheepshead Bay / Manhattan Beach,0.969
+green_10min_pct,48,414,Rockaway / Broad Channel,0.9684
+green_10min_pct,49,401,Astoria,0.9413
+green_10min_pct,50,502,South Beach / Willowbrook,0.9396
+green_10min_pct,51,212,Williamsbridge / Baychester,0.9381
+green_10min_pct,52,310,Bay Ridge / Dyker Heights,0.9371
+green_10min_pct,53,307,Sunset Park,0.9149
+green_10min_pct,54,413,Queens Village / Cambria Heights,0.9094
+green_10min_pct,55,317,East Flatbush / Farragut,0.8729
+green_10min_pct,56,312,Borough Park,0.867
+green_10min_pct,57,311,Bensonhurst / Bath Beach,0.8355
+green_10min_pct,58,314,Flatbush / Midwood,0.821
+green_10min_pct,59,410,South Ozone Park / Howard Beach,0.7398
+env311_addrs_per_1k_pop_per_yr,1,102,Greenwich Village / Soho,37.39
+env311_addrs_per_1k_pop_per_yr,2,105,Midtown,36.91
+env311_addrs_per_1k_pop_per_yr,3,304,Bushwick,31.01
+env311_addrs_per_1k_pop_per_yr,4,307,Sunset Park,29.89
+env311_addrs_per_1k_pop_per_yr,5,302,Fort Greene / Brooklyn Heights,29.59
+env311_addrs_per_1k_pop_per_yr,6,303,Bedford-Stuyvesant,28.43
+env311_addrs_per_1k_pop_per_yr,7,301,Williamsburg / Greenpoint,28.39
+env311_addrs_per_1k_pop_per_yr,8,401,Astoria,27.73
+env311_addrs_per_1k_pop_per_yr,9,104,Chelsea / Hell's Kitchen,26.33
+env311_addrs_per_1k_pop_per_yr,10,306,Park Slope / Carroll Gardens,26.16
+env311_addrs_per_1k_pop_per_yr,11,410,South Ozone Park / Howard Beach,26.14
+env311_addrs_per_1k_pop_per_yr,12,402,Sunnyside / Woodside,25.3
+env311_addrs_per_1k_pop_per_yr,13,308,Crown Heights / Prospect Heights,25.24
+env311_addrs_per_1k_pop_per_yr,14,109,Manhattanville / Hamilton Heights,24.97
+env311_addrs_per_1k_pop_per_yr,15,405,Ridgewood / Maspeth,23.92
+env311_addrs_per_1k_pop_per_yr,16,110,Central Harlem,23.31
+env311_addrs_per_1k_pop_per_yr,17,310,Bay Ridge / Dyker Heights,22.19
+env311_addrs_per_1k_pop_per_yr,18,206,Belmont / East Tremont,21.77
+env311_addrs_per_1k_pop_per_yr,19,201,Mott Haven / Melrose,21.37
+env311_addrs_per_1k_pop_per_yr,20,309,South Crown Heights / Lefferts Gardens,21.17
+env311_addrs_per_1k_pop_per_yr,21,316,Brownsville,21.06
+env311_addrs_per_1k_pop_per_yr,22,202,Hunts Point / Longwood,21.02
+env311_addrs_per_1k_pop_per_yr,23,112,Washington Heights / Inwood,20.75
+env311_addrs_per_1k_pop_per_yr,24,103,Lower East Side / Chinatown,20.31
+env311_addrs_per_1k_pop_per_yr,25,305,East New York / Cypress Hills,20.26
+env311_addrs_per_1k_pop_per_yr,26,111,East Harlem,19.98
+env311_addrs_per_1k_pop_per_yr,27,211,Pelham Parkway / Morris Park,19.7
+env311_addrs_per_1k_pop_per_yr,28,106,Stuyvesant Town / Turtle Bay,19.59
+env311_addrs_per_1k_pop_per_yr,29,502,South Beach / Willowbrook,19.44
+env311_addrs_per_1k_pop_per_yr,30,409,Kew Gardens / Woodhaven,19.42
+env311_addrs_per_1k_pop_per_yr,31,101,Financial District / Battery Park City,19.36
+env311_addrs_per_1k_pop_per_yr,32,317,East Flatbush / Farragut,19.35
+env311_addrs_per_1k_pop_per_yr,33,203,Morrisania / Crotona,19.26
+env311_addrs_per_1k_pop_per_yr,34,107,Upper West Side,18.1
+env311_addrs_per_1k_pop_per_yr,35,314,Flatbush / Midwood,18.01
+env311_addrs_per_1k_pop_per_yr,36,315,Sheepshead Bay / Manhattan Beach,17.99
+env311_addrs_per_1k_pop_per_yr,37,212,Williamsbridge / Baychester,17.98
+env311_addrs_per_1k_pop_per_yr,38,407,Flushing / Bay Terrace,17.27
+env311_addrs_per_1k_pop_per_yr,39,501,St. George / Stapleton,17.04
+env311_addrs_per_1k_pop_per_yr,40,209,Soundview / Parkchester,16.27
+env311_addrs_per_1k_pop_per_yr,41,207,Kingsbridge Heights / Bedford Park,16.27
+env311_addrs_per_1k_pop_per_yr,42,412,Jamaica / Hollis,16.21
+env311_addrs_per_1k_pop_per_yr,43,408,Hillcrest / Fresh Meadows,15.7
+env311_addrs_per_1k_pop_per_yr,44,204,Highbridge / Concourse,15.54
+env311_addrs_per_1k_pop_per_yr,45,108,Upper East Side,15.39
+env311_addrs_per_1k_pop_per_yr,46,503,Tottenville / Great Kills,15.35
+env311_addrs_per_1k_pop_per_yr,47,413,Queens Village / Cambria Heights,15.27
+env311_addrs_per_1k_pop_per_yr,48,411,Bayside / Little Neck,15.19
+env311_addrs_per_1k_pop_per_yr,49,312,Borough Park,14.39
+env311_addrs_per_1k_pop_per_yr,50,210,Throgs Neck / Co-op City,14.2
+env311_addrs_per_1k_pop_per_yr,51,414,Rockaway / Broad Channel,14.2
+env311_addrs_per_1k_pop_per_yr,52,208,Riverdale / Fieldston,13.86
+env311_addrs_per_1k_pop_per_yr,53,318,Canarsie / Flatlands,13.85
+env311_addrs_per_1k_pop_per_yr,54,205,University Heights / Fordham,13.76
+env311_addrs_per_1k_pop_per_yr,55,403,Jackson Heights / North Corona,13.74
+env311_addrs_per_1k_pop_per_yr,56,313,Coney Island / Brighton Beach,13.63
+env311_addrs_per_1k_pop_per_yr,57,406,Forest Hills / Rego Park,12.98
+env311_addrs_per_1k_pop_per_yr,58,311,Bensonhurst / Bath Beach,11.85
+env311_addrs_per_1k_pop_per_yr,59,404,Elmhurst / Corona,10.65
+env311_calls_per_1k_pop_per_yr,1,212,Williamsbridge / Baychester,572.22
+env311_calls_per_1k_pop_per_yr,2,112,Washington Heights / Inwood,194.17
+env311_calls_per_1k_pop_per_yr,3,203,Morrisania / Crotona,186.66
+env311_calls_per_1k_pop_per_yr,4,109,Manhattanville / Hamilton Heights,185.32
+env311_calls_per_1k_pop_per_yr,5,206,Belmont / East Tremont,175.87
+env311_calls_per_1k_pop_per_yr,6,105,Midtown,174.97
+env311_calls_per_1k_pop_per_yr,7,110,Central Harlem,171.85
+env311_calls_per_1k_pop_per_yr,8,204,Highbridge / Concourse,160.86
+env311_calls_per_1k_pop_per_yr,9,102,Greenwich Village / Soho,155.46
+env311_calls_per_1k_pop_per_yr,10,201,Mott Haven / Melrose,149.46
+env311_calls_per_1k_pop_per_yr,11,111,East Harlem,143.26
+env311_calls_per_1k_pop_per_yr,12,302,Fort Greene / Brooklyn Heights,142.65
+env311_calls_per_1k_pop_per_yr,13,207,Kingsbridge Heights / Bedford Park,141.42
+env311_calls_per_1k_pop_per_yr,14,304,Bushwick,139.9
+env311_calls_per_1k_pop_per_yr,15,103,Lower East Side / Chinatown,129.3
+env311_calls_per_1k_pop_per_yr,16,309,South Crown Heights / Lefferts Gardens,121.19
+env311_calls_per_1k_pop_per_yr,17,410,South Ozone Park / Howard Beach,119.09
+env311_calls_per_1k_pop_per_yr,18,301,Williamsburg / Greenpoint,118.86
+env311_calls_per_1k_pop_per_yr,19,104,Chelsea / Hell's Kitchen,116.86
+env311_calls_per_1k_pop_per_yr,20,303,Bedford-Stuyvesant,116.57
+env311_calls_per_1k_pop_per_yr,21,202,Hunts Point / Longwood,114.02
+env311_calls_per_1k_pop_per_yr,22,205,University Heights / Fordham,113.13
+env311_calls_per_1k_pop_per_yr,23,101,Financial District / Battery Park City,108.96
+env311_calls_per_1k_pop_per_yr,24,401,Astoria,108.75
+env311_calls_per_1k_pop_per_yr,25,107,Upper West Side,106.6
+env311_calls_per_1k_pop_per_yr,26,308,Crown Heights / Prospect Heights,106.13
+env311_calls_per_1k_pop_per_yr,27,408,Hillcrest / Fresh Meadows,104.55
+env311_calls_per_1k_pop_per_yr,28,316,Brownsville,104.44
+env311_calls_per_1k_pop_per_yr,29,402,Sunnyside / Woodside,104.41
+env311_calls_per_1k_pop_per_yr,30,106,Stuyvesant Town / Turtle Bay,101.68
+env311_calls_per_1k_pop_per_yr,31,209,Soundview / Parkchester,98.69
+env311_calls_per_1k_pop_per_yr,32,208,Riverdale / Fieldston,95.91
+env311_calls_per_1k_pop_per_yr,33,211,Pelham Parkway / Morris Park,91.75
+env311_calls_per_1k_pop_per_yr,34,307,Sunset Park,91.29
+env311_calls_per_1k_pop_per_yr,35,317,East Flatbush / Farragut,90.87
+env311_calls_per_1k_pop_per_yr,36,305,East New York / Cypress Hills,87.99
+env311_calls_per_1k_pop_per_yr,37,314,Flatbush / Midwood,86.93
+env311_calls_per_1k_pop_per_yr,38,306,Park Slope / Carroll Gardens,84.59
+env311_calls_per_1k_pop_per_yr,39,315,Sheepshead Bay / Manhattan Beach,73.18
+env311_calls_per_1k_pop_per_yr,40,405,Ridgewood / Maspeth,72.33
+env311_calls_per_1k_pop_per_yr,41,403,Jackson Heights / North Corona,68.85
+env311_calls_per_1k_pop_per_yr,42,313,Coney Island / Brighton Beach,68.14
+env311_calls_per_1k_pop_per_yr,43,310,Bay Ridge / Dyker Heights,64.79
+env311_calls_per_1k_pop_per_yr,44,409,Kew Gardens / Woodhaven,63.72
+env311_calls_per_1k_pop_per_yr,45,406,Forest Hills / Rego Park,63.64
+env311_calls_per_1k_pop_per_yr,46,414,Rockaway / Broad Channel,63.23
+env311_calls_per_1k_pop_per_yr,47,412,Jamaica / Hollis,61.79
+env311_calls_per_1k_pop_per_yr,48,404,Elmhurst / Corona,59.77
+env311_calls_per_1k_pop_per_yr,49,407,Flushing / Bay Terrace,59.15
+env311_calls_per_1k_pop_per_yr,50,502,South Beach / Willowbrook,55.38
+env311_calls_per_1k_pop_per_yr,51,108,Upper East Side,53.35
+env311_calls_per_1k_pop_per_yr,52,210,Throgs Neck / Co-op City,50.33
+env311_calls_per_1k_pop_per_yr,53,501,St. George / Stapleton,46.91
+env311_calls_per_1k_pop_per_yr,54,318,Canarsie / Flatlands,46.09
+env311_calls_per_1k_pop_per_yr,55,311,Bensonhurst / Bath Beach,45.62
+env311_calls_per_1k_pop_per_yr,56,312,Borough Park,44.49
+env311_calls_per_1k_pop_per_yr,57,413,Queens Village / Cambria Heights,43.0
+env311_calls_per_1k_pop_per_yr,58,503,Tottenville / Great Kills,40.95
+env311_calls_per_1k_pop_per_yr,59,411,Bayside / Little Neck,39.98

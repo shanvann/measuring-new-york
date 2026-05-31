@@ -43,6 +43,7 @@ NYC_COUNTIES = {
 
 # Headline tables we know we'll want across chapters. Extend over time.
 TABLES = {
+    "B01003": "Total Population",
     "B25070": "Gross Rent as % of Household Income (rent burden)",
     "B25064": "Median Gross Rent",
     "B19013": "Median Household Income",

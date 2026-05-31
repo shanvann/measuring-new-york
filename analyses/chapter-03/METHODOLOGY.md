@@ -1,7 +1,7 @@
 # Chapter 3 — *Breathing Room* · Methodology
 
-Full per-metric reference for the chapter. The published chapter
-(`personal-website/content/posts/measuring-new-york-03-environment.mdx`)
+Full per-metric reference for the chapter. The
+[published chapter](https://www.shanitvannala.org/blog/measuring-new-york-03-environment/)
 is the curated narrative; this file is the source-of-truth for every
 number that appears there, with the exact dataset filters, geographic
 aggregation rules, and known limitations.

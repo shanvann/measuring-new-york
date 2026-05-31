@@ -1,7 +1,7 @@
 # Chapter 2 — Housing Stability & Affordability · Methodology
 
-Full per-metric reference for the chapter. The published chapter
-(`personal-website/content/posts/measuring-new-york-02-housing.mdx`)
+Full per-metric reference for the chapter. The
+[published chapter](https://www.shanitvannala.org/blog/measuring-new-york-02-housing/)
 is the curated narrative; this file is the source-of-truth for every
 number that appears there, with the exact dataset filters, aggregation
 rules, scoring formula, and known limitations.

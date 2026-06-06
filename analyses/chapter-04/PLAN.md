@@ -258,6 +258,50 @@ errand-desert story, candidate anchors.
    If it fires → switch to the dimensions-of-access fallback spine and
    re-run before any visual work.
 
+### Sufficiency axis — BUILT, thesis CONFIRMED (2026-06-06)
+
+Childcare slot sufficiency = under-5 slots per 100 children under 5, per
+CD. **The proximity ≠ sufficiency thesis holds.**
+
+- **Source resolution (important).** NYC childcare is split across two
+  regulators: DOHMH (Health Code) for center-based care, OCFS (NYS) for
+  home-based family day care. **OCFS carries ZERO day-care centers in
+  the five boroughs** (they're DOHMH's) and its under-5 age columns are
+  unusable (~1,468 slots citywide). So OCFS alone — the original plan —
+  would have badly undercounted. Fix: combine **DOHMH centers**
+  (`gy3q-4tzp`, 2,726 centers, 148,647 under-5 slots) + **OCFS
+  home-based** (`cb42-qumz`, FDC+GFDC, 6,736 sites, 98,244 slots). The
+  sets are disjoint → no double-count. New pipeline
+  `pipelines/nyc_childcare.py`. ACS B01001 added for the under-5
+  denominator (= `B01001_003E` + `B01001_027E`).
+- **Headline numbers.** 246,851 under-5 slots for 498,130 children =
+  **49.6 slots per 100 under-5 citywide** — even at full capacity NYC
+  childcare could serve only ~half its young children. Per-CD
+  sufficiency ranges **23.1 → 90.5 (3.9× spread)**.
+- **The thesis test.** Childcare *proximity* ~ *sufficiency*
+  Spearman **ρ = +0.369** (n=59) — weak. Being *near* childcare barely
+  predicts having *enough*. Proximity is maxed (median 1.00); sufficiency
+  is where the inequality lives. This is the chapter's spine.
+- **The quadrants are real and vivid:**
+  - **Close but starved** (the surprise quadrant): Ridgewood/Maspeth
+    (405, 23.1), South Ozone Park (410, 27.2), Elmhurst/Corona (404,
+    29.7), Kew Gardens/Woodhaven (409, 30.0) — walkable immigrant Queens
+    family neighborhoods, fewest slots per child.
+  - **Close & sufficient:** lower-income Bronx — Kingsbridge Heights
+    (207, 90.5), Belmont (206, 89.8), Highbridge (204, 84.8),
+    Washington Heights (112, 80.7). Subsidized/Head Start care follows
+    need. A genuine inversion: the boroughs that look under-served on
+    proximity/environment are the best-supplied on childcare.
+- **Anchor implication.** A Queens "close but starved" anchor (405 or
+  404) vs a Bronx "close & sufficient" anchor (206/207) is the chapter's
+  core contrast. Note: 206 Belmont was Ch. 3's surprise anchor too —
+  reusing it ties the series together.
+- **Caveats (footer):** OCFS home-based `total_capacity` includes some
+  school-age (age columns unusable); slots = licensed capacity, not
+  enrollment or affordability; subsidized vs market mix not split.
+- Artifacts: `out/proximity-vs-sufficiency.csv` (the headline scatter
+  data), sufficiency block in `out/facts.json`.
+
 ### Framing decision — PROXIMITY ≠ SUFFICIENCY (LOCKED 2026-06-06)
 
 The chapter re-centers on **proximity vs sufficiency** (path B), not on

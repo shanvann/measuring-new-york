@@ -59,6 +59,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from pipelines import (  # noqa: E402
     acs_census,
+    nyc_childcare,
     nyc_facdb,
     nyc_parks,
     nys_food_stores,
@@ -316,6 +317,85 @@ def per_cd_civic(t2c: "pd.Series") -> tuple["pd.Series", dict]:
     return series, components
 
 
+# ---------- sufficiency: childcare slots per child under 5 ----------
+#
+# The chapter's pivot (PLAN.md): proximity is largely a density signal;
+# the harder, more interesting question is whether what's nearby is
+# *enough*. We test it on childcare — the amenity where "one nearby"
+# most often hides "no room in it." Sufficiency = under-5 childcare slots
+# per 100 children under 5, per CD. If sufficiency does NOT track
+# childcare proximity, the proximity != sufficiency thesis holds.
+
+def childcare_points():
+    """Combined under-5 childcare facilities (DOHMH centers + OCFS home).
+
+    Disjoint sets: DOHMH = NYC Health Code centers (under-5), OCFS = NYS
+    home-based family day care (DCC centers are absent from OCFS NYC, so
+    no double-count). Each point carries a numeric ``slots`` column.
+    """
+    import pandas as pd
+
+    dohmh = nyc_childcare.load("dohmh")
+    ocfs = nyc_childcare.load("ocfs")
+    print(f"  DOHMH centers: {len(dohmh)} ({dohmh['slots'].sum():,.0f} slots)")
+    print(f"  OCFS home-based: {len(ocfs)} ({ocfs['slots'].sum():,.0f} slots)")
+    cols = ["slots", "geometry"]
+    combined = pd.concat([dohmh[cols], ocfs[cols]], ignore_index=True)
+    combined = combined.dropna(subset=["geometry"])
+    return combined
+
+
+def per_cd_childcare_slots(points, t2c: "pd.Series") -> "pd.Series":
+    """Sum childcare slots to CD via point-in-polygon (EPSG:2263)."""
+    import geopandas as gpd
+    from shared import basemap
+
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
+    joined = gpd.sjoin(points, cds[["boro_cd", "geometry"]], how="left",
+                       predicate="within")
+    series = joined.dropna(subset=["boro_cd"]).groupby("boro_cd")["slots"].sum()
+    series.name = "childcare_slots"
+    return series
+
+
+def per_cd_children_under5(t2c: "pd.Series") -> "pd.Series":
+    """Children under 5 per CD (B01001_003E male + B01001_027E female)."""
+    import pandas as pd
+
+    df = _acs_tract_df("B01001")
+    kids = (pd.to_numeric(df["B01001_003E"], errors="coerce").fillna(0)
+            + pd.to_numeric(df["B01001_027E"], errors="coerce").fillna(0))
+    out = pd.DataFrame({"kids": kids})
+    out["borocd"] = t2c.reindex(out.index)
+    series = (out.dropna(subset=["borocd"]).groupby("borocd")["kids"]
+              .sum().round(0).astype(int))
+    series.name = "children_under5"
+    return series
+
+
+def childcare_sufficiency(t2c: "pd.Series") -> tuple["pd.Series", "pd.Series", dict]:
+    """Slots per 100 children under 5, per CD. Returns (sufficiency,
+    childcare proximity, summary). Proximity is recomputed from the same
+    combined facility points so the two metrics are self-consistent."""
+    pts = childcare_points()
+    slots = per_cd_childcare_slots(pts, t2c)
+    kids = per_cd_children_under5(t2c)
+    prox = pct_within_walk(pts, t2c, label="childcare_prox_pct")
+
+    import pandas as pd
+
+    suff = (100.0 * slots / kids.reindex(slots.index)).round(1)
+    suff.name = "childcare_slots_per_100_u5"
+    summary = {
+        "total_slots": int(slots.sum()),
+        "total_children_under5": int(kids.sum()),
+        "citywide_slots_per_100_u5": round(float(100.0 * slots.sum() / kids.sum()), 1),
+        "suff_range": [round(float(suff.min()), 1), round(float(suff.max()), 1)],
+    }
+    return suff, prox, summary
+
+
 # ---------- spine test ----------
 
 def spine_test(axes: dict) -> dict:
@@ -366,8 +446,20 @@ def main() -> int:
     axes = {"food_10min_pct": food, "care_10min_pct": care, "civic_10min_pct": civic}
     spine = spine_test(axes)
 
+    print("[ch.4] sufficiency — childcare slots per 100 children under 5")
+    suff, cc_prox, suff_summary = childcare_sufficiency(t2c)
+    # The thesis test: does proximity to childcare predict ENOUGH childcare?
+    paired = pd.DataFrame({"prox": cc_prox, "suff": suff}).dropna()
+    prox_suff_rho = float(paired["prox"].rank().corr(paired["suff"].rank()))
+    print(f"[suff] childcare proximity ~ sufficiency: rho = {prox_suff_rho:+.3f}  "
+          f"(n={len(paired)}) — low |rho| supports proximity != sufficiency")
+    suff_summary["proximity_vs_sufficiency_rho"] = round(prox_suff_rho, 3)
+
     # assemble per-CD frame for the artifacts
     frame = pd.DataFrame({k: v for k, v in axes.items() if v is not None})
+    frame["proximity_mean"] = frame[[c for c in frame.columns]].mean(axis=1).round(4)
+    frame["childcare_prox_pct"] = cc_prox.reindex(frame.index)
+    frame["childcare_slots_per_100_u5"] = suff.reindex(frame.index)
     frame["pop"] = cd_pop.reindex(frame.index)
     frame.index.name = "borocd"
     frame = frame.reset_index()
@@ -375,6 +467,11 @@ def main() -> int:
 
     rankings = frame.sort_values("food_10min_pct", ascending=False)
     rankings.to_csv(OUT / "rankings.csv", index=False)
+
+    # headline scatter: childcare proximity vs sufficiency, per CD
+    scatter = frame[["borocd", "cd_name", "childcare_prox_pct",
+                     "childcare_slots_per_100_u5", "pop"]].dropna()
+    scatter.to_csv(OUT / "proximity-vs-sufficiency.csv", index=False)
 
     facts = {
         "chapter": 4,
@@ -405,6 +502,7 @@ def main() -> int:
             ],
         },
         "spine_test": spine,
+        "sufficiency": suff_summary,
     }
     (OUT / "facts.json").write_text(json.dumps(facts, indent=2) + "\n")
     print(f"\n[ch.4] wrote out/facts.json + out/rankings.csv "

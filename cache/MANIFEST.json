@@ -1,5 +1,11 @@
 {
   "entries": {
+    "acs/B01001-tract-2023-2026-06-01.json": {
+      "bytes": 3112799,
+      "fetched_at": "2026-06-06T23:50:52+00:00",
+      "sha256": "67117daa893c1204d282774da32e5ecef21cdb2496415ffc4b19c8886f8eefab",
+      "source_url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,group(B01001),for=tract:*,in=state:36 county:005,047,061,081,085"
+    },
     "acs/B01003-tract-2023-2026-06-01.json": {
       "bytes": 389292,
       "fetched_at": "2026-05-30T18:55:42+00:00",
@@ -95,6 +101,18 @@
       "fetched_at": "2026-05-23T19:44:38+00:00",
       "sha256": "bf7a36d35d4707d9981c9b18920ac44e7a83b5192fa513ac092c531312480f12",
       "source_url": "https://rrgtfsfeeds.s3.amazonaws.com/gtfs_subway.zip"
+    },
+    "nyc_childcare/dohmh-2026-06-01.json": {
+      "bytes": 652364,
+      "fetched_at": "2026-06-06T23:50:47+00:00",
+      "sha256": "5aca343b8a46ed79ece3d346db14105ba2bb7a39823ce549a49419d5432c976e",
+      "source_url": "https://data.cityofnewyork.us/resource/gy3q-4tzp.json?%24select=dcid%2C+program_name%2C+program_type%2C+age_range%2C+capacity%2C+borough%2C+latitude%2C+longitude&%24limit=20000"
+    },
+    "nyc_childcare/ocfs-2026-06-01.json": {
+      "bytes": 1226260,
+      "fetched_at": "2026-06-06T23:50:48+00:00",
+      "sha256": "0c62799b39765d9a20221352ef0a8a48d913640409591f8675b0b22478fa61bc",
+      "source_url": "https://data.ny.gov/resource/cb42-qumz.json?%24select=facility_id%2C+program_type%2C+facility_status%2C+county%2C+total_capacity%2C+latitude%2C+longitude&%24where=county+in+%28%27Bronx%27%2C+%27Brooklyn%27%2C+%27Queens%27%2C+%27Manhattan%27%2C+%27Staten+Island%27%29+AND+facility_status+in+%28%27License%27%2C+%27Registration%27%29+AND+program_type+in+%28%27FDC%27%2C+%27GFDC%27%29&%24limit=20000"
     },
     "nyc_facdb/day-care-and-pre-kindergarten-2026-06-01.geojson": {
       "bytes": 2166280,

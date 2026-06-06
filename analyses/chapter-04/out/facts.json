@@ -61,5 +61,15 @@
       "care_10min_pct ~ civic_10min_pct": 0.743
     },
     "kill": false
+  },
+  "sufficiency": {
+    "total_slots": 246851,
+    "total_children_under5": 498130,
+    "citywide_slots_per_100_u5": 49.6,
+    "suff_range": [
+      23.1,
+      90.5
+    ],
+    "proximity_vs_sufficiency_rho": 0.369
   }
 }

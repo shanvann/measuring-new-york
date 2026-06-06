@@ -1,0 +1,416 @@
+"""Chapter 4 — Access to Daily Needs (first-pass scaffold).
+
+Angle (`measuring_livability.md` §5): *livability is partly the absence
+of logistical friction.* Framed as the 15-minute neighborhood — how much
+effort the ordinary errands of a household take.
+
+Goal of this first pass (mirrors Ch. 2/3): validate the chapter's spine
+hypothesis BEFORE investing in any visual artifacts. The hypothesis is
+that access to daily needs splits into **three semi-independent axes**:
+
+  1. Food access     — % residents within a 10-min walk of a full-service
+                       grocery (NYS Retail Food Stores >= 5,000 sqft;
+                       OSM supermarkets as a completeness cross-check),
+                       pop-weighted.
+  2. Care access     — pharmacies + childcare + healthcare, pop-weighted
+                       walk-access (within-axis composite).  [TODO]
+  3. Civic/learning  — schools + libraries + parks, pop-weighted walk-
+                       access.  [TODO]
+
+If any pair of axes co-ranks tightly (|rho| >= 0.75, Ch. 2's kill
+criterion), the spine collapses and the chapter gets re-spec'd.
+
+KNOWN KILL RISK (see PLAN.md): all three axes are walk-access metrics
+and walk-access tracks built density everywhere, so the basket axes may
+co-rank purely on density. If the spine fires, fall back to the
+dimensions-of-access spine (proximity / per-capita sufficiency /
+car-reliance). The spine test below is what decides.
+
+Run with::
+
+    python analyses/chapter-04/notebook.py
+
+Status (2026-06-06):
+  axis 1 (food)   — wired end-to-end (NYS 9a8c-vfzj + OSM supermarkets)
+  axis 2 (care)   — TODO (pharmacies wired in OSM; childcare/healthcare
+                    pipelines not built yet)
+  axis 3 (civic)  — TODO (schools+parks reusable; libraries pipeline TODO)
+
+Outputs (out/ inside this dir):
+  facts.json    Per-CD per-axis metrics + the spine-test matrix.
+  rankings.csv  Long-form per-CD per-axis rankings (sortable for QA).
+
+Method note (shared with Ch. 3): all axes use the same access primitive —
+% residents within a 2,640 ft (~10 min @ 3 mph) straight-line walk of the
+amenity, population-weighted to CD level via B01003. Straight-line under-
+counts vs a walk-network distance; acceptable for the spine test, revisit
+before any headline visual.
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parents[1]
+sys.path.insert(0, str(REPO_ROOT))
+
+from pipelines import (  # noqa: E402
+    acs_census,
+    nyc_facdb,
+    nyc_parks,
+    nys_food_stores,
+    osm_overpass,
+)
+from shared.cd_names import name_for  # noqa: E402
+from shared.zip_to_cd import is_real_cd  # noqa: E402
+
+OUT = HERE / "out"
+OUT.mkdir(exist_ok=True)
+
+# 10-min walk @ 3 mph = 0.5 mi = 2640 ft straight-line. Same cutoff as
+# Ch. 3 green-space, for cross-chapter consistency.
+WALK_RADIUS_FT = 2640.0
+
+
+# ---------- shared: tract -> CD + CD population (mirrors Ch. 3) ----------
+
+def tract_to_cd() -> "pd.Series":
+    """Series keyed by tract GEOID (11-char), value = boro_cd.
+
+    Centroid-sjoin pattern; tracts nest mostly inside CDs.
+    """
+    import geopandas as gpd
+    from shared import basemap
+
+    tracts = basemap.load("tract")
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
+
+    centroids = gpd.GeoDataFrame(
+        {"geoid": tracts["geoid"]},
+        geometry=tracts.geometry.representative_point(),
+        crs=tracts.crs,
+    )
+    joined = gpd.sjoin(
+        centroids, cds[["boro_cd", "geometry"]], how="left", predicate="within"
+    )
+    s = joined.set_index("geoid")["boro_cd"]
+    print(f"  tract->CD: {len(s)} tracts, {s.isna().sum()} unassigned")
+    return s
+
+
+def _acs_tract_df(table: str) -> "pd.DataFrame":
+    import pandas as pd
+
+    raw = json.loads((acs_census.fetch(table, "tract")).read_text())
+    df = pd.DataFrame(raw[1:], columns=raw[0])
+    df["geoid"] = df["GEO_ID"].str[-11:]
+    return df.set_index("geoid")
+
+
+def per_cd_population(t2c: "pd.Series") -> "pd.Series":
+    """Total population per CD (sum of B01003_001E across tracts)."""
+    import pandas as pd
+
+    pop = pd.to_numeric(_acs_tract_df("B01003")["B01003_001E"], errors="coerce")
+    out = pd.DataFrame({"pop": pop})
+    out["borocd"] = t2c.reindex(out.index)
+    series = (
+        out.dropna(subset=["borocd", "pop"])
+        .groupby("borocd")["pop"].sum().round(0).astype(int)
+    )
+    series.name = "pop"
+    return series
+
+
+# ---------- shared access primitive ----------
+
+def pct_within_walk(points, t2c: "pd.Series", *, label: str) -> "pd.Series":
+    """% residents within WALK_RADIUS_FT of any point in ``points``, per CD.
+
+    ``points`` is a GeoDataFrame of amenity points/polygons in EPSG:2263.
+    For each tract, straight-line distance from its representative point
+    to the nearest amenity (``sjoin_nearest``); a tract is "covered" iff
+    within WALK_RADIUS_FT; CD metric = pop-weighted mean of the coverage
+    indicator (B01003). Returns a value in [0, 1] per CD.
+    """
+    import geopandas as gpd
+    import pandas as pd
+    from shared import basemap
+
+    points = points[points.geometry.notna() & ~points.geometry.is_empty].copy()
+    points = points.reset_index(drop=True)
+    points["_aid"] = points.index
+
+    tracts = basemap.load("tract")
+    centroids = gpd.GeoDataFrame(
+        {"geoid": tracts["geoid"]},
+        geometry=tracts.geometry.representative_point(),
+        crs=tracts.crs,
+    )
+    nearest = gpd.sjoin_nearest(
+        centroids, points[["_aid", "geometry"]], how="left", distance_col="dist_ft"
+    )
+    nearest = (
+        nearest.sort_values("dist_ft")
+        .drop_duplicates(subset=["geoid"], keep="first")
+        .set_index("geoid")
+    )
+
+    pop = pd.to_numeric(_acs_tract_df("B01003")["B01003_001E"], errors="coerce")
+    df = pd.DataFrame({
+        "dist_ft": nearest["dist_ft"],
+        "borocd": t2c.reindex(nearest.index),
+        "pop": pop.reindex(nearest.index),
+    }).dropna(subset=["borocd", "dist_ft", "pop"])
+
+    df["within"] = (df["dist_ft"] <= WALK_RADIUS_FT).astype(int)
+    df["within_pop"] = df["within"] * df["pop"]
+    agg = df.groupby("borocd").agg(num=("within_pop", "sum"), denom=("pop", "sum"))
+    series = (agg["num"] / agg["denom"]).round(4)
+    series.name = label
+    return series
+
+
+def _osm_points(query: str):
+    """Load an OSM amenity query as a points GeoDataFrame (EPSG:2263)."""
+    import geopandas as gpd
+    from shapely.geometry import Point
+
+    raw = osm_overpass.load(query)
+    rows = []
+    for el in raw.get("elements", []):
+        lat = el.get("lat", (el.get("center") or {}).get("lat"))
+        lon = el.get("lon", (el.get("center") or {}).get("lon"))
+        if lat is None or lon is None:
+            continue
+        rows.append(Point(lon, lat))
+    gdf = gpd.GeoDataFrame(geometry=rows, crs="EPSG:4326")
+    return gdf.to_crs(epsg=2263)
+
+
+# ---------- axis 1: food access ----------
+
+def per_cd_food(t2c: "pd.Series") -> tuple["pd.Series", dict]:
+    """% residents within 10-min walk of a full-service grocery, per CD.
+
+    NYS Retail Food Stores (>= SUPERMARKET_MIN_SQFT) is the spine source.
+    OSM supermarkets are loaded only as a completeness cross-check — the
+    count delta goes in the chapter footer, not the spine.
+    """
+    stores = nys_food_stores.load(min_sqft=nys_food_stores.SUPERMARKET_MIN_SQFT)
+    print(f"  NYS groceries >= {nys_food_stores.SUPERMARKET_MIN_SQFT:.0f} sqft: "
+          f"{len(stores)}")
+    series = pct_within_walk(stores, t2c, label="food_10min_pct")
+
+    crosscheck = {"nys_supermarkets": int(len(stores))}
+    try:
+        osm = _osm_points("supermarkets")
+        crosscheck["osm_supermarkets"] = int(len(osm))
+        print(f"  OSM supermarkets (cross-check): {len(osm)}")
+    except Exception as e:  # noqa: BLE001 — cross-check only, never blocks spine
+        crosscheck["osm_supermarkets"] = None
+        crosscheck["osm_error"] = str(e)
+        print(f"  OSM cross-check skipped: {e}")
+    return series, crosscheck
+
+
+# ---------- axis 2: care access (TODO) ----------
+
+CHILDCARE_FACGROUP = "DAY CARE AND PRE-KINDERGARTEN"
+HEALTHCARE_FACSUBGRP = "HOSPITALS AND CLINICS"
+
+
+def per_cd_care(t2c: "pd.Series") -> tuple["pd.Series", dict]:
+    """Pharmacies + childcare + healthcare walk-access composite, per CD.
+
+    Equal-weight (1/3 each) mean of three pop-weighted walk-access
+    coverage shares — the "family / health logistics" basket:
+      - pharmacies (OSM ``amenity=pharmacy``)
+      - childcare  (FacDB DAY CARE AND PRE-KINDERGARTEN group: day care,
+                    DOE UPK, preschools)
+      - healthcare (FacDB HOSPITALS AND CLINICS)
+
+    NOTE — proximity only. The intended *sufficiency* metric (childcare
+    slots per child under 5) is NOT computed here: FacDB's ``capacity``
+    column is all-zero for the day-care group, so we can count facilities
+    but not slots. Sufficiency awaits an OCFS capacity source and feeds
+    the dimensions-of-access fallback spine (see PLAN.md), not this axis.
+    """
+    pharm = _osm_points("pharmacies")
+    print(f"  OSM pharmacies: {len(pharm)}")
+    childcare = nyc_facdb.load(facgroup=CHILDCARE_FACGROUP)
+    print(f"  FacDB childcare/UPK: {len(childcare)}")
+    health = nyc_facdb.load(HEALTHCARE_FACSUBGRP)
+    print(f"  FacDB hospitals & clinics: {len(health)}")
+
+    ph = pct_within_walk(pharm, t2c, label="pharmacy_10min_pct")
+    cc = pct_within_walk(childcare, t2c, label="childcare_10min_pct")
+    hc = pct_within_walk(health, t2c, label="healthcare_10min_pct")
+
+    import pandas as pd
+
+    comp = pd.concat([ph, cc, hc], axis=1)
+    series = comp.mean(axis=1).round(4)
+    series.name = "care_10min_pct"
+    components = {
+        "weights": {"pharmacies": 1 / 3, "childcare": 1 / 3, "healthcare": 1 / 3},
+        "counts": {
+            "pharmacies": int(len(pharm)),
+            "childcare": int(len(childcare)),
+            "healthcare": int(len(health)),
+        },
+        "sufficiency_note": (
+            "proximity only; FacDB capacity is all-zero for day care so "
+            "slot-sufficiency is deferred to an OCFS source + fallback spine"
+        ),
+    }
+    return series, components
+
+
+# ---------- axis 3: civic / learning access (TODO) ----------
+
+CIVIC_PARK_MIN_ACRES = 1.0
+
+
+def per_cd_civic(t2c: "pd.Series") -> tuple["pd.Series", dict]:
+    """Schools + libraries + parks walk-access composite, per CD.
+
+    Equal-weight (1/3 each) mean of three pop-weighted walk-access
+    coverage shares — the "public daily-life infrastructure" basket:
+      - schools   (OSM ``amenity=school``)
+      - libraries (FacDB ``PUBLIC LIBRARIES``, all three systems)
+      - parks     (NYC Parks Properties >= 1 acre, reused from Ch. 3)
+    Weights are equal by default and stated here per plan §9 (within-
+    chapter composite). Returns the composite series + per-component
+    series for QA / the methodology footer.
+    """
+    schools = _osm_points("schools")
+    print(f"  OSM schools: {len(schools)}")
+    libraries = nyc_facdb.load("PUBLIC LIBRARIES")
+    print(f"  FacDB public libraries: {len(libraries)}")
+    parks = nyc_parks.load(min_acres=CIVIC_PARK_MIN_ACRES)
+    parks = parks[parks.geometry.notna() & ~parks.geometry.is_empty]
+    print(f"  parks >= {CIVIC_PARK_MIN_ACRES:.0f} acre: {len(parks)}")
+
+    sch = pct_within_walk(schools, t2c, label="school_10min_pct")
+    lib = pct_within_walk(libraries, t2c, label="library_10min_pct")
+    prk = pct_within_walk(parks, t2c, label="park_10min_pct")
+
+    import pandas as pd
+
+    comp = pd.concat([sch, lib, prk], axis=1)
+    series = comp.mean(axis=1).round(4)
+    series.name = "civic_10min_pct"
+    components = {
+        "weights": {"schools": 1 / 3, "libraries": 1 / 3, "parks": 1 / 3},
+        "counts": {
+            "schools": int(len(schools)),
+            "libraries": int(len(libraries)),
+            "parks_ge_1acre": int(len(parks)),
+        },
+    }
+    return series, components
+
+
+# ---------- spine test ----------
+
+def spine_test(axes: dict) -> dict:
+    """Spearman rho on every available axis pair; flag |rho| >= 0.75."""
+    import itertools
+
+    import pandas as pd
+
+    present = {k: v for k, v in axes.items() if v is not None}
+    if len(present) < 2:
+        print(f"\n[spine] only {len(present)} axis ready — test deferred "
+              f"until >=2 axes are wired.")
+        return {"ready": False, "axes_ready": list(present)}
+
+    frame = pd.DataFrame(present).dropna()
+    # Spearman rho = Pearson correlation of the ranks. Computed this way
+    # to avoid a scipy dependency (df.corr(method="spearman") needs it).
+    ranks = frame.rank()
+    result = {"ready": True, "n": int(len(frame)), "pairs": {}, "kill": False}
+    print(f"\n[spine] n = {len(frame)} CDs")
+    for a, b in itertools.combinations(present, 2):
+        rho = ranks[a].corr(ranks[b])
+        fires = bool(abs(rho) >= 0.75)
+        result["pairs"][f"{a} ~ {b}"] = round(float(rho), 3)
+        result["kill"] = result["kill"] or fires
+        print(f"  {a:>18} ~ {b:<18} rho = {rho:+.3f}  "
+              f"{'<<< KILL' if fires else 'ok'}")
+    print(f"[spine] verdict: {'SPINE COLLAPSES — re-spec' if result['kill'] else 'spine survives'}")
+    return result
+
+
+def main() -> int:
+    import pandas as pd
+
+    print("[ch.4] tract->CD + CD population (ACS B01003)")
+    t2c = tract_to_cd()
+    cd_pop = per_cd_population(t2c)
+
+    print("[ch.4] axis 1 — food access (NYS groceries + OSM cross-check)")
+    food, food_crosscheck = per_cd_food(t2c)
+
+    print("[ch.4] axis 2 — care access (pharmacies + childcare + healthcare)")
+    care, care_components = per_cd_care(t2c)
+
+    print("[ch.4] axis 3 — civic/learning access (schools + libraries + parks)")
+    civic, civic_components = per_cd_civic(t2c)
+
+    axes = {"food_10min_pct": food, "care_10min_pct": care, "civic_10min_pct": civic}
+    spine = spine_test(axes)
+
+    # assemble per-CD frame for the artifacts
+    frame = pd.DataFrame({k: v for k, v in axes.items() if v is not None})
+    frame["pop"] = cd_pop.reindex(frame.index)
+    frame.index.name = "borocd"
+    frame = frame.reset_index()
+    frame["cd_name"] = frame["borocd"].map(name_for)
+
+    rankings = frame.sort_values("food_10min_pct", ascending=False)
+    rankings.to_csv(OUT / "rankings.csv", index=False)
+
+    facts = {
+        "chapter": 4,
+        "title_working": "Access to Daily Needs",
+        "walk_radius_ft": WALK_RADIUS_FT,
+        "n_cds": int(frame["borocd"].nunique()),
+        "axes_ready": [k for k, v in axes.items() if v is not None],
+        "food": {
+            "supermarket_min_sqft": nys_food_stores.SUPERMARKET_MIN_SQFT,
+            "crosscheck": food_crosscheck,
+            "pct_range": [
+                round(float(frame["food_10min_pct"].min()), 4),
+                round(float(frame["food_10min_pct"].max()), 4),
+            ],
+        },
+        "care": {
+            **care_components,
+            "pct_range": [
+                round(float(frame["care_10min_pct"].min()), 4),
+                round(float(frame["care_10min_pct"].max()), 4),
+            ],
+        },
+        "civic": {
+            **civic_components,
+            "pct_range": [
+                round(float(frame["civic_10min_pct"].min()), 4),
+                round(float(frame["civic_10min_pct"].max()), 4),
+            ],
+        },
+        "spine_test": spine,
+    }
+    (OUT / "facts.json").write_text(json.dumps(facts, indent=2) + "\n")
+    print(f"\n[ch.4] wrote out/facts.json + out/rankings.csv "
+          f"({len(frame)} CDs, axes: {facts['axes_ready']})")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,60 @@
+borocd,food_10min_pct,care_10min_pct,civic_10min_pct,pop,cd_name
+101,1.0,1.0,0.9025,71865,Financial District / Battery Park City
+209,1.0,0.8976,0.9205,173006,Soundview / Parkchester
+302,1.0,1.0,1.0,125637,Fort Greene / Brooklyn Heights
+303,1.0,1.0,0.9531,180283,Bedford-Stuyvesant
+305,1.0,0.7985,0.88,198521,East New York / Cypress Hills
+102,1.0,1.0,0.9825,86202,Greenwich Village / Soho
+307,1.0,0.9278,0.832,120253,Sunset Park
+308,1.0,1.0,0.9468,109719,Crown Heights / Prospect Heights
+309,1.0,1.0,0.9014,100366,South Crown Heights / Lefferts Gardens
+311,1.0,0.9398,0.8759,180184,Bensonhurst / Bath Beach
+312,1.0,0.9917,0.8723,194695,Borough Park
+314,1.0,0.9617,0.8839,159561,Flatbush / Midwood
+316,1.0,0.9709,0.9547,97145,Brownsville
+317,1.0,0.8961,0.8203,154489,East Flatbush / Farragut
+404,1.0,0.9895,0.9273,168616,Elmhurst / Corona
+406,1.0,0.9612,0.898,121131,Forest Hills / Rego Park
+409,1.0,0.9583,0.8567,146860,Kew Gardens / Woodhaven
+301,1.0,0.9751,0.9174,203002,Williamsburg / Greenpoint
+306,1.0,0.9997,0.9464,121009,Park Slope / Carroll Gardens
+107,1.0,1.0,1.0,218761,Upper West Side
+201,1.0,0.954,0.9161,96910,Mott Haven / Melrose
+103,1.0,1.0,1.0,153288,Lower East Side / Chinatown
+104,1.0,1.0,0.9326,117099,Chelsea / Hell's Kitchen
+105,1.0,1.0,1.0,71533,Midtown
+106,1.0,1.0,0.9526,125446,Stuyvesant Town / Turtle Bay
+207,1.0,0.9649,0.948,131046,Kingsbridge Heights / Bedford Park
+108,1.0,1.0,0.9757,212308,Upper East Side
+110,1.0,1.0,1.0,134893,Central Harlem
+112,1.0,0.9932,0.9298,188591,Washington Heights / Inwood
+109,1.0,1.0,1.0,112774,Manhattanville / Hamilton Heights
+202,1.0,0.9587,0.9195,59218,Hunts Point / Longwood
+204,1.0,0.923,0.9813,149631,Highbridge / Concourse
+205,1.0,0.9408,1.0,135584,University Heights / Fordham
+206,1.0,0.8872,0.9952,85192,Belmont / East Tremont
+203,1.0,0.8315,0.9312,83832,Morrisania / Crotona
+402,0.9876,0.9411,0.8565,123823,Sunnyside / Woodside
+111,0.981,0.981,0.9828,124499,East Harlem
+401,0.9802,0.9403,0.8922,179054,Astoria
+408,0.9722,0.8896,0.8662,158329,Hillcrest / Fresh Meadows
+412,0.9705,0.9004,0.8403,251250,Jamaica / Hollis
+304,0.9655,0.9885,0.9376,111975,Bushwick
+310,0.9634,0.9404,0.8875,125053,Bay Ridge / Dyker Heights
+313,0.9552,0.9037,0.8871,110145,Coney Island / Brighton Beach
+403,0.9539,0.9555,0.9198,161945,Jackson Heights / North Corona
+211,0.9465,0.8719,0.9251,115883,Pelham Parkway / Morris Park
+318,0.9438,0.7574,0.8259,195224,Canarsie / Flatlands
+315,0.9434,0.8879,0.8938,159032,Sheepshead Bay / Manhattan Beach
+407,0.9378,0.7092,0.8529,246517,Flushing / Bay Terrace
+410,0.9166,0.7862,0.7451,137905,South Ozone Park / Howard Beach
+405,0.9064,0.8313,0.8501,181189,Ridgewood / Maspeth
+212,0.8985,0.8801,0.7995,160621,Williamsbridge / Baychester
+411,0.8669,0.6566,0.8118,121282,Bayside / Little Neck
+208,0.8232,0.8992,0.9499,109169,Riverdale / Fieldston
+414,0.7999,0.7911,0.8015,130562,Rockaway / Broad Channel
+501,0.764,0.8072,0.7481,181349,St. George / Stapleton
+210,0.75,0.7353,0.798,126010,Throgs Neck / Co-op City
+413,0.6915,0.6162,0.7528,205191,Queens Village / Cambria Heights
+503,0.6618,0.4678,0.6407,168729,Tottenville / Great Kills
+502,0.6375,0.739,0.6518,142132,South Beach / Willowbrook

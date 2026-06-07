@@ -1,4 +1,4 @@
-# Chapter 4 — *Within Reach* · Methodology
+# Chapter 4 — *Close Enough?* · Methodology
 
 Full per-metric reference for the chapter. The
 [published chapter](https://www.shanitvannala.org/blog/measuring-new-york-04-daily-needs/)

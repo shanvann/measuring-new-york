@@ -427,6 +427,84 @@ def spine_test(axes: dict) -> dict:
     return result
 
 
+# ---------- headline render: geojson (for <NycMap>) + static SVG ----------
+
+# Anchors for the chapter (1 per borough), used for SVG labels and prose.
+ANCHOR_CDS = ["405", "316", "112", "206", "503"]
+
+
+def render_headline(frame: "pd.DataFrame") -> Path:
+    """Per-CD display-CRS geojson + a static childcare-sufficiency SVG.
+
+    Bakes the chapter's three map axes into one geojson so the
+    ``<NycMap>`` axis-toggle switches without re-fetching:
+      food_10min_pct              % residents within 10-min walk of grocery
+      proximity_mean              combined daily-needs walk-access (%, 0-100)
+      childcare_slots_per_100_u5  licensed slots per 100 children under 5
+    ``rank_*`` are 1-based (1 = best on that axis). Writes:
+      out/daily-needs.geojson         consumed by <NycMap>/<NeighborhoodExplorer>
+      out/childcare-sufficiency.svg   static headline visual / fallback
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.colors import LinearSegmentedColormap
+    from shared import basemap, palette
+
+    palette.for_matplotlib()
+    f = frame.set_index("borocd")
+
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
+    cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
+
+    geo = cds[["boro_cd", "geometry"]].copy()
+    geo["name"] = geo["boro_cd"].map(name_for)
+    geo["food_10min_pct"] = (f["food_10min_pct"].reindex(geo["boro_cd"].values).values * 100).round(1)
+    geo["proximity_mean"] = (f["proximity_mean"].reindex(geo["boro_cd"].values).values * 100).round(1)
+    geo["childcare_slots_per_100_u5"] = f["childcare_slots_per_100_u5"].reindex(geo["boro_cd"].values).values.round(1)
+    geo["rank_food"] = geo["food_10min_pct"].rank(ascending=False, method="min").astype("Int64")
+    geo["rank_proximity"] = geo["proximity_mean"].rank(ascending=False, method="min").astype("Int64")
+    geo["rank_childcare"] = geo["childcare_slots_per_100_u5"].rank(ascending=False, method="min").astype("Int64")
+
+    geojson_path = OUT / "daily-needs.geojson"
+    basemap.to_display(geo).to_file(geojson_path, driver="GeoJSON")
+    print(f"[wrote] {geojson_path}  ({geojson_path.stat().st_size:,} bytes)")
+
+    # static SVG: childcare sufficiency (the chapter's headline finding)
+    plot_cds = cds.merge(
+        geo[["boro_cd", "childcare_slots_per_100_u5"]], on="boro_cd", how="left"
+    )
+    vals = plot_cds["childcare_slots_per_100_u5"].astype(float)
+    cmap = LinearSegmentedColormap.from_list("mny_seq", palette.RAMP_SEQUENTIAL, N=256)
+    fig, ax = plt.subplots(figsize=(8.5, 9.5))
+    plot_cds.plot(
+        column="childcare_slots_per_100_u5", cmap=cmap,
+        vmin=float(vals.quantile(0.05)), vmax=float(vals.quantile(0.95)),
+        ax=ax, edgecolor=palette.BORDER, linewidth=0.4,
+        missing_kwds={"color": palette.SURFACE, "edgecolor": palette.BORDER},
+    )
+    for row in plot_cds.itertuples(index=False):
+        if row.boro_cd not in ANCHOR_CDS:
+            continue
+        p = row.geometry.representative_point()
+        ax.annotate(
+            f"CD {row.boro_cd}\n{row.childcare_slots_per_100_u5:.0f}/100",
+            xy=(p.x, p.y), ha="center", va="center", fontsize=8, color=palette.TEXT,
+            bbox=dict(boxstyle="round,pad=0.25", facecolor=palette.BG,
+                      edgecolor=palette.BORDER, linewidth=0.5),
+        )
+    ax.set_axis_off()
+    ax.set_title("Childcare slots per 100 children under 5", fontsize=14,
+                 color=palette.TEXT, pad=10, loc="left")
+    ax.text(0.0, 1.005, "Licensed slots (DOHMH + OCFS) · ACS 2019–2023 under-5 population",
+            transform=ax.transAxes, fontsize=9, color=palette.TEXT_SECONDARY,
+            ha="left", va="bottom")
+    svg_path = OUT / "childcare-sufficiency.svg"
+    fig.savefig(svg_path, bbox_inches="tight")
+    plt.close(fig)
+    print(f"[wrote] {svg_path}  ({svg_path.stat().st_size:,} bytes)")
+    return geojson_path
+
+
 def main() -> int:
     import pandas as pd
 
@@ -507,6 +585,9 @@ def main() -> int:
     (OUT / "facts.json").write_text(json.dumps(facts, indent=2) + "\n")
     print(f"\n[ch.4] wrote out/facts.json + out/rankings.csv "
           f"({len(frame)} CDs, axes: {facts['axes_ready']})")
+
+    print("[ch.4] render headline: daily-needs geojson + sufficiency SVG")
+    render_headline(frame)
     return 0
 
 

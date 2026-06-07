@@ -71,5 +71,14 @@
       90.5
     ],
     "proximity_vs_sufficiency_rho": 0.369
+  },
+  "access_class": {
+    "walkable_pct_cutoff": 85.0,
+    "served_cutoff_slots_per_100": 47.1,
+    "class_counts": {
+      "walk_served": 30,
+      "walk_under": 19,
+      "car_under": 10
+    }
   }
 }

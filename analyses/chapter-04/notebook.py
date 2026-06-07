@@ -432,6 +432,14 @@ def spine_test(axes: dict) -> dict:
 # Anchors for the chapter (1 per borough), used for SVG labels and prose.
 ANCHOR_CDS = ["405", "316", "112", "206", "503"]
 
+# "Walkable" cutoff for the access-class quadrant map: a CD where at least
+# this share of residents are within a 10-min walk (averaged across the
+# food/care/civic baskets). Stored as a percentage (proximity_mean × 100).
+# 85% cleanly separates the genuine car-dependent errand deserts (Staten
+# Island, eastern Queens, Co-op City — all <= 84%) from dense districts
+# that are walkable but may still be undersupplied.
+WALKABLE_PCT = 85.0
+
 
 def render_headline(frame: "pd.DataFrame") -> Path:
     """Per-CD display-CRS geojson + a static childcare-sufficiency SVG.
@@ -464,6 +472,22 @@ def render_headline(frame: "pd.DataFrame") -> Path:
     geo["rank_food"] = geo["food_10min_pct"].rank(ascending=False, method="min").astype("Int64")
     geo["rank_proximity"] = geo["proximity_mean"].rank(ascending=False, method="min").astype("Int64")
     geo["rank_childcare"] = geo["childcare_slots_per_100_u5"].rank(ascending=False, method="min").astype("Int64")
+
+    # The "walkable != available" classification — a 2x2 of proximity vs
+    # sufficiency that makes the chapter's takeaway legible on one map.
+    #   walkable  = >=90% of residents within a 10-min walk on average
+    #               (proximity_mean, stored 0-100 here, so >= WALKABLE_PCT)
+    #   served    = childcare slots/100 u5 at or above the median CD
+    served_cut = float(geo["childcare_slots_per_100_u5"].median())
+    walkable = geo["proximity_mean"] >= WALKABLE_PCT
+    served = geo["childcare_slots_per_100_u5"] >= served_cut
+    geo["access_class"] = [
+        ("walk_served" if w and s else "walk_under" if w and not s
+         else "car_served" if (not w) and s else "car_under")
+        for w, s in zip(walkable, served)
+    ]
+    print(f"  access_class (walkable>={WALKABLE_PCT:.0f}%, served>={served_cut:.1f}/100): "
+          + ", ".join(f"{k}={v}" for k, v in geo['access_class'].value_counts().items()))
 
     geojson_path = OUT / "daily-needs.geojson"
     basemap.to_display(geo).to_file(geojson_path, driver="GeoJSON")
@@ -502,7 +526,13 @@ def render_headline(frame: "pd.DataFrame") -> Path:
     fig.savefig(svg_path, bbox_inches="tight")
     plt.close(fig)
     print(f"[wrote] {svg_path}  ({svg_path.stat().st_size:,} bytes)")
-    return geojson_path
+
+    access_summary = {
+        "walkable_pct_cutoff": WALKABLE_PCT,
+        "served_cutoff_slots_per_100": round(served_cut, 1),
+        "class_counts": {k: int(v) for k, v in geo["access_class"].value_counts().items()},
+    }
+    return geojson_path, access_summary
 
 
 def main() -> int:
@@ -551,6 +581,9 @@ def main() -> int:
                      "childcare_slots_per_100_u5", "pop"]].dropna()
     scatter.to_csv(OUT / "proximity-vs-sufficiency.csv", index=False)
 
+    print("[ch.4] render headline: daily-needs geojson + sufficiency SVG")
+    _, access_summary = render_headline(frame)
+
     facts = {
         "chapter": 4,
         "title_working": "Access to Daily Needs",
@@ -581,13 +614,11 @@ def main() -> int:
         },
         "spine_test": spine,
         "sufficiency": suff_summary,
+        "access_class": access_summary,
     }
     (OUT / "facts.json").write_text(json.dumps(facts, indent=2) + "\n")
     print(f"\n[ch.4] wrote out/facts.json + out/rankings.csv "
           f"({len(frame)} CDs, axes: {facts['axes_ready']})")
-
-    print("[ch.4] render headline: daily-needs geojson + sufficiency SVG")
-    render_headline(frame)
     return 0
 
 

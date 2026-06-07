@@ -102,6 +102,21 @@ in the spine.
   supermarket set — a modest undercount.
 - Square footage ≠ produce quality, price, or whether the store is open.
 
+### Food *quality*: supermarket share ("a store is not a supermarket")
+Proximity to a food store is not proximity to fresh produce. Per CD we
+also compute the **share of food stores that are full-service groceries**
+(≥ 5,000 sq ft) among stores with a reported size — `supermarket_share_pct`
+in `facts.json` / the geojson. Citywide **15.9%** (≈ 5.3 small stores per
+supermarket; 84% bodegas/corner stores). Most bodega-dominated CDs are
+dense, lower-income inner neighborhoods — South Crown Heights (5.6%, 17:1),
+**Belmont/East Tremont (7.0%, 13:1 — the chapter's best-childcare anchor)**,
+Flatbush, Morrisania, Borough Park — *not* the outer-borough proximity
+deserts, which skew toward supermarkets. External corroboration: NYS 2016
+data aggregated by NYC DOHMH put the bodega-to-supermarket ratio at ~18:1
+in the poorest neighborhoods vs ~3:1 on the Upper West Side (via Gothamist);
+USDA's Food Access Research Atlas defines urban low access as > ½ mile to a
+supermarket. This is the same proximity ≠ sufficiency gap, on food.
+
 ---
 
 ## 4. Care access basket

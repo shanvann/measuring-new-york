@@ -19,6 +19,45 @@
       1.0
     ]
   },
+  "food_quality": {
+    "stores_total": 8579,
+    "supermarkets": 1367,
+    "supermarket_share_citywide_pct": 15.9,
+    "small_store_share_pct": 84.1,
+    "small_per_supermarket": 5.3,
+    "most_bodega_dominated": [
+      {
+        "borocd": "309",
+        "name": "South Crown Heights / Lefferts Gardens",
+        "supermarket_share_pct": 5.6,
+        "bodega_per_supermarket": 17.0
+      },
+      {
+        "borocd": "206",
+        "name": "Belmont / East Tremont",
+        "supermarket_share_pct": 7.0,
+        "bodega_per_supermarket": 13.2
+      },
+      {
+        "borocd": "314",
+        "name": "Flatbush / Midwood",
+        "supermarket_share_pct": 8.0,
+        "bodega_per_supermarket": 11.5
+      },
+      {
+        "borocd": "203",
+        "name": "Morrisania / Crotona",
+        "supermarket_share_pct": 8.3,
+        "bodega_per_supermarket": 11.0
+      },
+      {
+        "borocd": "312",
+        "name": "Borough Park",
+        "supermarket_share_pct": 8.8,
+        "bodega_per_supermarket": 10.4
+      }
+    ]
+  },
   "care": {
     "weights": {
       "pharmacies": 0.3333333333333333,

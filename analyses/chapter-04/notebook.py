@@ -219,6 +219,62 @@ def per_cd_food(t2c: "pd.Series") -> tuple["pd.Series", dict]:
     return series, crosscheck
 
 
+# ---------- food *quality*: a store is not a supermarket ----------
+#
+# Proximity to a food store != proximity to fresh produce. Most NYC food
+# stores are small (bodegas/corner stores) that don't carry full fresh
+# selections. We measure, per CD, the share of NYS-licensed food stores
+# that are full-service groceries (>= SUPERMARKET_MIN_SQFT), among stores
+# with a reported square footage. Low share = bodega-dominated = the
+# "fresh-food desert" pattern.
+
+def per_cd_supermarket_share(t2c: "pd.Series") -> tuple["pd.Series", dict]:
+    """% of a CD's food stores that are full-service groceries, + summary."""
+    import geopandas as gpd
+    import pandas as pd
+    from shared import basemap
+
+    g = nys_food_stores.load(min_sqft=None)
+    g = g[g.geometry.notna() & ~g.geometry.is_empty].copy()
+    g["sqft"] = pd.to_numeric(g.get("square_footage"), errors="coerce")
+    g = g[g["sqft"].notna()].copy()
+    g["is_super"] = (g["sqft"] >= nys_food_stores.SUPERMARKET_MIN_SQFT).astype(int)
+
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
+    j = gpd.sjoin(g, cds[["boro_cd", "geometry"]], how="left",
+                  predicate="within").dropna(subset=["boro_cd"])
+    agg = j.groupby("boro_cd").agg(stores=("is_super", "size"),
+                                   supers=("is_super", "sum"))
+    share = (100.0 * agg["supers"] / agg["stores"]).round(1)
+    share.name = "supermarket_share_pct"
+
+    n_total = int(len(g))
+    n_super = int(g["is_super"].sum())
+    bottom = share[agg["stores"] >= 20].sort_values().head(5)
+    summary = {
+        "stores_total": n_total,
+        "supermarkets": n_super,
+        "supermarket_share_citywide_pct": round(100.0 * n_super / n_total, 1),
+        "small_store_share_pct": round(100.0 * (n_total - n_super) / n_total, 1),
+        "small_per_supermarket": round((n_total - n_super) / n_super, 1),
+        "most_bodega_dominated": [
+            {"borocd": cd, "name": name_for(cd),
+             "supermarket_share_pct": float(share[cd]),
+             "bodega_per_supermarket": round(
+                 (int(agg.loc[cd, "stores"]) - int(agg.loc[cd, "supers"]))
+                 / max(int(agg.loc[cd, "supers"]), 1), 1)}
+            for cd in bottom.index
+        ],
+    }
+    print(f"  supermarket share: {summary['supermarket_share_citywide_pct']}% "
+          f"citywide ({summary['small_per_supermarket']} small stores per "
+          f"supermarket); most bodega-dominated: "
+          f"{summary['most_bodega_dominated'][0]['name']} "
+          f"({summary['most_bodega_dominated'][0]['supermarket_share_pct']}%)")
+    return share, summary
+
+
 # ---------- axis 2: care access (TODO) ----------
 
 CHILDCARE_FACGROUP = "DAY CARE AND PRE-KINDERGARTEN"
@@ -469,6 +525,7 @@ def render_headline(frame: "pd.DataFrame") -> Path:
     geo["food_10min_pct"] = (f["food_10min_pct"].reindex(geo["boro_cd"].values).values * 100).round(1)
     geo["proximity_mean"] = (f["proximity_mean"].reindex(geo["boro_cd"].values).values * 100).round(1)
     geo["childcare_slots_per_100_u5"] = f["childcare_slots_per_100_u5"].reindex(geo["boro_cd"].values).values.round(1)
+    geo["supermarket_share_pct"] = f["supermarket_share_pct"].reindex(geo["boro_cd"].values).values.round(1)
     geo["rank_food"] = geo["food_10min_pct"].rank(ascending=False, method="min").astype("Int64")
     geo["rank_proximity"] = geo["proximity_mean"].rank(ascending=False, method="min").astype("Int64")
     geo["rank_childcare"] = geo["childcare_slots_per_100_u5"].rank(ascending=False, method="min").astype("Int64")
@@ -545,6 +602,9 @@ def main() -> int:
     print("[ch.4] axis 1 — food access (NYS groceries + OSM cross-check)")
     food, food_crosscheck = per_cd_food(t2c)
 
+    print("[ch.4] food quality — supermarket share (a store is not a supermarket)")
+    super_share, food_quality = per_cd_supermarket_share(t2c)
+
     print("[ch.4] axis 2 — care access (pharmacies + childcare + healthcare)")
     care, care_components = per_cd_care(t2c)
 
@@ -568,6 +628,7 @@ def main() -> int:
     frame["proximity_mean"] = frame[[c for c in frame.columns]].mean(axis=1).round(4)
     frame["childcare_prox_pct"] = cc_prox.reindex(frame.index)
     frame["childcare_slots_per_100_u5"] = suff.reindex(frame.index)
+    frame["supermarket_share_pct"] = super_share.reindex(frame.index)
     frame["pop"] = cd_pop.reindex(frame.index)
     frame.index.name = "borocd"
     frame = frame.reset_index()
@@ -598,6 +659,7 @@ def main() -> int:
                 round(float(frame["food_10min_pct"].max()), 4),
             ],
         },
+        "food_quality": food_quality,
         "care": {
             **care_components,
             "pct_range": [

@@ -218,6 +218,49 @@ sufficiency measure, so the score leans on childcare and food. Shipped as a
 
 ---
 
+## 6c. Growth / gentrification — tested, rejected
+
+Hypothesis: low childcare sufficiency is driven by neighborhood **growth**
+(often gentrification) — new young-family demand outrunning a slow-growing
+seat supply. Tested, does not hold. Not wired into the chapter; documented
+here because a rejected hypothesis is worth recording.
+
+**Method.** Population + children under 5 per census tract, **2010**
+(`dec/sf1`, table P12) and **2020** (`dec/dhc`, table P12), five NYC
+counties. Each year's tracts assigned to CDs by their own
+cartographic-boundary centroid — the *same* method both vintages, so
+2010↔2020 tract-boundary changes don't bias the CD-level change.
+Calibration: citywide +8.3% (census actual ≈ +7.7%). Reproduce:
+`analyses/chapter-04/growth_check.py` (needs `CENSUS_API_KEY`).
+
+**Result (Spearman, n = 59):**
+
+| pair | ρ |
+|------|---:|
+| population change 2010→2020 ↔ childcare sufficiency | **−0.09** |
+| under-5 change 2010→2020 ↔ childcare sufficiency | **−0.24** |
+
+Population growth is unrelated to sufficiency; under-5 growth shows only a
+weak negative tilt — and that tilt is partly *definitional* (sufficiency is
+seats per child, so a growing child population mechanically lowers it). Two
+facts kill the causal story:
+
+- **The fastest-growing districts are well-supplied, not starved.** FiDi /
+  Battery Park (+90% population, 79 seats/100), Chelsea / Hell's Kitchen
+  (+35%, 75), Fort Greene (+33%, 53). Growth coincided with *more* childcare.
+- **The starved districts are mostly losing young children, not gaining
+  them.** Ridgewood −17% under-5, Flatbush −17%, East Harlem −16%, Central
+  Harlem −13%, Elmhurst −9% — falling under-5 counts yet still few seats.
+  Their shortfall is a *supply* story (seats never built / shrinking), not a
+  demand surge.
+
+So growth *demotes* these districts on the combined score (§6b) but doesn't
+*cause* the childcare gap. Combined with §6's income finding, this is why the
+chapter stays agnostic on mechanism: sufficiency is its own geography, and the
+two obvious explanations — income and growth — both fail to predict it.
+
+---
+
 ## 7. Anchor CDs
 
 | CD | Neighborhood | Boro | Role | Proximity rank | Slots/100 u5 |

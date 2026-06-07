@@ -119,5 +119,88 @@
       "walk_under": 19,
       "car_under": 10
     }
+  },
+  "daily_needs_score": {
+    "method": "geometric mean of percentile-ranked proximity x sufficiency (sufficiency = childcare seats/child blended with supermarket share)",
+    "top5": [
+      {
+        "borocd": "107",
+        "name": "Upper West Side",
+        "score": 93.2
+      },
+      {
+        "borocd": "103",
+        "name": "Lower East Side / Chinatown",
+        "score": 93.2
+      },
+      {
+        "borocd": "108",
+        "name": "Upper East Side",
+        "score": 93.1
+      },
+      {
+        "borocd": "102",
+        "name": "Greenwich Village / Soho",
+        "score": 91.5
+      },
+      {
+        "borocd": "302",
+        "name": "Fort Greene / Brooklyn Heights",
+        "score": 90.1
+      }
+    ],
+    "bottom5": [
+      {
+        "borocd": "503",
+        "name": "Tottenville / Great Kills",
+        "score": 7.4
+      },
+      {
+        "borocd": "405",
+        "name": "Ridgewood / Maspeth",
+        "score": 8.3
+      },
+      {
+        "borocd": "314",
+        "name": "Flatbush / Midwood",
+        "score": 9.3
+      },
+      {
+        "borocd": "210",
+        "name": "Throgs Neck / Co-op City",
+        "score": 9.6
+      },
+      {
+        "borocd": "501",
+        "name": "St. George / Stapleton",
+        "score": 10.0
+      }
+    ],
+    "biggest_demotions_vs_proximity": [
+      {
+        "borocd": "111",
+        "name": "East Harlem",
+        "proximity_rank": 11,
+        "score_rank": 44
+      },
+      {
+        "borocd": "314",
+        "name": "Flatbush / Midwood",
+        "proximity_rank": 30,
+        "score_rank": 57
+      },
+      {
+        "borocd": "308",
+        "name": "Crown Heights / Prospect Heights",
+        "proximity_rank": 11,
+        "score_rank": 36
+      },
+      {
+        "borocd": "110",
+        "name": "Central Harlem",
+        "proximity_rank": 1,
+        "score_rank": 24
+      }
+    ]
   }
 }

@@ -546,6 +546,17 @@ def render_headline(frame: "pd.DataFrame") -> Path:
     print(f"  access_class (walkable>={WALKABLE_PCT:.0f}%, served>={served_cut:.1f}/100): "
           + ", ".join(f"{k}={v}" for k, v in geo['access_class'].value_counts().items()))
 
+    # Combined daily-needs score: geometric mean of percentile-ranked
+    # proximity x sufficiency, where sufficiency blends childcare seats
+    # per child and fresh-food (supermarket share). Multiplicative, not
+    # additive, so neither axis can buy out the other — daily-needs
+    # access is gated by whichever is scarcer (weakest-link logic).
+    prox_pct = geo["proximity_mean"].rank(pct=True)
+    suff_pct = (geo["childcare_slots_per_100_u5"].rank(pct=True)
+                + geo["supermarket_share_pct"].rank(pct=True)).rank(pct=True)
+    geo["daily_needs_score"] = ((prox_pct * suff_pct) ** 0.5 * 100).round(1)
+    geo["rank_score"] = geo["daily_needs_score"].rank(ascending=False, method="min").astype("Int64")
+
     geojson_path = OUT / "daily-needs.geojson"
     basemap.to_display(geo).to_file(geojson_path, driver="GeoJSON")
     print(f"[wrote] {geojson_path}  ({geojson_path.stat().st_size:,} bytes)")
@@ -589,7 +600,26 @@ def render_headline(frame: "pd.DataFrame") -> Path:
         "served_cutoff_slots_per_100": round(served_cut, 1),
         "class_counts": {k: int(v) for k, v in geo["access_class"].value_counts().items()},
     }
-    return geojson_path, access_summary
+
+    gs = geo[["boro_cd", "name", "daily_needs_score", "rank_proximity", "rank_score"]]
+    score_summary = {
+        "method": ("geometric mean of percentile-ranked proximity x sufficiency "
+                   "(sufficiency = childcare seats/child blended with supermarket share)"),
+        "top5": [{"borocd": r.boro_cd, "name": r.name, "score": float(r.daily_needs_score)}
+                 for r in gs.sort_values("daily_needs_score", ascending=False).head(5).itertuples()],
+        "bottom5": [{"borocd": r.boro_cd, "name": r.name, "score": float(r.daily_needs_score)}
+                    for r in gs.sort_values("daily_needs_score").head(5).itertuples()],
+        "biggest_demotions_vs_proximity": [
+            {"borocd": r.boro_cd, "name": r.name,
+             "proximity_rank": int(r.rank_proximity), "score_rank": int(r.rank_score)}
+            for r in gs.assign(drop=gs["rank_score"] - gs["rank_proximity"])
+                       .sort_values("drop", ascending=False).head(4).itertuples()
+        ],
+    }
+    print(f"  daily-needs score: top {score_summary['top5'][0]['name']} "
+          f"({score_summary['top5'][0]['score']}), bottom "
+          f"{score_summary['bottom5'][0]['name']} ({score_summary['bottom5'][0]['score']})")
+    return geojson_path, {"access_class": access_summary, "daily_needs_score": score_summary}
 
 
 def main() -> int:
@@ -643,7 +673,7 @@ def main() -> int:
     scatter.to_csv(OUT / "proximity-vs-sufficiency.csv", index=False)
 
     print("[ch.4] render headline: daily-needs geojson + sufficiency SVG")
-    _, access_summary = render_headline(frame)
+    _, render_summary = render_headline(frame)
 
     facts = {
         "chapter": 4,
@@ -676,7 +706,8 @@ def main() -> int:
         },
         "spine_test": spine,
         "sufficiency": suff_summary,
-        "access_class": access_summary,
+        "access_class": render_summary["access_class"],
+        "daily_needs_score": render_summary["daily_needs_score"],
     }
     (OUT / "facts.json").write_text(json.dumps(facts, indent=2) + "\n")
     print(f"\n[ch.4] wrote out/facts.json + out/rankings.csv "

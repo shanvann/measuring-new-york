@@ -191,6 +191,33 @@ median 47.1.
 
 ---
 
+## 6b. Combined daily-needs score (`daily_needs_score`)
+
+A single within-chapter composite that requires *both* halves (per plan
+§9: components named, equal weights stated, rationale structural).
+
+- Rank all 59 CDs into a percentile on **proximity** (`proximity_mean`)
+  and on **sufficiency**, where sufficiency = the percentile of
+  (`childcare_slots_per_100_u5` rank + `supermarket_share_pct` rank).
+- Score = **geometric mean** of the two percentiles × 100.
+
+**Why multiplicative, not additive.** Additive (a weighted average) lets
+high proximity compensate for a childcare desert — exactly the substitution
+the chapter argues against. The geometric mean (like `min()`) gates access
+on whichever half is scarcer, so a low mark on either drags the score down.
+This *reinforces* the thesis: it demotes the "walkable but starved" CDs that
+a proximity-only ranking flatters — Central Harlem 1 → 24, East Harlem
+11 → 44, Flatbush 30 → 57. Top: Upper West Side, Lower East Side, Fort
+Greene (high on both). Bottom: Tottenville, Ridgewood (low on both / starved).
+
+**Caveat.** "Sufficiency" here is only childcare seats + supermarket share —
+the two capacity/quality measures the chapter has. Care and civic have no
+sufficiency measure, so the score leans on childcare and food. Shipped as a
+*secondary* view; the quadrant map stays the headline because it preserves
+*which* half fails. A cross-chapter livability score is reserved for Ch. 9.
+
+---
+
 ## 7. Anchor CDs
 
 | CD | Neighborhood | Boro | Role | Proximity rank | Slots/100 u5 |

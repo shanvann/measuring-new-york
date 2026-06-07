@@ -66,13 +66,14 @@ For each amenity type:
 A basket that bundles multiple amenity types takes the equal-weight mean
 of its per-type coverage shares (weights stated per plan §9).
 
-**On the threshold.** The chapter engages the "15-minute city" as a
-*concept* but measures a deliberately stricter **10-minute (half-mile,
-2,640 ft) walk** — the same cutoff Chapter 3 used for park access, kept
-for cross-chapter consistency. Reporting near-universal coverage at this
-tougher bar makes the "proximity is already solved" finding stronger,
-not weaker. A 15-minute (≈3,960 ft) cutoff would push coverage even
-higher and saturate the proximity maps further.
+**On the threshold.** The chapter is framed around a **"10-minute city"**
+— every daily need within a **10-minute, half-mile (2,640 ft) walk**.
+This is deliberately a stricter cousin of the popular "15-minute city"
+(≈3,960 ft / closer to a mile), and is the same cutoff Chapter 3 used
+for park access, kept for cross-chapter consistency. Reporting
+near-universal coverage at this tougher bar makes the "proximity is
+already solved" finding stronger, not weaker; a 15-minute cutoff would
+push coverage even higher and saturate the proximity maps further.
 
 `proximity_mean` (the combined daily-needs score on the map) is the
 equal-weight mean of the three basket values.

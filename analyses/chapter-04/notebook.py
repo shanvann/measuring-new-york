@@ -546,16 +546,10 @@ def render_headline(frame: "pd.DataFrame") -> Path:
     print(f"  access_class (walkable>={WALKABLE_PCT:.0f}%, served>={served_cut:.1f}/100): "
           + ", ".join(f"{k}={v}" for k, v in geo['access_class'].value_counts().items()))
 
-    # Combined daily-needs score: geometric mean of percentile-ranked
-    # proximity x sufficiency, where sufficiency blends childcare seats
-    # per child and fresh-food (supermarket share). Multiplicative, not
-    # additive, so neither axis can buy out the other — daily-needs
-    # access is gated by whichever is scarcer (weakest-link logic).
-    prox_pct = geo["proximity_mean"].rank(pct=True)
-    suff_pct = (geo["childcare_slots_per_100_u5"].rank(pct=True)
-                + geo["supermarket_share_pct"].rank(pct=True)).rank(pct=True)
-    geo["daily_needs_score"] = ((prox_pct * suff_pct) ** 0.5 * 100).round(1)
-    geo["rank_score"] = geo["daily_needs_score"].rank(ascending=False, method="min").astype("Int64")
+    # Combined daily-needs score (computed once in main() on the frame so
+    # it also lands in rankings.csv; see METHODOLOGY §6b). Pull it here.
+    geo["daily_needs_score"] = f["daily_needs_score"].reindex(geo["boro_cd"].values).values
+    geo["rank_score"] = f["rank_score"].reindex(geo["boro_cd"].values).values.astype("Int64")
 
     geojson_path = OUT / "daily-needs.geojson"
     basemap.to_display(geo).to_file(geojson_path, driver="GeoJSON")
@@ -663,6 +657,15 @@ def main() -> int:
     frame.index.name = "borocd"
     frame = frame.reset_index()
     frame["cd_name"] = frame["borocd"].map(name_for)
+
+    # Combined daily-needs score (see render_headline / METHODOLOGY §6b):
+    # geometric mean of percentile-ranked proximity x sufficiency
+    # (sufficiency = childcare seats blended with fresh-food share).
+    _prox_pct = frame["proximity_mean"].rank(pct=True)
+    _suff_pct = (frame["childcare_slots_per_100_u5"].rank(pct=True)
+                 + frame["supermarket_share_pct"].rank(pct=True)).rank(pct=True)
+    frame["daily_needs_score"] = ((_prox_pct * _suff_pct) ** 0.5 * 100).round(1)
+    frame["rank_score"] = frame["daily_needs_score"].rank(ascending=False, method="min").astype(int)
 
     rankings = frame.sort_values("food_10min_pct", ascending=False)
     rankings.to_csv(OUT / "rankings.csv", index=False)

@@ -1,0 +1,60 @@
+borocd,cd_name,childcare_prox_pct,childcare_slots_per_100_u5,pop
+101,Financial District / Battery Park City,1.0,78.6,71865
+102,Greenwich Village / Soho,1.0,66.3,86202
+103,Lower East Side / Chinatown,1.0,70.8,153288
+104,Chelsea / Hell's Kitchen,1.0,75.0,117099
+105,Midtown,1.0,42.8,71533
+106,Stuyvesant Town / Turtle Bay,1.0,45.3,125446
+107,Upper West Side,1.0,48.4,218761
+108,Upper East Side,1.0,60.7,212308
+109,Manhattanville / Hamilton Heights,1.0,54.8,112774
+110,Central Harlem,1.0,36.3,134893
+111,East Harlem,0.981,42.3,124499
+112,Washington Heights / Inwood,1.0,80.7,188591
+201,Mott Haven / Melrose,1.0,58.6,96910
+202,Hunts Point / Longwood,1.0,50.9,59218
+203,Morrisania / Crotona,1.0,80.9,83832
+204,Highbridge / Concourse,1.0,84.8,149631
+205,University Heights / Fordham,1.0,79.5,135584
+206,Belmont / East Tremont,1.0,89.8,85192
+207,Kingsbridge Heights / Bedford Park,1.0,90.5,131046
+208,Riverdale / Fieldston,1.0,69.0,109169
+209,Soundview / Parkchester,1.0,46.7,173006
+210,Throgs Neck / Co-op City,1.0,40.5,126010
+211,Pelham Parkway / Morris Park,1.0,59.9,115883
+212,Williamsbridge / Baychester,1.0,59.6,160621
+301,Williamsburg / Greenpoint,1.0,47.1,203002
+302,Fort Greene / Brooklyn Heights,1.0,53.0,125637
+303,Bedford-Stuyvesant,1.0,47.2,180283
+304,Bushwick,1.0,79.0,111975
+305,East New York / Cypress Hills,1.0,49.5,198521
+306,Park Slope / Carroll Gardens,1.0,53.5,121009
+307,Sunset Park,1.0,59.8,120253
+308,Crown Heights / Prospect Heights,1.0,46.3,109719
+309,South Crown Heights / Lefferts Gardens,1.0,60.0,100366
+310,Bay Ridge / Dyker Heights,1.0,33.5,125053
+311,Bensonhurst / Bath Beach,1.0,39.7,180184
+312,Borough Park,1.0,57.4,194695
+313,Coney Island / Brighton Beach,1.0,48.5,110145
+314,Flatbush / Midwood,1.0,37.8,159561
+315,Sheepshead Bay / Manhattan Beach,1.0,39.8,159032
+316,Brownsville,1.0,32.8,97145
+317,East Flatbush / Farragut,1.0,53.9,154489
+318,Canarsie / Flatlands,1.0,42.8,195224
+401,Astoria,0.9802,35.4,179054
+402,Sunnyside / Woodside,0.9991,41.7,123823
+403,Jackson Heights / North Corona,1.0,38.2,161945
+404,Elmhurst / Corona,1.0,29.7,168616
+405,Ridgewood / Maspeth,1.0,23.1,181189
+406,Forest Hills / Rego Park,1.0,53.9,121131
+407,Flushing / Bay Terrace,1.0,41.6,246517
+408,Hillcrest / Fresh Meadows,1.0,44.8,158329
+409,Kew Gardens / Woodhaven,1.0,30.0,146860
+410,South Ozone Park / Howard Beach,1.0,27.2,137905
+411,Bayside / Little Neck,0.9637,46.3,121282
+412,Jamaica / Hollis,1.0,39.7,251250
+413,Queens Village / Cambria Heights,0.9406,41.4,205191
+414,Rockaway / Broad Channel,0.9433,26.9,130562
+501,St. George / Stapleton,0.9771,41.9,181349
+502,South Beach / Willowbrook,0.9493,40.9,142132
+503,Tottenville / Great Kills,0.8824,23.9,168729

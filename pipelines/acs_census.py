@@ -49,6 +49,7 @@ TABLES = {
     "B19013": "Median Household Income",
     "B08303": "Travel Time to Work",
     "B08301": "Means of Transportation to Work",
+    "B01001": "Sex by Age (used for children under 5 = _003E + _027E)",
 }
 
 GeoLevel = Literal["tract", "borough", "cd"]

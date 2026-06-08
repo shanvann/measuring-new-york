@@ -1,5 +1,11 @@
 {
   "entries": {
+    "acs/B01001-tract-2023-2026-06-01.json": {
+      "bytes": 3112799,
+      "fetched_at": "2026-06-06T23:50:52+00:00",
+      "sha256": "67117daa893c1204d282774da32e5ecef21cdb2496415ffc4b19c8886f8eefab",
+      "source_url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,group(B01001),for=tract:*,in=state:36 county:005,047,061,081,085"
+    },
     "acs/B01003-tract-2023-2026-06-01.json": {
       "bytes": 389292,
       "fetched_at": "2026-05-30T18:55:42+00:00",
@@ -96,11 +102,47 @@
       "sha256": "bf7a36d35d4707d9981c9b18920ac44e7a83b5192fa513ac092c531312480f12",
       "source_url": "https://rrgtfsfeeds.s3.amazonaws.com/gtfs_subway.zip"
     },
+    "nyc_childcare/dohmh-2026-06-01.json": {
+      "bytes": 652364,
+      "fetched_at": "2026-06-06T23:50:47+00:00",
+      "sha256": "5aca343b8a46ed79ece3d346db14105ba2bb7a39823ce549a49419d5432c976e",
+      "source_url": "https://data.cityofnewyork.us/resource/gy3q-4tzp.json?%24select=dcid%2C+program_name%2C+program_type%2C+age_range%2C+capacity%2C+borough%2C+latitude%2C+longitude&%24limit=20000"
+    },
+    "nyc_childcare/ocfs-2026-06-01.json": {
+      "bytes": 1226260,
+      "fetched_at": "2026-06-06T23:50:48+00:00",
+      "sha256": "0c62799b39765d9a20221352ef0a8a48d913640409591f8675b0b22478fa61bc",
+      "source_url": "https://data.ny.gov/resource/cb42-qumz.json?%24select=facility_id%2C+program_type%2C+facility_status%2C+county%2C+total_capacity%2C+latitude%2C+longitude&%24where=county+in+%28%27Bronx%27%2C+%27Brooklyn%27%2C+%27Queens%27%2C+%27Manhattan%27%2C+%27Staten+Island%27%29+AND+facility_status+in+%28%27License%27%2C+%27Registration%27%29+AND+program_type+in+%28%27FDC%27%2C+%27GFDC%27%29&%24limit=20000"
+    },
+    "nyc_facdb/day-care-and-pre-kindergarten-2026-06-01.geojson": {
+      "bytes": 2166280,
+      "fetched_at": "2026-06-06T23:24:55+00:00",
+      "sha256": "49396315d8c78853b1c04dd177088489c6ba3aeb5669dd74db921456f877340e",
+      "source_url": "https://data.cityofnewyork.us/resource/ji82-xba5.geojson?%24select=uid%2C+facname%2C+facgroup%2C+facsubgrp%2C+factype%2C+capacity%2C+captype%2C+opname%2C+boro%2C+cd%2C+zipcode%2C+latitude%2C+longitude%2C+geometry&%24where=facgroup+%3D+%27DAY+CARE+AND+PRE-KINDERGARTEN%27&%24limit=50000"
+    },
+    "nyc_facdb/hospitals-and-clinics-2026-06-01.geojson": {
+      "bytes": 651222,
+      "fetched_at": "2026-06-06T23:24:56+00:00",
+      "sha256": "4295bab2ed8bced1adf4ebe45f15625cd44f443023ba399299dab92965bd8410",
+      "source_url": "https://data.cityofnewyork.us/resource/ji82-xba5.geojson?%24select=uid%2C+facname%2C+facgroup%2C+facsubgrp%2C+factype%2C+capacity%2C+captype%2C+opname%2C+boro%2C+cd%2C+zipcode%2C+latitude%2C+longitude%2C+geometry&%24where=facsubgrp+%3D+%27HOSPITALS+AND+CLINICS%27&%24limit=50000"
+    },
+    "nyc_facdb/public-libraries-2026-06-01.geojson": {
+      "bytes": 104638,
+      "fetched_at": "2026-06-06T23:20:39+00:00",
+      "sha256": "e31c86949adb3a71f76370ea460481a4ff3ba61eda48ae1fc3265449fa9f7bde",
+      "source_url": "https://data.cityofnewyork.us/resource/ji82-xba5.geojson?%24select=uid%2C+facname%2C+facgroup%2C+facsubgrp%2C+factype%2C+capacity%2C+captype%2C+opname%2C+boro%2C+cd%2C+zipcode%2C+latitude%2C+longitude%2C+geometry&%24where=facsubgrp+%3D+%27PUBLIC+LIBRARIES%27&%24limit=50000"
+    },
     "nyc_parks/properties-2026-06-01.geojson": {
       "bytes": 7201748,
       "fetched_at": "2026-05-30T18:58:49+00:00",
       "sha256": "e8971d212102c229212d27fe51dd6ba58d56f6ceafbb5d4d78ab5a9cac4100d9",
       "source_url": "https://data.cityofnewyork.us/resource/enfh-gkve.geojson?%24select=gispropnum%2C+signname%2C+name311%2C+class%2C+typecategory%2C+subcategory%2C+borough%2C+communityboard%2C+acres%2C+multipolygon&%24limit=10000"
+    },
+    "nys_food_stores/nyc-2026-06-01.geojson": {
+      "bytes": 3910305,
+      "fetched_at": "2026-06-06T16:39:32+00:00",
+      "sha256": "9dce0bbac2841cfbb562fc122c686ce863bf81dfa4458e248cfe3e821b1e89ad",
+      "source_url": "https://data.ny.gov/resource/9a8c-vfzj.geojson?%24select=license_number%2C+operation_type%2C+estab_type%2C+entity_name%2C+dba_name%2C+county%2C+city%2C+zip_code%2C+square_footage%2C+georeference&%24where=county+in+%28%27NEW+YORK%27%2C+%27KINGS%27%2C+%27QUEENS%27%2C+%27BRONX%27%2C+%27RICHMOND%27%29&%24limit=50000"
     },
     "oca/oca_addresses-2026-05-10.csv": {
       "bytes": 202943718,
@@ -119,6 +161,24 @@
       "fetched_at": "2026-05-30T18:34:27+00:00",
       "sha256": "c7b7574cb2d7b018c504bc506341625f773decce7d80dca182b54d3b84c9b665",
       "source_url": "https://overpass-api.de/api/interpreter (POST query=parks)"
+    },
+    "osm/pharmacies-2026-06-01.json": {
+      "bytes": 435851,
+      "fetched_at": "2026-06-06T23:24:55+00:00",
+      "sha256": "6434879eeec295f1a4eaedb1723edb4dfca650cd0f5af90129c47eaaece6ad9c",
+      "source_url": "https://overpass-api.de/api/interpreter (POST query=pharmacies)"
+    },
+    "osm/schools-2026-06-01.json": {
+      "bytes": 745176,
+      "fetched_at": "2026-06-06T23:20:39+00:00",
+      "sha256": "80157ee2732daeff12c3b514ac38935eb69422c8b3d5a1a057c94bb76d5da517",
+      "source_url": "https://overpass-api.de/api/interpreter (POST query=schools)"
+    },
+    "osm/supermarkets-2026-06-01.json": {
+      "bytes": 494276,
+      "fetched_at": "2026-06-06T16:39:38+00:00",
+      "sha256": "4aa969e327030101f4480c26783054bc506e3bd8a658d546da6b7e6aee3866c7",
+      "source_url": "https://overpass-api.de/api/interpreter (POST query=supermarkets)"
     },
     "three_one_one/cd-101-2025-12-01-last1d.json": {
       "bytes": 15912,

@@ -1,0 +1,206 @@
+{
+  "chapter": 4,
+  "title_working": "Access to Daily Needs",
+  "walk_radius_ft": 2640.0,
+  "n_cds": 59,
+  "axes_ready": [
+    "food_10min_pct",
+    "care_10min_pct",
+    "civic_10min_pct"
+  ],
+  "food": {
+    "supermarket_min_sqft": 5000.0,
+    "crosscheck": {
+      "nys_supermarkets": 1367,
+      "osm_supermarkets": 1347
+    },
+    "pct_range": [
+      0.6375,
+      1.0
+    ]
+  },
+  "food_quality": {
+    "stores_total": 8579,
+    "supermarkets": 1367,
+    "supermarket_share_citywide_pct": 15.9,
+    "small_store_share_pct": 84.1,
+    "small_per_supermarket": 5.3,
+    "most_bodega_dominated": [
+      {
+        "borocd": "309",
+        "name": "South Crown Heights / Lefferts Gardens",
+        "supermarket_share_pct": 5.6,
+        "bodega_per_supermarket": 17.0
+      },
+      {
+        "borocd": "206",
+        "name": "Belmont / East Tremont",
+        "supermarket_share_pct": 7.0,
+        "bodega_per_supermarket": 13.2
+      },
+      {
+        "borocd": "314",
+        "name": "Flatbush / Midwood",
+        "supermarket_share_pct": 8.0,
+        "bodega_per_supermarket": 11.5
+      },
+      {
+        "borocd": "203",
+        "name": "Morrisania / Crotona",
+        "supermarket_share_pct": 8.3,
+        "bodega_per_supermarket": 11.0
+      },
+      {
+        "borocd": "312",
+        "name": "Borough Park",
+        "supermarket_share_pct": 8.8,
+        "bodega_per_supermarket": 10.4
+      }
+    ]
+  },
+  "care": {
+    "weights": {
+      "pharmacies": 0.3333333333333333,
+      "childcare": 0.3333333333333333,
+      "healthcare": 0.3333333333333333
+    },
+    "counts": {
+      "pharmacies": 1260,
+      "childcare": 4296,
+      "healthcare": 1280
+    },
+    "sufficiency_note": "proximity only; FacDB capacity is all-zero for day care so slot-sufficiency is deferred to an OCFS source + fallback spine",
+    "pct_range": [
+      0.4678,
+      1.0
+    ]
+  },
+  "civic": {
+    "weights": {
+      "schools": 0.3333333333333333,
+      "libraries": 0.3333333333333333,
+      "parks": 0.3333333333333333
+    },
+    "counts": {
+      "schools": 2767,
+      "libraries": 228,
+      "parks_ge_1acre": 867
+    },
+    "pct_range": [
+      0.6407,
+      1.0
+    ]
+  },
+  "spine_test": {
+    "ready": true,
+    "n": 59,
+    "pairs": {
+      "food_10min_pct ~ care_10min_pct": 0.733,
+      "food_10min_pct ~ civic_10min_pct": 0.647,
+      "care_10min_pct ~ civic_10min_pct": 0.743
+    },
+    "kill": false
+  },
+  "sufficiency": {
+    "total_slots": 246851,
+    "total_children_under5": 498130,
+    "citywide_slots_per_100_u5": 49.6,
+    "suff_range": [
+      23.1,
+      90.5
+    ],
+    "proximity_vs_sufficiency_rho": 0.369
+  },
+  "access_class": {
+    "walkable_pct_cutoff": 85.0,
+    "served_cutoff_slots_per_100": 47.1,
+    "class_counts": {
+      "walk_served": 30,
+      "walk_under": 19,
+      "car_under": 10
+    }
+  },
+  "daily_needs_score": {
+    "method": "geometric mean of percentile-ranked proximity x sufficiency (sufficiency = childcare seats/child blended with supermarket share)",
+    "top5": [
+      {
+        "borocd": "107",
+        "name": "Upper West Side",
+        "score": 93.2
+      },
+      {
+        "borocd": "103",
+        "name": "Lower East Side / Chinatown",
+        "score": 93.2
+      },
+      {
+        "borocd": "108",
+        "name": "Upper East Side",
+        "score": 93.1
+      },
+      {
+        "borocd": "102",
+        "name": "Greenwich Village / Soho",
+        "score": 91.5
+      },
+      {
+        "borocd": "302",
+        "name": "Fort Greene / Brooklyn Heights",
+        "score": 90.1
+      }
+    ],
+    "bottom5": [
+      {
+        "borocd": "503",
+        "name": "Tottenville / Great Kills",
+        "score": 7.4
+      },
+      {
+        "borocd": "405",
+        "name": "Ridgewood / Maspeth",
+        "score": 8.3
+      },
+      {
+        "borocd": "314",
+        "name": "Flatbush / Midwood",
+        "score": 9.3
+      },
+      {
+        "borocd": "210",
+        "name": "Throgs Neck / Co-op City",
+        "score": 9.6
+      },
+      {
+        "borocd": "501",
+        "name": "St. George / Stapleton",
+        "score": 10.0
+      }
+    ],
+    "biggest_demotions_vs_proximity": [
+      {
+        "borocd": "111",
+        "name": "East Harlem",
+        "proximity_rank": 11,
+        "score_rank": 44
+      },
+      {
+        "borocd": "314",
+        "name": "Flatbush / Midwood",
+        "proximity_rank": 30,
+        "score_rank": 57
+      },
+      {
+        "borocd": "308",
+        "name": "Crown Heights / Prospect Heights",
+        "proximity_rank": 11,
+        "score_rank": 36
+      },
+      {
+        "borocd": "110",
+        "name": "Central Harlem",
+        "proximity_rank": 1,
+        "score_rank": 24
+      }
+    ]
+  }
+}

@@ -498,6 +498,50 @@ def per_cd_restorative(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
     return per1k, comp
 
 
+def _load_libraries():
+    """Public library branches (FacDB PUBLIC LIBRARIES) as points (EPSG:2263)."""
+    from pipelines import nyc_facdb
+
+    libs = nyc_facdb.load(facsubgrp="PUBLIC LIBRARIES")
+    return libs[libs.geometry.notna() & ~libs.geometry.is_empty].copy()
+
+
+def per_cd_free_places(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
+    """Free public PLACES per 1,000 residents, per CD (the FREE axis).
+
+    Free = space you can occupy without paying: parks (>= 1 acre) + DOT
+    plazas + public library branches. Counted as discrete places (not
+    acreage) so it parallels the paid-sociability axis (paid places per 1k)
+    and stays legible — "for every place you pay to be in, how many can you
+    be in for free?" Libraries fold in the one free *indoor* third place
+    (free, but the most time-restricted — see the access caveats).
+    """
+    import pandas as pd
+
+    parks, parks_src = _parks_with_acres()
+    plazas = nyc_dot_plazas.load()
+    plazas = plazas[plazas.geometry.notna() & ~plazas.geometry.is_empty]
+    libs = _load_libraries()
+
+    n_parks = _assign_cd(parks).value_counts()
+    n_plazas = _assign_cd(plazas).value_counts()
+    n_libs = _assign_cd(libs).value_counts()
+    counts = n_parks.add(n_plazas, fill_value=0).add(n_libs, fill_value=0)
+    per1k = (counts / cd_pop * 1000.0).reindex(cd_pop.index).fillna(0.0).round(4)
+    per1k.name = "free_per1k"
+    comp = {
+        "definition": "free public places per 1k residents = parks(>=1ac) + plazas + libraries",
+        "parks_source": parks_src,
+        "counts": {
+            "parks_ge_1acre": int(len(parks)),
+            "plazas": int(len(plazas)),
+            "libraries": int(len(libs)),
+        },
+        "per1k_range": [float(per1k.min()), float(per1k.max())],
+    }
+    return per1k, comp
+
+
 def per_cd_comfort(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
     """Open Streets centerline-miles per 1,000 residents, per CD."""
     import pandas as pd
@@ -520,104 +564,101 @@ def per_cd_comfort(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
     return per1k, comp
 
 
-# ---------- anchors + headline render (Path B scatter) ----------
+# ---------- anchors + headline render (paid vs. free scatter) ----------
 
-# 5 anchors, 1 per borough, spanning the vibrancy x restorative quadrants.
-# 206/503 reuse Ch. 4's anchors for series coherence.
-#   105 Midtown            — MN — vibrant but no room to breathe (surprise)
-#   301 Williamsburg       — BK — vibrant, tight on open space
-#   411 Bayside/Little Neck— QN — quiet residential comfort (lo vib, hi room)
-#   206 Belmont/E. Tremont — BX — short on both (double deficit)
-#   503 Tottenville        — SI — the most restorative CD in the city
+# 5 anchors, 1 per borough, spanning the paid x free quadrants. Re-picked
+# from data after the free/paid recast (see WORKLOG); 206/503 reuse Ch. 4's
+# anchors for series coherence.
 ANCHOR_CDS = ["105", "301", "411", "206", "503"]
 
 
-def _quadrant_class(vib, res, vib_med, res_med) -> str:
-    hi_v, hi_r = vib >= vib_med, res >= res_med
-    return ("lively_roomy" if hi_v and hi_r else
-            "lively_tight" if hi_v and not hi_r else
-            "quiet_roomy" if (not hi_v) and hi_r else "quiet_tight")
+def _quadrant_class(paid, free, paid_med, free_med) -> str:
+    hi_p, hi_f = paid >= paid_med, free >= free_med
+    return ("both" if hi_p and hi_f else
+            "paid_only" if hi_p and not hi_f else
+            "free_realm" if (not hi_p) and hi_f else "neither")
 
 
 def render_headline(frame: "pd.DataFrame") -> dict:
-    """Render the Path-B headline: vibrancy-vs-restorative scatter + geojson.
+    """Render the headline: paid-sociability vs. free-space scatter + geojson.
 
     Writes:
-      out/vibrancy-vs-restorative.svg   static headline scatter (the chapter)
-      out/public-space.geojson          per-CD all axes + ranks + quadrant
-                                         class, display-CRS, 50-ft simplified,
-                                         consumed by <NycMap>/<NeighborhoodExplorer>
+      out/paid-vs-free.svg      static headline scatter (fallback / repro)
+      out/public-space.geojson  per-CD all axes + ranks + quadrant class,
+                                display-CRS, 50-ft simplified, consumed by
+                                <NycMap>/<ScatterPlot>/<NeighborhoodExplorer>
     """
     import matplotlib.pyplot as plt
     from shared import basemap, palette
 
     palette.for_matplotlib()
     f = frame.set_index("borocd")
-    vib_med = float(f["vibrancy_per1k"].median())
-    res_med = float(f["restorative_acres_per1k"].median())
+    paid_med = float(f["vibrancy_per1k"].median())
+    free_med = float(f["free_per1k"].median())
 
     QCOLOR = {
-        "lively_tight": palette.ALERT,      # vibrant, no room — the tension
-        "quiet_roomy": palette.ACCENT,      # room, little life
-        "lively_roomy": "#4a8a85",          # the rare both
-        "quiet_tight": palette.MUTED,       # short on both
+        "paid_only": palette.ALERT,    # pay to belong — the tension
+        "free_realm": palette.ACCENT,  # free to be
+        "both": "#4a8a85",             # rich in both
+        "neither": palette.MUTED,      # thin on both
     }
-    cls = {cd: _quadrant_class(r["vibrancy_per1k"], r["restorative_acres_per1k"],
-                               vib_med, res_med)
+    cls = {cd: _quadrant_class(r["vibrancy_per1k"], r["free_per1k"],
+                               paid_med, free_med)
            for cd, r in f.iterrows()}
 
-    # ---- geojson sibling for <NycMap> ----
+    # ---- geojson sibling for <NycMap>/<ScatterPlot> ----
     cds = basemap.load("cd")
     cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
     cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
     geo = cds[["boro_cd", "geometry"]].copy()
     geo["name"] = geo["boro_cd"].map(name_for)
-    for col in ["vibrancy_per1k", "restorative_acres_per1k", "comfort_os_miles_per1k",
-                "open_space_10min_pct", "vitality_10min_pct", "ped_realm_10min_pct"]:
+    for col in ["vibrancy_per1k", "free_per1k", "restorative_acres_per1k",
+                "comfort_os_miles_per1k", "open_space_10min_pct",
+                "vitality_10min_pct", "ped_realm_10min_pct"]:
         geo[col] = f[col].reindex(geo["boro_cd"].values).values
-    geo["rank_vibrancy"] = geo["vibrancy_per1k"].rank(ascending=False, method="min").astype("Int64")
-    geo["rank_restorative"] = geo["restorative_acres_per1k"].rank(ascending=False, method="min").astype("Int64")
+    geo["rank_paid"] = geo["vibrancy_per1k"].rank(ascending=False, method="min").astype("Int64")
+    geo["rank_free"] = geo["free_per1k"].rank(ascending=False, method="min").astype("Int64")
     geo["quadrant"] = geo["boro_cd"].map(cls)
     geojson_path = OUT / "public-space.geojson"
     basemap.to_display(geo).to_file(geojson_path, driver="GeoJSON")
     print(f"[wrote] {geojson_path}  ({geojson_path.stat().st_size:,} bytes)")
 
-    # ---- headline scatter ----
+    # ---- headline scatter (static fallback) ----
     fig, ax = plt.subplots(figsize=(8.5, 8.0))
     for cd, r in f.iterrows():
         c = QCOLOR[cls[cd]]
         is_anchor = cd in ANCHOR_CDS
-        ax.scatter(r["vibrancy_per1k"], r["restorative_acres_per1k"],
+        ax.scatter(r["vibrancy_per1k"], r["free_per1k"],
                    s=70 if is_anchor else 32, c=c,
                    edgecolor=palette.TEXT if is_anchor else "none",
                    linewidth=0.8, zorder=3 if is_anchor else 2,
                    alpha=0.95 if is_anchor else 0.6)
-    ax.axvline(vib_med, color=palette.BORDER, lw=1, zorder=1)
-    ax.axhline(res_med, color=palette.BORDER, lw=1, zorder=1)
+    ax.axvline(paid_med, color=palette.BORDER, lw=1, zorder=1)
+    ax.axhline(free_med, color=palette.BORDER, lw=1, zorder=1)
     ax.set_xscale("log")
     ax.set_yscale("log")
     for cd in ANCHOR_CDS:
         r = f.loc[cd]
         ax.annotate(f"  {name_for(cd).split(' / ')[0]}",
-                    xy=(r["vibrancy_per1k"], r["restorative_acres_per1k"]),
+                    xy=(r["vibrancy_per1k"], r["free_per1k"]),
                     fontsize=8.5, color=palette.TEXT, va="center", zorder=4)
-    ax.set_xlabel("Vibrancy — eateries + cultural venues per 1,000 residents (log)")
-    ax.set_ylabel("Restorative space — park + plaza acres per 1,000 residents (log)")
-    ax.set_title("Lively or roomy — rarely both", fontsize=15, loc="left", pad=8)
+    ax.set_xlabel("Paid sociability — eateries + cultural venues per 1,000 residents (log)")
+    ax.set_ylabel("Free public places — parks + plazas + libraries per 1,000 residents (log)")
+    ax.set_title("Pay to belong, or free to be", fontsize=15, loc="left", pad=8)
     ax.text(0.0, 1.012,
-            f"NYC community districts · vibrancy ⊥ restorative space (ρ = "
-            f"{f['vibrancy_per1k'].rank().corr(f['restorative_acres_per1k'].rank()):+.2f})",
+            f"NYC community districts · paid ⊥ free (ρ = "
+            f"{f['vibrancy_per1k'].rank().corr(f['free_per1k'].rank()):+.2f})",
             transform=ax.transAxes, fontsize=9.5, color=palette.TEXT_SECONDARY,
             ha="left", va="bottom")
-    svg_path = OUT / "vibrancy-vs-restorative.svg"
+    svg_path = OUT / "paid-vs-free.svg"
     fig.savefig(svg_path, bbox_inches="tight")
     plt.close(fig)
     print(f"[wrote] {svg_path}  ({svg_path.stat().st_size:,} bytes)")
 
     return {
         "anchors": ANCHOR_CDS,
-        "vibrancy_median_per1k": round(vib_med, 3),
-        "restorative_median_per1k": round(res_med, 3),
+        "paid_median_per1k": round(paid_med, 3),
+        "free_median_per1k": round(free_med, 3),
         "quadrant_counts": {k: int(v) for k, v in
                             __import__("collections").Counter(cls.values()).items()},
         "files": {"scatter_svg": svg_path.name, "geojson": geojson_path.name},
@@ -678,48 +719,55 @@ def main() -> int:
     }
     spine = spine_test(axes)
 
-    # ---- Path B: vibrancy vs. comfort (per-capita supply) ----
-    print("\n[ch.5] PATH B — vibrancy vs. restorative space vs. comfort (per-capita)")
-    vibrancy, vibrancy_c = per_cd_vibrancy(cd_pop)
-    restorative, restorative_c = per_cd_restorative(cd_pop)
+    # ---- Headline: PAID sociability vs. FREE public space (per-capita) ----
+    print("\n[ch.5] HEADLINE — paid sociability vs. free public space (per-capita)")
+    vibrancy, vibrancy_c = per_cd_vibrancy(cd_pop)        # PAID axis
+    free_places, free_c = per_cd_free_places(cd_pop)      # FREE axis
+    restorative, restorative_c = per_cd_restorative(cd_pop)  # acreage (footnote)
     comfort, comfort_c = per_cd_comfort(cd_pop)
-    path_b_axes = {
+    headline_axes = {
+        "paid_per1k": vibrancy,
+        "free_per1k": free_places,
+    }
+    print("[headline] tension = paid sociability vs. free public space")
+    headline_corr = spine_test(headline_axes)
+
+    # assemble per-CD frame for the artifacts (basket axes + per-capita axes)
+    ready = {k: v for k, v in axes.items() if v is not None}
+    frame = pd.DataFrame({
+        **ready,
         "vibrancy_per1k": vibrancy,
+        "free_per1k": free_places,
         "restorative_acres_per1k": restorative,
         "comfort_os_miles_per1k": comfort,
-    }
-    print("[path-B] headline tension = vibrancy vs. restorative space")
-    path_b_spine = spine_test(path_b_axes)
-
-    # assemble per-CD frame for the artifacts (basket axes + path-B axes)
-    ready = {k: v for k, v in axes.items() if v is not None}
-    frame = pd.DataFrame({**ready, **path_b_axes})
+    })
     frame["pop"] = cd_pop.reindex(frame.index)
     frame.index.name = "borocd"
     frame = frame.reset_index()
     frame["cd_name"] = frame["borocd"].map(name_for)
 
-    # quadrant class on the frame (for rankings.csv + anchor table)
-    vib_med = float(frame["vibrancy_per1k"].median())
-    res_med = float(frame["restorative_acres_per1k"].median())
+    # quadrant class on the frame (paid x free; for rankings.csv + anchors)
+    paid_med = float(frame["vibrancy_per1k"].median())
+    free_med = float(frame["free_per1k"].median())
     frame["quadrant"] = [
-        _quadrant_class(v, r, vib_med, res_med)
-        for v, r in zip(frame["vibrancy_per1k"], frame["restorative_acres_per1k"])
+        _quadrant_class(p, fr, paid_med, free_med)
+        for p, fr in zip(frame["vibrancy_per1k"], frame["free_per1k"])
     ]
-    rankings = frame.sort_values("vibrancy_per1k", ascending=False)
+    rankings = frame.sort_values("free_per1k", ascending=False)
     rankings.to_csv(OUT / "rankings.csv", index=False)
 
-    print("\n[ch.5] render headline (Path-B scatter + geojson)")
+    print("\n[ch.5] render headline (paid-vs-free scatter + geojson)")
     render = render_headline(frame)
 
+    fi = frame.set_index("borocd")
     anchor_table = [
         {
             "borocd": cd,
             "name": name_for(cd),
-            "vibrancy_per1k": round(float(frame.set_index("borocd").loc[cd, "vibrancy_per1k"]), 2),
-            "restorative_acres_per1k": round(float(frame.set_index("borocd").loc[cd, "restorative_acres_per1k"]), 2),
-            "comfort_os_miles_per1k": round(float(frame.set_index("borocd").loc[cd, "comfort_os_miles_per1k"]), 4),
-            "quadrant": frame.set_index("borocd").loc[cd, "quadrant"],
+            "paid_per1k": round(float(fi.loc[cd, "vibrancy_per1k"]), 2),
+            "free_per1k": round(float(fi.loc[cd, "free_per1k"]), 2),
+            "restorative_acres_per1k": round(float(fi.loc[cd, "restorative_acres_per1k"]), 2),
+            "quadrant": fi.loc[cd, "quadrant"],
         }
         for cd in ANCHOR_CDS
     ]
@@ -740,12 +788,13 @@ def main() -> int:
         "vitality": vitality_components,
         "ped_realm": ped_components,
         "spine_test": spine,
-        "path_b": {
-            "framing": "vibrancy vs. restorative space (headline) + pedestrian comfort",
-            "vibrancy": vibrancy_c,
-            "restorative": restorative_c,
+        "headline": {
+            "framing": "paid sociability vs. free public space (per resident)",
+            "paid": vibrancy_c,
+            "free": free_c,
+            "restorative_acres_footnote": restorative_c,
             "comfort": comfort_c,
-            "correlations": path_b_spine,
+            "correlation": headline_corr,
             "anchors": anchor_table,
             "render": render,
         },

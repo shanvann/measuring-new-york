@@ -11,14 +11,14 @@
   "open_space": {
     "park_min_acres": 1.0,
     "counts": {
-      "parks_ge_1acre": 1271,
+      "parks_ge_1acre": 867,
       "plazas": 93
     },
     "plaza_status": "wired",
-    "parks_source": "osm:parks_geom (PROVISIONAL \u2014 derived acreage)",
-    "parks_provisional": true,
+    "parks_source": "dpr:enfh-gkve",
+    "parks_provisional": false,
     "pct_range": [
-      0.678,
+      0.7398,
       1.0
     ]
   },
@@ -56,15 +56,15 @@
     "ready": true,
     "n": 59,
     "pairs": {
-      "open_space_10min_pct ~ vitality_10min_pct": 0.583,
-      "open_space_10min_pct ~ ped_realm_10min_pct": 0.646,
+      "open_space_10min_pct ~ vitality_10min_pct": 0.456,
+      "open_space_10min_pct ~ ped_realm_10min_pct": 0.427,
       "vitality_10min_pct ~ ped_realm_10min_pct": 0.786
     },
     "kill": true
   },
-  "path_b": {
-    "framing": "vibrancy vs. restorative space (headline) + pedestrian comfort",
-    "vibrancy": {
+  "headline": {
+    "framing": "paid sociability vs. free public space (per resident)",
+    "paid": {
       "definition": "OSM eateries (restaurant|cafe|bar) + cultural per 1k residents",
       "counts": {
         "eateries": 13846,
@@ -76,13 +76,26 @@
         14.581
       ]
     },
-    "restorative": {
-      "definition": "park + plaza acres per 1k residents (supply, not walk-access)",
-      "parks_source": "osm:parks_geom (PROVISIONAL)",
-      "parks_provisional": true,
+    "free": {
+      "definition": "free public places per 1k residents = parks(>=1ac) + plazas + libraries",
+      "parks_source": "dpr:enfh-gkve",
+      "counts": {
+        "parks_ge_1acre": 867,
+        "plazas": 93,
+        "libraries": 228
+      },
       "per1k_range": [
-        0.073,
-        10.902
+        0.0388,
+        0.3423
+      ]
+    },
+    "restorative_acres_footnote": {
+      "definition": "park + plaza acres per 1k residents (supply, not walk-access)",
+      "parks_source": "dpr:enfh-gkve",
+      "parks_provisional": false,
+      "per1k_range": [
+        0.08,
+        23.219
       ]
     },
     "comfort": {
@@ -95,13 +108,11 @@
         0.0221
       ]
     },
-    "correlations": {
+    "correlation": {
       "ready": true,
       "n": 59,
       "pairs": {
-        "vibrancy_per1k ~ restorative_acres_per1k": -0.07,
-        "vibrancy_per1k ~ comfort_os_miles_per1k": 0.444,
-        "restorative_acres_per1k ~ comfort_os_miles_per1k": -0.018
+        "paid_per1k ~ free_per1k": 0.049
       },
       "kill": false
     },
@@ -109,42 +120,42 @@
       {
         "borocd": "105",
         "name": "Midtown",
-        "vibrancy_per1k": 14.58,
-        "restorative_acres_per1k": 0.35,
-        "comfort_os_miles_per1k": 0.0143,
-        "quadrant": "lively_tight"
+        "paid_per1k": 14.58,
+        "free_per1k": 0.27,
+        "restorative_acres_per1k": 0.46,
+        "quadrant": "both"
       },
       {
         "borocd": "301",
         "name": "Williamsburg / Greenpoint",
-        "vibrancy_per1k": 3.37,
-        "restorative_acres_per1k": 0.48,
-        "comfort_os_miles_per1k": 0.0071,
-        "quadrant": "lively_tight"
+        "paid_per1k": 3.37,
+        "free_per1k": 0.15,
+        "restorative_acres_per1k": 0.57,
+        "quadrant": "both"
       },
       {
         "borocd": "411",
         "name": "Bayside / Little Neck",
-        "vibrancy_per1k": 0.66,
-        "restorative_acres_per1k": 6.5,
-        "comfort_os_miles_per1k": 0.0,
-        "quadrant": "quiet_roomy"
+        "paid_per1k": 0.66,
+        "free_per1k": 0.23,
+        "restorative_acres_per1k": 7.75,
+        "quadrant": "free_realm"
       },
       {
         "borocd": "206",
         "name": "Belmont / East Tremont",
-        "vibrancy_per1k": 0.33,
-        "restorative_acres_per1k": 0.41,
-        "comfort_os_miles_per1k": 0.003,
-        "quadrant": "quiet_tight"
+        "paid_per1k": 0.33,
+        "free_per1k": 0.16,
+        "restorative_acres_per1k": 0.5,
+        "quadrant": "free_realm"
       },
       {
         "borocd": "503",
         "name": "Tottenville / Great Kills",
-        "vibrancy_per1k": 0.95,
-        "restorative_acres_per1k": 10.47,
-        "comfort_os_miles_per1k": 0.0003,
-        "quadrant": "lively_roomy"
+        "paid_per1k": 0.95,
+        "free_per1k": 0.23,
+        "restorative_acres_per1k": 13.86,
+        "quadrant": "both"
       }
     ],
     "render": {
@@ -155,16 +166,16 @@
         "206",
         "503"
       ],
-      "vibrancy_median_per1k": 0.84,
-      "restorative_median_per1k": 0.62,
+      "paid_median_per1k": 0.84,
+      "free_median_per1k": 0.126,
       "quadrant_counts": {
-        "lively_roomy": 14,
-        "lively_tight": 16,
-        "quiet_roomy": 16,
-        "quiet_tight": 13
+        "both": 15,
+        "paid_only": 15,
+        "free_realm": 15,
+        "neither": 14
       },
       "files": {
-        "scatter_svg": "vibrancy-vs-restorative.svg",
+        "scatter_svg": "paid-vs-free.svg",
         "geojson": "public-space.geojson"
       }
     }

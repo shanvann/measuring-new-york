@@ -1,0 +1,109 @@
+{
+  "chapter": 5,
+  "title_working": "Public Space & Urban Experience",
+  "walk_radius_ft": 2640.0,
+  "n_cds": 59,
+  "axes_ready": [
+    "open_space_10min_pct",
+    "vitality_10min_pct",
+    "ped_realm_10min_pct"
+  ],
+  "open_space": {
+    "park_min_acres": 1.0,
+    "counts": {
+      "parks_ge_1acre": 1271,
+      "plazas": 93
+    },
+    "plaza_status": "wired",
+    "parks_source": "osm:parks_geom (PROVISIONAL \u2014 derived acreage)",
+    "parks_provisional": true,
+    "pct_range": [
+      0.678,
+      1.0
+    ]
+  },
+  "vitality": {
+    "weights": "equal-weight mean of eateries + cultural walk-access %",
+    "counts": {
+      "eateries": 13846,
+      "cultural": 1032
+    },
+    "source": "OSM amenity=restaurant|cafe|bar (NO fast_food); amenity=theatre|arts_centre + tourism=museum|gallery",
+    "subaxis_pct_range": {
+      "eateries": [
+        0.733,
+        1.0
+      ],
+      "cultural": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "ped_realm": {
+    "components_used": [
+      "plazas:k5k6-6jex",
+      "open_streets:uiay-nctu"
+    ],
+    "counts": {
+      "plazas": 93,
+      "open_streets": 379
+    },
+    "axis_reduced": true,
+    "sidewalk_status": "DEFERRED: vfx9-tbb6 exposes no queryable columns/geometry via SODA (SELECT * -> [{}]; empty column metadata; count(*)=50865). Pedestrianization-only for the spine test per PLAN fallback; sidewalk width proxy to be added from the DCP planimetric shapefile post-checkpoint if the spine survives."
+  },
+  "spine_test": {
+    "ready": true,
+    "n": 59,
+    "pairs": {
+      "open_space_10min_pct ~ vitality_10min_pct": 0.583,
+      "open_space_10min_pct ~ ped_realm_10min_pct": 0.646,
+      "vitality_10min_pct ~ ped_realm_10min_pct": 0.786
+    },
+    "kill": true
+  },
+  "path_b": {
+    "framing": "vibrancy vs. restorative space (headline) + pedestrian comfort",
+    "vibrancy": {
+      "definition": "OSM eateries (restaurant|cafe|bar) + cultural per 1k residents",
+      "counts": {
+        "eateries": 13846,
+        "cultural": 1032
+      },
+      "note": "DCA Legally Operating Businesses (w7w3-xahh) can enrich this later; OSM eateries+cultural used now per PLAN ('or OSM').",
+      "per1k_range": [
+        0.051,
+        14.581
+      ]
+    },
+    "restorative": {
+      "definition": "park + plaza acres per 1k residents (supply, not walk-access)",
+      "parks_source": "osm:parks_geom (PROVISIONAL)",
+      "parks_provisional": true,
+      "per1k_range": [
+        0.073,
+        10.902
+      ]
+    },
+    "comfort": {
+      "definition": "Open Streets street-miles per 1k residents (sidewalk deferred)",
+      "open_streets_segments": 379,
+      "axis_reduced": true,
+      "sidewalk_status": "deferred (vfx9-tbb6 unusable via SODA; add DCP shapefile later)",
+      "per1k_range": [
+        0.0,
+        0.0221
+      ]
+    },
+    "correlations": {
+      "ready": true,
+      "n": 59,
+      "pairs": {
+        "vibrancy_per1k ~ restorative_acres_per1k": -0.07,
+        "vibrancy_per1k ~ comfort_os_miles_per1k": 0.444,
+        "restorative_acres_per1k ~ comfort_os_miles_per1k": -0.018
+      },
+      "kill": false
+    }
+  }
+}

@@ -1,0 +1,60 @@
+borocd,open_space_10min_pct,vitality_10min_pct,ped_realm_10min_pct,vibrancy_per1k,free_per1k,restorative_acres_per1k,comfort_os_miles_per1k,pop,cd_name,quadrant
+502,0.9396,0.5377,0.2136,1.316,34.3953,23.219,0.0027,142132,South Beach / Willowbrook,both
+212,0.9381,0.3896,0.2065,0.162,31.9427,0.363,0.0007,160621,Williamsbridge / Baychester,free_realm
+210,1.0,0.4482,0.1034,0.436,28.3459,6.35,0.0,126010,Throgs Neck / Co-op City,free_realm
+503,1.0,0.5142,0.0,0.954,27.8385,13.861,0.0003,168729,Tottenville / Great Kills,both
+207,1.0,0.976,0.7673,0.137,16.9107,1.103,0.0012,131046,Kingsbridge Heights / Bedford Park,free_realm
+411,0.9783,0.5132,0.062,0.66,16.6703,7.745,0.0,121282,Bayside / Little Neck,free_realm
+406,1.0,0.6368,0.4454,1.42,14.035,0.137,0.0022,121131,Forest Hills / Rego Park,both
+208,0.993,0.6238,0.2024,0.33,13.9158,1.351,0.0004,109169,Riverdale / Fieldston,free_realm
+315,0.969,0.5,0.0,0.761,13.6042,5.181,0.0,159032,Sheepshead Bay / Manhattan Beach,free_realm
+313,1.0,0.6922,0.332,0.726,13.5302,6.626,0.0029,110145,Coney Island / Brighton Beach,free_realm
+414,0.9684,0.4046,0.3434,0.36,13.3678,4.249,0.0038,130562,Rockaway / Broad Channel,free_realm
+206,1.0,0.6594,0.8409,0.329,12.8582,0.503,0.003,85192,Belmont / East Tremont,free_realm
+105,1.0,1.0,1.0,14.581,12.1991,0.456,0.0143,71533,Midtown,both
+111,1.0,0.981,0.981,0.988,11.139,4.017,0.0053,124499,East Harlem,both
+211,1.0,0.5438,0.3781,0.311,11.0001,1.04,0.0004,115883,Pelham Parkway / Morris Park,free_realm
+318,0.989,0.447,0.1646,0.118,10.6598,6.765,0.0003,195224,Canarsie / Flatlands,free_realm
+408,1.0,0.6356,0.2062,0.84,9.3508,3.561,0.0014,158329,Hillcrest / Fresh Meadows,both
+413,0.9094,0.4239,0.0798,0.463,9.2444,3.772,0.0006,205191,Queens Village / Cambria Heights,free_realm
+407,1.0,0.6286,0.3219,0.929,9.0725,3.943,0.0004,246517,Flushing / Bay Terrace,both
+310,0.9371,0.7807,0.6584,1.479,8.8643,2.783,0.0126,125053,Bay Ridge / Dyker Heights,both
+305,1.0,0.49,0.2633,0.151,8.7988,0.896,0.0,198521,East New York / Cypress Hills,free_realm
+410,0.7398,0.5,0.0837,0.457,8.4017,0.711,0.0,137905,South Ozone Park / Howard Beach,free_realm
+104,1.0,1.0,0.9774,5.91,7.9505,0.163,0.0027,117099,Chelsea / Hell's Kitchen,both
+110,1.0,0.9902,1.0,0.86,7.7749,0.237,0.0061,134893,Central Harlem,both
+403,1.0,0.884,0.8628,1.044,7.0067,0.191,0.0082,161945,Jackson Heights / North Corona,both
+404,0.9851,0.6102,0.834,0.949,6.674,0.128,0.0024,168616,Elmhurst / Corona,both
+309,1.0,0.8525,0.4095,0.658,6.4969,0.146,0.0,100366,South Crown Heights / Lefferts Gardens,free_realm
+109,1.0,1.0,1.0,1.091,6.3711,3.171,0.0017,112774,Manhattanville / Hamilton Heights,both
+501,1.0,0.7283,0.1644,1.323,6.2789,4.938,0.0017,181349,St. George / Stapleton,both
+202,1.0,0.5621,0.9932,0.051,6.1034,1.554,0.0047,59218,Hunts Point / Longwood,free_realm
+307,0.9149,0.8318,0.8092,1.871,5.8245,0.284,0.0037,120253,Sunset Park,paid_only
+311,0.8355,0.6328,0.2326,0.738,5.576,0.153,0.0009,180184,Bensonhurst / Bath Beach,neither
+107,1.0,1.0,0.7502,2.066,5.4916,0.166,0.0042,218761,Upper West Side,paid_only
+306,1.0,1.0,1.0,3.983,5.0573,0.708,0.0115,121009,Park Slope / Carroll Gardens,paid_only
+405,1.0,0.6984,0.4595,1.551,4.4732,1.026,0.0,181189,Ridgewood / Maspeth,paid_only
+314,0.8521,0.7247,0.7128,0.52,4.4609,0.285,0.004,159561,Flatbush / Midwood,neither
+108,1.0,1.0,0.8793,2.43,4.1043,0.148,0.0024,212308,Upper East Side,paid_only
+409,1.0,0.5452,0.1159,0.647,4.0265,0.08,0.0,146860,Kew Gardens / Woodhaven,neither
+112,1.0,0.914,1.0,0.658,3.6229,2.647,0.0035,188591,Washington Heights / Inwood,neither
+209,1.0,0.4953,0.5081,0.272,3.5455,3.546,0.0024,173006,Soundview / Parkchester,neither
+201,1.0,0.8329,0.7342,0.237,3.1929,0.569,0.0011,96910,Mott Haven / Melrose,neither
+401,0.9413,0.7964,0.5244,2.854,2.0083,0.707,0.0019,179054,Astoria,paid_only
+204,1.0,0.7783,0.4144,0.16,1.9877,1.118,0.0,149631,Highbridge / Concourse,neither
+412,1.0,0.6353,0.5062,0.438,1.8473,1.041,0.0029,251250,Jamaica / Hollis,neither
+203,1.0,0.5002,0.5937,0.06,1.6216,1.622,0.002,83832,Morrisania / Crotona,neither
+316,1.0,0.7437,0.9503,0.144,1.0536,0.399,0.0042,97145,Brownsville,neither
+101,1.0,1.0,1.0,6.47,0.9561,0.956,0.0013,71865,Financial District / Battery Park City,paid_only
+302,1.0,1.0,1.0,3.486,0.9477,0.948,0.0137,125637,Fort Greene / Brooklyn Heights,paid_only
+308,1.0,1.0,0.6886,1.686,0.9203,0.92,0.0075,109719,Crown Heights / Prospect Heights,paid_only
+304,1.0,1.0,0.9042,2.259,0.8494,0.2,0.0022,111975,Bushwick,paid_only
+312,0.867,0.63,0.4545,0.365,0.817,0.098,0.0,194695,Borough Park,neither
+103,1.0,1.0,1.0,6.517,0.6681,0.668,0.0074,153288,Lower East Side / Chinatown,paid_only
+301,1.0,0.9256,0.9674,3.369,0.5754,0.575,0.0071,203002,Williamsburg / Greenpoint,paid_only
+402,0.9741,0.8684,0.884,2.956,0.2976,0.298,0.0026,123823,Sunnyside / Woodside,paid_only
+303,1.0,0.9548,0.8775,1.181,0.2834,0.283,0.0051,180283,Bedford-Stuyvesant,paid_only
+102,1.0,1.0,1.0,10.069,0.1721,0.172,0.0221,86202,Greenwich Village / Soho,paid_only
+205,1.0,0.7234,1.0,0.148,0.1413,0.141,0.0029,135584,University Heights / Fordham,neither
+106,1.0,1.0,0.7457,3.021,0.1333,0.133,0.0004,125446,Stuyvesant Town / Turtle Bay,paid_only
+317,0.8729,0.553,0.3049,0.052,0.0882,0.088,0.0,154489,East Flatbush / Farragut,neither

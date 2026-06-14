@@ -8,7 +8,7 @@
     },
     "acs/B01003-tract-2023-2026-06-01.json": {
       "bytes": 389292,
-      "fetched_at": "2026-05-30T18:55:42+00:00",
+      "fetched_at": "2026-06-13T23:48:31+00:00",
       "sha256": "b83c3748080853aa7a0dbfee7024583a3a0196bf470651f62de70fb7f7a21b91",
       "source_url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,group(B01003),for=tract:*,in=state:36 county:005,047,061,081,085"
     },
@@ -114,6 +114,18 @@
       "sha256": "0c62799b39765d9a20221352ef0a8a48d913640409591f8675b0b22478fa61bc",
       "source_url": "https://data.ny.gov/resource/cb42-qumz.json?%24select=facility_id%2C+program_type%2C+facility_status%2C+county%2C+total_capacity%2C+latitude%2C+longitude&%24where=county+in+%28%27Bronx%27%2C+%27Brooklyn%27%2C+%27Queens%27%2C+%27Manhattan%27%2C+%27Staten+Island%27%29+AND+facility_status+in+%28%27License%27%2C+%27Registration%27%29+AND+program_type+in+%28%27FDC%27%2C+%27GFDC%27%29&%24limit=20000"
     },
+    "nyc_dot_open_streets/open_streets-2026-06-01.geojson": {
+      "bytes": 207830,
+      "fetched_at": "2026-06-13T18:57:02+00:00",
+      "sha256": "49518b132f497788a46cd969cffc53ca1a54e88cdfd11505bed5eed2349fa777",
+      "source_url": "https://data.cityofnewyork.us/resource/uiay-nctu.geojson?%24select=orgname%2C+boroughname%2C+appronstre%2C+apprfromst%2C+apprtostre%2C+reviewstat%2C+apprstartd%2C+apprenddat%2C+segmentidf%2C+segmentidt%2C+the_geom&%24limit=5000"
+    },
+    "nyc_dot_plazas/plazas-2026-06-01.geojson": {
+      "bytes": 666478,
+      "fetched_at": "2026-06-13T18:55:24+00:00",
+      "sha256": "834f75cddf3afe9ee4642b9b48aaa5e45b85dba1abe40f4278dba193b987edb1",
+      "source_url": "https://data.cityofnewyork.us/resource/k5k6-6jex.geojson?%24select=plazaname%2C+borocd%2C+boroname%2C+onstreet%2C+fromstreet%2C+tostreet%2C+shape_area%2C+the_geom&%24limit=5000"
+    },
     "nyc_facdb/day-care-and-pre-kindergarten-2026-06-01.geojson": {
       "bytes": 2166280,
       "fetched_at": "2026-06-06T23:24:55+00:00",
@@ -128,13 +140,13 @@
     },
     "nyc_facdb/public-libraries-2026-06-01.geojson": {
       "bytes": 104638,
-      "fetched_at": "2026-06-06T23:20:39+00:00",
+      "fetched_at": "2026-06-14T14:25:03+00:00",
       "sha256": "e31c86949adb3a71f76370ea460481a4ff3ba61eda48ae1fc3265449fa9f7bde",
       "source_url": "https://data.cityofnewyork.us/resource/ji82-xba5.geojson?%24select=uid%2C+facname%2C+facgroup%2C+facsubgrp%2C+factype%2C+capacity%2C+captype%2C+opname%2C+boro%2C+cd%2C+zipcode%2C+latitude%2C+longitude%2C+geometry&%24where=facsubgrp+%3D+%27PUBLIC+LIBRARIES%27&%24limit=50000"
     },
     "nyc_parks/properties-2026-06-01.geojson": {
       "bytes": 7201748,
-      "fetched_at": "2026-05-30T18:58:49+00:00",
+      "fetched_at": "2026-06-14T04:07:07+00:00",
       "sha256": "e8971d212102c229212d27fe51dd6ba58d56f6ceafbb5d4d78ab5a9cac4100d9",
       "source_url": "https://data.cityofnewyork.us/resource/enfh-gkve.geojson?%24select=gispropnum%2C+signname%2C+name311%2C+class%2C+typecategory%2C+subcategory%2C+borough%2C+communityboard%2C+acres%2C+multipolygon&%24limit=10000"
     },
@@ -156,11 +168,29 @@
       "sha256": "03528a24747cad4ee31e5268da0a0ffb4ae332cdeb9715262c412f5512ac5a47",
       "source_url": "https://oca-2-dev.s3.amazonaws.com/public/oca_index.csv"
     },
+    "osm/cultural-2026-06-01.json": {
+      "bytes": 389808,
+      "fetched_at": "2026-06-13T18:57:25+00:00",
+      "sha256": "4c46c1df84f1bbd04927d0c809cc20c13c21485452d856945d569144b3e50384",
+      "source_url": "https://overpass-api.de/api/interpreter (POST query=cultural)"
+    },
+    "osm/eateries-2026-06-01.json": {
+      "bytes": 4987829,
+      "fetched_at": "2026-06-13T18:57:14+00:00",
+      "sha256": "52646fb9f0cb0f8200276394d420f285a133aa1bf282c86514b4cb43ef1b1247",
+      "source_url": "https://overpass-api.de/api/interpreter (POST query=eateries)"
+    },
     "osm/parks-2026-06-01.json": {
       "bytes": 727980,
       "fetched_at": "2026-05-30T18:34:27+00:00",
       "sha256": "c7b7574cb2d7b018c504bc506341625f773decce7d80dca182b54d3b84c9b665",
       "source_url": "https://overpass-api.de/api/interpreter (POST query=parks)"
+    },
+    "osm/parks_geom-2026-06-01.json": {
+      "bytes": 4388938,
+      "fetched_at": "2026-06-14T00:19:12+00:00",
+      "sha256": "1e9256278e98a155e0a9cf2c910cdc5b59986029e66c1b59ff9cc835d59d1c60",
+      "source_url": "https://overpass-api.de/api/interpreter (POST query=parks_geom)"
     },
     "osm/pharmacies-2026-06-01.json": {
       "bytes": 435851,

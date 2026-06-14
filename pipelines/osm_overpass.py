@@ -37,6 +37,18 @@ QUERIES = {
         );
         out center tags;
     """,
+    # Chapter 5 open-space fallback: parks WITH full polygon geometry (not
+    # just centroids), so per-park acreage can be derived when the official
+    # DPR layer (Socrata enfh-gkve) is unavailable. `out geom;` returns node
+    # coords for ways and per-member geometry for relations.
+    "parks_geom": f"""
+        [out:json][timeout:180];
+        (
+          way["leisure"="park"]({NYC_BBOX});
+          relation["leisure"="park"]({NYC_BBOX});
+        );
+        out geom;
+    """,
     "supermarkets": f"""
         [out:json][timeout:120];
         (
@@ -58,6 +70,31 @@ QUERIES = {
         (
           node["amenity"="school"]({NYC_BBOX});
           way["amenity"="school"]({NYC_BBOX});
+        );
+        out center tags;
+    """,
+    # Chapter 5 street-vitality axis. Eateries = restaurant|cafe|bar ONLY;
+    # fast_food is EXCLUDED (locked decision — it dilutes the "lively street
+    # life" meaning the axis is after). DOHMH 43nn-pn8j is a footer cross-
+    # check, not the spine source.
+    "eateries": f"""
+        [out:json][timeout:180];
+        (
+          node["amenity"~"^(restaurant|cafe|bar)$"]({NYC_BBOX});
+          way["amenity"~"^(restaurant|cafe|bar)$"]({NYC_BBOX});
+        );
+        out center tags;
+    """,
+    # Chapter 5 street-vitality axis, cultural component. Theatres, arts
+    # centres (amenity) + museums, galleries (tourism). Galleries are tagged
+    # tourism=gallery in OSM, not amenity=gallery.
+    "cultural": f"""
+        [out:json][timeout:180];
+        (
+          node["amenity"~"^(theatre|arts_centre)$"]({NYC_BBOX});
+          way["amenity"~"^(theatre|arts_centre)$"]({NYC_BBOX});
+          node["tourism"~"^(museum|gallery)$"]({NYC_BBOX});
+          way["tourism"~"^(museum|gallery)$"]({NYC_BBOX});
         );
         out center tags;
     """,

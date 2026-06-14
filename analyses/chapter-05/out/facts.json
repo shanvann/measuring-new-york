@@ -1,0 +1,190 @@
+{
+  "chapter": 5,
+  "title_working": "Public Space & Urban Experience",
+  "walk_radius_ft": 2640.0,
+  "n_cds": 59,
+  "axes_ready": [
+    "open_space_10min_pct",
+    "vitality_10min_pct",
+    "ped_realm_10min_pct"
+  ],
+  "open_space": {
+    "park_min_acres": 1.0,
+    "counts": {
+      "parks_ge_1acre": 867,
+      "plazas": 93
+    },
+    "plaza_status": "wired",
+    "parks_source": "dpr:enfh-gkve",
+    "parks_provisional": false,
+    "pct_range": [
+      0.7398,
+      1.0
+    ]
+  },
+  "vitality": {
+    "weights": "equal-weight mean of eateries + cultural walk-access %",
+    "counts": {
+      "eateries": 13846,
+      "cultural": 1032
+    },
+    "source": "OSM amenity=restaurant|cafe|bar (NO fast_food); amenity=theatre|arts_centre + tourism=museum|gallery",
+    "subaxis_pct_range": {
+      "eateries": [
+        0.733,
+        1.0
+      ],
+      "cultural": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "ped_realm": {
+    "components_used": [
+      "plazas:k5k6-6jex",
+      "open_streets:uiay-nctu"
+    ],
+    "counts": {
+      "plazas": 93,
+      "open_streets": 379
+    },
+    "axis_reduced": true,
+    "sidewalk_status": "DEFERRED: vfx9-tbb6 exposes no queryable columns/geometry via SODA (SELECT * -> [{}]; empty column metadata; count(*)=50865). Pedestrianization-only for the spine test per PLAN fallback; sidewalk width proxy to be added from the DCP planimetric shapefile post-checkpoint if the spine survives."
+  },
+  "spine_test": {
+    "ready": true,
+    "n": 59,
+    "pairs": {
+      "open_space_10min_pct ~ vitality_10min_pct": 0.456,
+      "open_space_10min_pct ~ ped_realm_10min_pct": 0.427,
+      "vitality_10min_pct ~ ped_realm_10min_pct": 0.786
+    },
+    "kill": true
+  },
+  "headline": {
+    "framing": "paid sociability vs. free public space (per resident)",
+    "paid": {
+      "definition": "OSM eateries (restaurant|cafe|bar) + cultural per 1k residents",
+      "counts": {
+        "eateries": 13846,
+        "cultural": 1032
+      },
+      "note": "DCA Legally Operating Businesses (w7w3-xahh) can enrich this later; OSM eateries+cultural used now per PLAN ('or OSM').",
+      "per1k_range": [
+        0.051,
+        14.581
+      ]
+    },
+    "free": {
+      "definition": "free open-space acres per 1k residents = parks(>=1ac) + plazas; big parks (>=40ac) credited (full acreage) to every bordering CD",
+      "unit": "acres per 1,000 residents",
+      "parks_source": "dpr:enfh-gkve",
+      "big_park_acres_cutoff": 40.0,
+      "counts": {
+        "parks_ge_1acre": 867,
+        "big_parks_ge_40ac": 115,
+        "plazas": 93,
+        "libraries": 228
+      },
+      "libraries_per1k_range": [
+        0.0091,
+        0.0839
+      ],
+      "per1k_range": [
+        0.0882,
+        34.3953
+      ]
+    },
+    "restorative_acres_footnote": {
+      "definition": "park + plaza acres per 1k residents (supply, not walk-access)",
+      "parks_source": "dpr:enfh-gkve",
+      "parks_provisional": false,
+      "per1k_range": [
+        0.08,
+        23.219
+      ]
+    },
+    "comfort": {
+      "definition": "Open Streets street-miles per 1k residents (sidewalk deferred)",
+      "open_streets_segments": 379,
+      "axis_reduced": true,
+      "sidewalk_status": "deferred (vfx9-tbb6 unusable via SODA; add DCP shapefile later)",
+      "per1k_range": [
+        0.0,
+        0.0221
+      ]
+    },
+    "correlation": {
+      "ready": true,
+      "n": 59,
+      "pairs": {
+        "paid_per1k ~ free_per1k": -0.215
+      },
+      "kill": false
+    },
+    "anchors": [
+      {
+        "borocd": "108",
+        "name": "Upper East Side",
+        "paid_per1k": 2.43,
+        "free_per1k": 4.1,
+        "restorative_acres_per1k": 0.15,
+        "quadrant": "paid_only"
+      },
+      {
+        "borocd": "301",
+        "name": "Williamsburg / Greenpoint",
+        "paid_per1k": 3.37,
+        "free_per1k": 0.58,
+        "restorative_acres_per1k": 0.57,
+        "quadrant": "paid_only"
+      },
+      {
+        "borocd": "203",
+        "name": "Morrisania / Crotona",
+        "paid_per1k": 0.06,
+        "free_per1k": 1.62,
+        "restorative_acres_per1k": 1.62,
+        "quadrant": "neither"
+      },
+      {
+        "borocd": "411",
+        "name": "Bayside / Little Neck",
+        "paid_per1k": 0.66,
+        "free_per1k": 16.67,
+        "restorative_acres_per1k": 7.75,
+        "quadrant": "free_realm"
+      },
+      {
+        "borocd": "503",
+        "name": "Tottenville / Great Kills",
+        "paid_per1k": 0.95,
+        "free_per1k": 27.84,
+        "restorative_acres_per1k": 13.86,
+        "quadrant": "both"
+      }
+    ],
+    "render": {
+      "anchors": [
+        "108",
+        "301",
+        "203",
+        "411",
+        "503"
+      ],
+      "paid_median_per1k": 0.84,
+      "free_median_per1k": 6.103,
+      "quadrant_counts": {
+        "paid_only": 16,
+        "both": 14,
+        "neither": 13,
+        "free_realm": 16
+      },
+      "files": {
+        "scatter_svg": "paid-vs-free.svg",
+        "geojson": "public-space.geojson"
+      }
+    }
+  }
+}

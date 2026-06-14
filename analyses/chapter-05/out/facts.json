@@ -77,16 +77,23 @@
       ]
     },
     "free": {
-      "definition": "free public places per 1k residents = parks(>=1ac) + plazas + libraries",
+      "definition": "free open-space acres per 1k residents = parks(>=1ac) + plazas; big parks (>=40ac) credited (full acreage) to every bordering CD",
+      "unit": "acres per 1,000 residents",
       "parks_source": "dpr:enfh-gkve",
+      "big_park_acres_cutoff": 40.0,
       "counts": {
         "parks_ge_1acre": 867,
+        "big_parks_ge_40ac": 115,
         "plazas": 93,
         "libraries": 228
       },
+      "libraries_per1k_range": [
+        0.0091,
+        0.0839
+      ],
       "per1k_range": [
-        0.0388,
-        0.3423
+        0.0882,
+        34.3953
       ]
     },
     "restorative_acres_footnote": {
@@ -112,67 +119,67 @@
       "ready": true,
       "n": 59,
       "pairs": {
-        "paid_per1k ~ free_per1k": 0.049
+        "paid_per1k ~ free_per1k": -0.215
       },
       "kill": false
     },
     "anchors": [
       {
-        "borocd": "105",
-        "name": "Midtown",
-        "paid_per1k": 14.58,
-        "free_per1k": 0.27,
-        "restorative_acres_per1k": 0.46,
-        "quadrant": "both"
+        "borocd": "108",
+        "name": "Upper East Side",
+        "paid_per1k": 2.43,
+        "free_per1k": 4.1,
+        "restorative_acres_per1k": 0.15,
+        "quadrant": "paid_only"
       },
       {
         "borocd": "301",
         "name": "Williamsburg / Greenpoint",
         "paid_per1k": 3.37,
-        "free_per1k": 0.15,
+        "free_per1k": 0.58,
         "restorative_acres_per1k": 0.57,
-        "quadrant": "both"
+        "quadrant": "paid_only"
+      },
+      {
+        "borocd": "203",
+        "name": "Morrisania / Crotona",
+        "paid_per1k": 0.06,
+        "free_per1k": 1.62,
+        "restorative_acres_per1k": 1.62,
+        "quadrant": "neither"
       },
       {
         "borocd": "411",
         "name": "Bayside / Little Neck",
         "paid_per1k": 0.66,
-        "free_per1k": 0.23,
+        "free_per1k": 16.67,
         "restorative_acres_per1k": 7.75,
-        "quadrant": "free_realm"
-      },
-      {
-        "borocd": "206",
-        "name": "Belmont / East Tremont",
-        "paid_per1k": 0.33,
-        "free_per1k": 0.16,
-        "restorative_acres_per1k": 0.5,
         "quadrant": "free_realm"
       },
       {
         "borocd": "503",
         "name": "Tottenville / Great Kills",
         "paid_per1k": 0.95,
-        "free_per1k": 0.23,
+        "free_per1k": 27.84,
         "restorative_acres_per1k": 13.86,
         "quadrant": "both"
       }
     ],
     "render": {
       "anchors": [
-        "105",
+        "108",
         "301",
+        "203",
         "411",
-        "206",
         "503"
       ],
       "paid_median_per1k": 0.84,
-      "free_median_per1k": 0.126,
+      "free_median_per1k": 6.103,
       "quadrant_counts": {
-        "both": 15,
-        "paid_only": 15,
-        "free_realm": 15,
-        "neither": 14
+        "paid_only": 16,
+        "both": 14,
+        "neither": 13,
+        "free_realm": 16
       },
       "files": {
         "scatter_svg": "paid-vs-free.svg",

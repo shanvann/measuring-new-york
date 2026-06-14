@@ -10,7 +10,7 @@ reference; the chapter prose is a renderer of `out/facts.json`.
 How much of a neighborhood's public life is **free** versus **paid**, per
 resident — and do the two go together? Answer: they don't. Across the 59
 residential community districts, paid social space and free public space
-rank-correlate at **Spearman ρ = +0.05** — statistically independent.
+rank-correlate at **Spearman ρ = −0.21** — all but independent (weak, slightly negative).
 
 ## Datasets (snapshot 2026-06-01)
 
@@ -40,27 +40,35 @@ Counts at this snapshot: 13,846 eateries + 1,032 cultural venues (paid);
 ## Metrics
 
 Both axes are **per-capita supply** measures (the Ch. 4 *proximity ≠
-sufficiency* move applied to public space), counted as **places per 1,000
-residents** so the two are directly comparable:
+sufficiency* move applied to public space):
 
-- **Paid sociability** = (eateries + cultural venues) ÷ population × 1,000.
-- **Free public space** = (parks ≥ 1 acre + plazas + libraries) ÷
-  population × 1,000.
+- **Paid sociability** = (eateries + cultural venues) ÷ population × 1,000
+  — paid third *places* per 1,000 residents.
+- **Free open space** = (park + plaza **acres**) ÷ population × 1,000 — with
+  **big parks (≥ 40 acres) credited to every residential CD they border**
+  (full acreage, an *access* measure; ~100 ft buffer catches across-the-
+  street adjacency). Small parks and plazas are assigned to the CD
+  containing their representative point.
 
 Each district is placed in a 2×2 split at the **citywide medians**
-(paid 0.84/1k; free 0.126/1k): *pay to belong* (high paid, low free),
-*free to be* (low paid, high free), *rich in both*, *thin on both*.
-Distribution: 15 / 15 / 15 / 14.
+(paid 0.84 places/1k; free 6.10 acres/1k): *pay to belong* (high paid, low
+free), *free to be* (low paid, high free), *rich in both*, *thin on both*.
+Distribution: 16 / 16 / 14 / 13.
 
-## Why a place-count, not acreage
+## Why acreage (and adjacency), not a place-count
 
-Free space mixes outdoor area (parks, plazas) with an indoor amenity that
-has no meaningful acreage in the data (libraries). Counting discrete
-**places** keeps the unit consistent and parallel to the paid axis
-("for every place you pay to be in, how many are free?"). Trade-off: a
-500-acre park and a pocket plaza each count once, so the measure rewards
-*number of free places*, not room. An acreage-weighted view is retained in
-`facts.json` (`headline.restorative_acres_footnote`).
+An earlier draft counted free *places* per resident. It failed the reality
+test: crediting Central Park to the Upper East Side as one more "place"
+barely moved a district of 200,000+ people, leaving the UES looking
+free-poor when residents are a five-minute walk from a world-class park.
+Acreage fixes that — Central Park's ~840 acres, shared across the UES, is a
+real (if below-median) amount of free space. And because big parks serve
+the neighborhoods *around* them (Central Park is its own non-residential
+district, 164, and otherwise credits to no one), each is credited to every
+bordering CD. **Libraries** have no acreage and can't move a dense
+district's per-capita supply, so they are reported separately
+(`headline.free.libraries_per1k_range`) and carry the chapter's "free but
+restricted" thread rather than entering the headline axis.
 
 ## Spine history (why this framing)
 
@@ -69,15 +77,18 @@ Following the series kill test (|ρ| ≥ 0.75 collapses an axis): the original
 pedestrian realm, each a 10-min-walk %) **fired** — vitality ~ pedestrian
 realm at **ρ = +0.79** — because every walk-access metric restates
 population density. Re-spec'd to per-capita supply; the **paid-vs-free**
-split survives at ρ = +0.05.
+split survives at ρ = −0.21.
 
 ## What the measure misses (chapter caveats; full list in Ch. 10)
 
-- **Counts doors, not hours or welcome.** A library open till 9 and one
-  closing at 5 each count once; the *restriction* story (library hours,
-  park curfews ~1 a.m., POPS hostile design / anti-vagrancy enforcement)
-  is real and **unmeasured** here — the count is a ceiling on free access.
-- **Place-count flattens size** (see above).
+- **Adjacency ≠ access.** Crediting a big park to every bordering district
+  is closer to reality than one-CD assignment, but a park across a six-lane
+  arterial or behind a highway isn't truly usable; the measure rewards being
+  *next to* a big park, not being able to safely walk into it.
+- **Acres ≠ hours or welcome.** A park counts the same open-late or fenced
+  at dusk; the *restriction* story (library hours, park curfews ~1 a.m.,
+  POPS hostile design / anti-vagrancy enforcement) is real and **unmeasured**
+  here. Libraries sit outside the acreage entirely.
 - **Per resident, not per visitor** — flatters near-empty Midtown,
   is hard on dense districts.
 - **OSM completeness varies** by neighborhood; free places come from

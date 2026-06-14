@@ -506,37 +506,74 @@ def _load_libraries():
     return libs[libs.geometry.notna() & ~libs.geometry.is_empty].copy()
 
 
-def per_cd_free_places(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
-    """Free public PLACES per 1,000 residents, per CD (the FREE axis).
+# A "big" park serves the neighborhoods around it, not just the one its
+# centroid lands in — so credit parks at/above this acreage to EVERY
+# residential CD they border (fixes Central Park, which is its own non-
+# residential district and otherwise credits to nobody). Smaller parks stay
+# centroid-assigned.
+BIG_PARK_ACRES = 40.0
 
-    Free = space you can occupy without paying: parks (>= 1 acre) + DOT
-    plazas + public library branches. Counted as discrete places (not
-    acreage) so it parallels the paid-sociability axis (paid places per 1k)
-    and stays legible — "for every place you pay to be in, how many can you
-    be in for free?" Libraries fold in the one free *indoor* third place
-    (free, but the most time-restricted — see the access caveats).
+
+def _big_park_acre_credits(big_parks) -> "pd.Series":
+    """Acres of big parks bordering each residential CD (each big park's FULL
+    acreage credited to every CD it touches — an access measure, not a
+    partition; ~100 ft buffer catches across-the-street adjacency)."""
+    import geopandas as gpd
+    from shared import basemap
+
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)][["boro_cd", "geometry"]]
+    bp = big_parks[["acres", "geometry"]].copy()
+    bp["geometry"] = bp.geometry.buffer(100.0)  # EPSG:2263 feet
+    joined = gpd.sjoin(bp, cds, how="inner", predicate="intersects")
+    return joined.groupby("boro_cd")["acres"].sum()
+
+
+def per_cd_free_places(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
+    """Free open space ACRES per 1,000 residents, per CD (the FREE axis).
+
+    Free = space you can occupy without paying: park + plaza acres per
+    resident. **Big parks (>= 40 ac) are credited to every residential CD
+    they border** (full acreage — an access measure), not just the one
+    containing their centroid, so a five-minute walk to Central Park counts
+    for the Upper East Side (and Prospect Park for its neighbors, etc.).
+    Small parks and plazas are assigned to their containing CD. Acres (not a
+    place-count) so that park *access* — the thing a UES resident actually
+    has — registers; a single library can't fix a dense district's per-capita
+    acreage, so libraries are reported separately (and carry the chapter's
+    "free but restricted" thread) rather than folded into this axis.
     """
     import pandas as pd
 
     parks, parks_src = _parks_with_acres()
+    big = parks[parks["acres"] >= BIG_PARK_ACRES]
+    small = parks[parks["acres"] < BIG_PARK_ACRES]
     plazas = nyc_dot_plazas.load()
-    plazas = plazas[plazas.geometry.notna() & ~plazas.geometry.is_empty]
+    plazas = plazas[plazas.geometry.notna() & ~plazas.geometry.is_empty].copy()
+    plazas["acres"] = plazas["shape_area"] / 43_560.0
     libs = _load_libraries()
 
-    n_parks = _assign_cd(parks).value_counts()
-    n_plazas = _assign_cd(plazas).value_counts()
-    n_libs = _assign_cd(libs).value_counts()
-    counts = n_parks.add(n_plazas, fill_value=0).add(n_libs, fill_value=0)
-    per1k = (counts / cd_pop * 1000.0).reindex(cd_pop.index).fillna(0.0).round(4)
+    small_acres = small["acres"].groupby(_assign_cd(small).values).sum()
+    big_acres = _big_park_acre_credits(big)
+    plaza_acres = plazas["acres"].groupby(_assign_cd(plazas).values).sum()
+    total = small_acres.add(big_acres, fill_value=0).add(plaza_acres, fill_value=0)
+    per1k = (total / cd_pop * 1000.0).reindex(cd_pop.index).fillna(0.0).round(4)
     per1k.name = "free_per1k"
+
+    lib_per1k = (_assign_cd(libs).value_counts() / cd_pop * 1000.0).round(4)
     comp = {
-        "definition": "free public places per 1k residents = parks(>=1ac) + plazas + libraries",
+        "definition": "free open-space acres per 1k residents = parks(>=1ac) + plazas; "
+                      "big parks (>=40ac) credited (full acreage) to every bordering CD",
+        "unit": "acres per 1,000 residents",
         "parks_source": parks_src,
+        "big_park_acres_cutoff": BIG_PARK_ACRES,
         "counts": {
             "parks_ge_1acre": int(len(parks)),
+            "big_parks_ge_40ac": int(len(big)),
             "plazas": int(len(plazas)),
             "libraries": int(len(libs)),
         },
+        "libraries_per1k_range": [float(lib_per1k.min()), float(lib_per1k.max())],
         "per1k_range": [float(per1k.min()), float(per1k.max())],
     }
     return per1k, comp
@@ -569,7 +606,7 @@ def per_cd_comfort(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
 # 5 anchors, 1 per borough, spanning the paid x free quadrants. Re-picked
 # from data after the free/paid recast (see WORKLOG); 206/503 reuse Ch. 4's
 # anchors for series coherence.
-ANCHOR_CDS = ["105", "301", "411", "206", "503"]
+ANCHOR_CDS = ["108", "301", "203", "411", "503"]
 
 
 def _quadrant_class(paid, free, paid_med, free_med) -> str:
@@ -643,7 +680,7 @@ def render_headline(frame: "pd.DataFrame") -> dict:
                     xy=(r["vibrancy_per1k"], r["free_per1k"]),
                     fontsize=8.5, color=palette.TEXT, va="center", zorder=4)
     ax.set_xlabel("Paid sociability — eateries + cultural venues per 1,000 residents (log)")
-    ax.set_ylabel("Free public places — parks + plazas + libraries per 1,000 residents (log)")
+    ax.set_ylabel("Free open space — park + plaza acres per 1,000 residents (log)")
     ax.set_title("Pay to belong, or free to be", fontsize=15, loc="left", pad=8)
     ax.text(0.0, 1.012,
             f"NYC community districts · paid ⊥ free (ρ = "

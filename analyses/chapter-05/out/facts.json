@@ -104,6 +104,69 @@
         "restorative_acres_per1k ~ comfort_os_miles_per1k": -0.018
       },
       "kill": false
+    },
+    "anchors": [
+      {
+        "borocd": "105",
+        "name": "Midtown",
+        "vibrancy_per1k": 14.58,
+        "restorative_acres_per1k": 0.35,
+        "comfort_os_miles_per1k": 0.0143,
+        "quadrant": "lively_tight"
+      },
+      {
+        "borocd": "301",
+        "name": "Williamsburg / Greenpoint",
+        "vibrancy_per1k": 3.37,
+        "restorative_acres_per1k": 0.48,
+        "comfort_os_miles_per1k": 0.0071,
+        "quadrant": "lively_tight"
+      },
+      {
+        "borocd": "411",
+        "name": "Bayside / Little Neck",
+        "vibrancy_per1k": 0.66,
+        "restorative_acres_per1k": 6.5,
+        "comfort_os_miles_per1k": 0.0,
+        "quadrant": "quiet_roomy"
+      },
+      {
+        "borocd": "206",
+        "name": "Belmont / East Tremont",
+        "vibrancy_per1k": 0.33,
+        "restorative_acres_per1k": 0.41,
+        "comfort_os_miles_per1k": 0.003,
+        "quadrant": "quiet_tight"
+      },
+      {
+        "borocd": "503",
+        "name": "Tottenville / Great Kills",
+        "vibrancy_per1k": 0.95,
+        "restorative_acres_per1k": 10.47,
+        "comfort_os_miles_per1k": 0.0003,
+        "quadrant": "lively_roomy"
+      }
+    ],
+    "render": {
+      "anchors": [
+        "105",
+        "301",
+        "411",
+        "206",
+        "503"
+      ],
+      "vibrancy_median_per1k": 0.84,
+      "restorative_median_per1k": 0.62,
+      "quadrant_counts": {
+        "lively_roomy": 14,
+        "lively_tight": 16,
+        "quiet_roomy": 16,
+        "quiet_tight": 13
+      },
+      "files": {
+        "scatter_svg": "vibrancy-vs-restorative.svg",
+        "geojson": "public-space.geojson"
+      }
     }
   }
 }

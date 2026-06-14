@@ -520,6 +520,110 @@ def per_cd_comfort(cd_pop: "pd.Series") -> tuple["pd.Series", dict]:
     return per1k, comp
 
 
+# ---------- anchors + headline render (Path B scatter) ----------
+
+# 5 anchors, 1 per borough, spanning the vibrancy x restorative quadrants.
+# 206/503 reuse Ch. 4's anchors for series coherence.
+#   105 Midtown            — MN — vibrant but no room to breathe (surprise)
+#   301 Williamsburg       — BK — vibrant, tight on open space
+#   411 Bayside/Little Neck— QN — quiet residential comfort (lo vib, hi room)
+#   206 Belmont/E. Tremont — BX — short on both (double deficit)
+#   503 Tottenville        — SI — the most restorative CD in the city
+ANCHOR_CDS = ["105", "301", "411", "206", "503"]
+
+
+def _quadrant_class(vib, res, vib_med, res_med) -> str:
+    hi_v, hi_r = vib >= vib_med, res >= res_med
+    return ("lively_roomy" if hi_v and hi_r else
+            "lively_tight" if hi_v and not hi_r else
+            "quiet_roomy" if (not hi_v) and hi_r else "quiet_tight")
+
+
+def render_headline(frame: "pd.DataFrame") -> dict:
+    """Render the Path-B headline: vibrancy-vs-restorative scatter + geojson.
+
+    Writes:
+      out/vibrancy-vs-restorative.svg   static headline scatter (the chapter)
+      out/public-space.geojson          per-CD all axes + ranks + quadrant
+                                         class, display-CRS, 50-ft simplified,
+                                         consumed by <NycMap>/<NeighborhoodExplorer>
+    """
+    import matplotlib.pyplot as plt
+    from shared import basemap, palette
+
+    palette.for_matplotlib()
+    f = frame.set_index("borocd")
+    vib_med = float(f["vibrancy_per1k"].median())
+    res_med = float(f["restorative_acres_per1k"].median())
+
+    QCOLOR = {
+        "lively_tight": palette.ALERT,      # vibrant, no room — the tension
+        "quiet_roomy": palette.ACCENT,      # room, little life
+        "lively_roomy": "#4a8a85",          # the rare both
+        "quiet_tight": palette.MUTED,       # short on both
+    }
+    cls = {cd: _quadrant_class(r["vibrancy_per1k"], r["restorative_acres_per1k"],
+                               vib_med, res_med)
+           for cd, r in f.iterrows()}
+
+    # ---- geojson sibling for <NycMap> ----
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
+    cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
+    geo = cds[["boro_cd", "geometry"]].copy()
+    geo["name"] = geo["boro_cd"].map(name_for)
+    for col in ["vibrancy_per1k", "restorative_acres_per1k", "comfort_os_miles_per1k",
+                "open_space_10min_pct", "vitality_10min_pct", "ped_realm_10min_pct"]:
+        geo[col] = f[col].reindex(geo["boro_cd"].values).values
+    geo["rank_vibrancy"] = geo["vibrancy_per1k"].rank(ascending=False, method="min").astype("Int64")
+    geo["rank_restorative"] = geo["restorative_acres_per1k"].rank(ascending=False, method="min").astype("Int64")
+    geo["quadrant"] = geo["boro_cd"].map(cls)
+    geojson_path = OUT / "public-space.geojson"
+    basemap.to_display(geo).to_file(geojson_path, driver="GeoJSON")
+    print(f"[wrote] {geojson_path}  ({geojson_path.stat().st_size:,} bytes)")
+
+    # ---- headline scatter ----
+    fig, ax = plt.subplots(figsize=(8.5, 8.0))
+    for cd, r in f.iterrows():
+        c = QCOLOR[cls[cd]]
+        is_anchor = cd in ANCHOR_CDS
+        ax.scatter(r["vibrancy_per1k"], r["restorative_acres_per1k"],
+                   s=70 if is_anchor else 32, c=c,
+                   edgecolor=palette.TEXT if is_anchor else "none",
+                   linewidth=0.8, zorder=3 if is_anchor else 2,
+                   alpha=0.95 if is_anchor else 0.6)
+    ax.axvline(vib_med, color=palette.BORDER, lw=1, zorder=1)
+    ax.axhline(res_med, color=palette.BORDER, lw=1, zorder=1)
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    for cd in ANCHOR_CDS:
+        r = f.loc[cd]
+        ax.annotate(f"  {name_for(cd).split(' / ')[0]}",
+                    xy=(r["vibrancy_per1k"], r["restorative_acres_per1k"]),
+                    fontsize=8.5, color=palette.TEXT, va="center", zorder=4)
+    ax.set_xlabel("Vibrancy — eateries + cultural venues per 1,000 residents (log)")
+    ax.set_ylabel("Restorative space — park + plaza acres per 1,000 residents (log)")
+    ax.set_title("Lively or roomy — rarely both", fontsize=15, loc="left", pad=8)
+    ax.text(0.0, 1.012,
+            f"NYC community districts · vibrancy ⊥ restorative space (ρ = "
+            f"{f['vibrancy_per1k'].rank().corr(f['restorative_acres_per1k'].rank()):+.2f})",
+            transform=ax.transAxes, fontsize=9.5, color=palette.TEXT_SECONDARY,
+            ha="left", va="bottom")
+    svg_path = OUT / "vibrancy-vs-restorative.svg"
+    fig.savefig(svg_path, bbox_inches="tight")
+    plt.close(fig)
+    print(f"[wrote] {svg_path}  ({svg_path.stat().st_size:,} bytes)")
+
+    return {
+        "anchors": ANCHOR_CDS,
+        "vibrancy_median_per1k": round(vib_med, 3),
+        "restorative_median_per1k": round(res_med, 3),
+        "quadrant_counts": {k: int(v) for k, v in
+                            __import__("collections").Counter(cls.values()).items()},
+        "files": {"scatter_svg": svg_path.name, "geojson": geojson_path.name},
+    }
+
+
 # ---------- spine test (copied from Ch. 4) ----------
 
 def spine_test(axes: dict) -> dict:
@@ -595,8 +699,30 @@ def main() -> int:
     frame = frame.reset_index()
     frame["cd_name"] = frame["borocd"].map(name_for)
 
+    # quadrant class on the frame (for rankings.csv + anchor table)
+    vib_med = float(frame["vibrancy_per1k"].median())
+    res_med = float(frame["restorative_acres_per1k"].median())
+    frame["quadrant"] = [
+        _quadrant_class(v, r, vib_med, res_med)
+        for v, r in zip(frame["vibrancy_per1k"], frame["restorative_acres_per1k"])
+    ]
     rankings = frame.sort_values("vibrancy_per1k", ascending=False)
     rankings.to_csv(OUT / "rankings.csv", index=False)
+
+    print("\n[ch.5] render headline (Path-B scatter + geojson)")
+    render = render_headline(frame)
+
+    anchor_table = [
+        {
+            "borocd": cd,
+            "name": name_for(cd),
+            "vibrancy_per1k": round(float(frame.set_index("borocd").loc[cd, "vibrancy_per1k"]), 2),
+            "restorative_acres_per1k": round(float(frame.set_index("borocd").loc[cd, "restorative_acres_per1k"]), 2),
+            "comfort_os_miles_per1k": round(float(frame.set_index("borocd").loc[cd, "comfort_os_miles_per1k"]), 4),
+            "quadrant": frame.set_index("borocd").loc[cd, "quadrant"],
+        }
+        for cd in ANCHOR_CDS
+    ]
 
     facts = {
         "chapter": 5,
@@ -620,6 +746,8 @@ def main() -> int:
             "restorative": restorative_c,
             "comfort": comfort_c,
             "correlations": path_b_spine,
+            "anchors": anchor_table,
+            "render": render,
         },
     }
     (OUT / "facts.json").write_text(json.dumps(facts, indent=2) + "\n")

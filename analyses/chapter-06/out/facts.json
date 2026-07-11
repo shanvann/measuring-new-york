@@ -17,6 +17,10 @@
     },
     "kill": false
   },
+  "traffic_normalization_check": {
+    "per1k_vs_per_mile_rho": 0.713,
+    "note": "Spearman \u03c1 between traffic KI per-1k-resident and per-street-mile rankings. High \u03c1 means the dense-core traffic toll is not merely a resident-denominator artifact \u2014 it survives an exposure denominator."
+  },
   "axes": {
     "violent": {
       "source": "NYPD complaints qgea-i56i",
@@ -65,6 +69,84 @@
     }
   },
   "property_note": "property crime carried as a descriptive third axis; the bodily-harm story is violent + traffic.",
+  "anchors": [
+    {
+      "borocd": "209",
+      "name": "Soundview / Parkchester",
+      "violent_per1k": 8.38,
+      "violent_rank": 14,
+      "traffic_ki_per1k": 1.06,
+      "traffic_rank": 50,
+      "property_per1k": 11.06,
+      "property_rank": 13,
+      "quadrant": "feared_not_deadly"
+    },
+    {
+      "borocd": "106",
+      "name": "Stuyvesant Town / Turtle Bay",
+      "violent_per1k": 3.23,
+      "violent_rank": 43,
+      "traffic_ki_per1k": 2.46,
+      "traffic_rank": 5,
+      "property_per1k": 9.93,
+      "property_rank": 19,
+      "quadrant": "calm_but_deadly"
+    },
+    {
+      "borocd": "316",
+      "name": "Brownsville",
+      "violent_per1k": 10.51,
+      "violent_rank": 8,
+      "traffic_ki_per1k": 1.74,
+      "traffic_rank": 27,
+      "property_per1k": 7.05,
+      "property_rank": 40,
+      "quadrant": "feared_and_deadly"
+    },
+    {
+      "borocd": "411",
+      "name": "Bayside / Little Neck",
+      "violent_per1k": 1.43,
+      "violent_rank": 58,
+      "traffic_ki_per1k": 0.7,
+      "traffic_rank": 58,
+      "property_per1k": 8.99,
+      "property_rank": 28,
+      "quadrant": "safe"
+    },
+    {
+      "borocd": "503",
+      "name": "Tottenville / Great Kills",
+      "violent_per1k": 0.99,
+      "violent_rank": 59,
+      "traffic_ki_per1k": 0.58,
+      "traffic_rank": 59,
+      "property_per1k": 3.65,
+      "property_rank": 59,
+      "quadrant": "safe"
+    }
+  ],
+  "headline": {
+    "anchors": [
+      "209",
+      "106",
+      "316",
+      "411",
+      "503"
+    ],
+    "violent_median_per1k": 4.839,
+    "traffic_median_per1k": 1.525,
+    "quadrant_counts": {
+      "calm_but_deadly": 10,
+      "feared_and_deadly": 20,
+      "safe": 19,
+      "feared_not_deadly": 10
+    },
+    "files": {
+      "scatter_svg": "crime-vs-danger.svg",
+      "geojson": "safety.geojson"
+    }
+  },
   "citywide": {
     "violent_per1k_median": 4.839,
     "traffic_ki_per1k_median": 1.525,

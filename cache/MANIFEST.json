@@ -150,6 +150,12 @@
       "sha256": "e8971d212102c229212d27fe51dd6ba58d56f6ceafbb5d4d78ab5a9cac4100d9",
       "source_url": "https://data.cityofnewyork.us/resource/enfh-gkve.geojson?%24select=gispropnum%2C+signname%2C+name311%2C+class%2C+typecategory%2C+subcategory%2C+borough%2C+communityboard%2C+acres%2C+multipolygon&%24limit=10000"
     },
+    "nyc_street_centerline/street-miles-by-zip-2026-06-01.json": {
+      "bytes": 10096,
+      "fetched_at": "2026-07-11T18:26:01+00:00",
+      "sha256": "9565d6c134c1519f8e1d5cac3fd5de9b96f1e73964aeebb3af4258e526f70e20",
+      "source_url": "https://data.cityofnewyork.us/resource/inkn-q76z.json?%24select=l_zip%2Csum%28segmentlength%29+as+ft&%24where=rw_type%3D%271%27+and+l_zip+IS+NOT+NULL&%24group=l_zip&%24limit=5000"
+    },
     "nypd_collisions/ped-cyc-casualties-2022-01-01_2024-12-31.json": {
       "bytes": 8769792,
       "fetched_at": "2026-07-11T17:58:58+00:00",

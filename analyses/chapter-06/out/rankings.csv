@@ -1,60 +1,60 @@
-borocd,violent_per1k,traffic_ki_per1k,property_per1k,traffic_killed_per100k,pop,cd_name,violent_per1k_rank,traffic_ki_per1k_rank,property_per1k_rank
-201,16.827,2.232,15.268,2.408,96910,Mott Haven / Melrose,1,6,4
-202,16.042,1.874,13.954,3.377,59218,Hunts Point / Longwood,2,17,7
-105,15.131,6.235,64.954,3.262,71533,Midtown,3,1,1
-203,13.96,1.825,13.292,0.795,83832,Morrisania / Crotona,4,22,9
-206,13.702,1.796,12.892,1.174,85192,Belmont / East Tremont,5,23,10
-204,11.836,1.448,11.09,0.891,149631,Highbridge / Concourse,6,35,12
-111,10.948,2.198,11.366,1.874,124499,East Harlem,7,7,11
-316,10.513,1.736,7.055,0.343,97145,Brownsville,8,27,40
-205,9.529,1.423,8.206,0.738,135584,University Heights / Fordham,9,36,32
-305,9.327,1.897,9.858,0.84,198521,East New York / Cypress Hills,10,16,21
-207,8.959,1.277,9.269,1.017,131046,Kingsbridge Heights / Bedford Park,11,41,26
-110,8.787,1.952,9.548,0.988,134893,Central Harlem,12,12,23
-212,8.438,1.28,9.945,1.038,160621,Williamsbridge / Baychester,13,40,18
-209,8.375,1.065,11.065,1.927,173006,Soundview / Parkchester,14,50,13
-104,7.632,2.952,18.842,2.277,117099,Chelsea / Hell's Kitchen,15,2,3
-102,7.173,2.749,34.199,1.547,86202,Greenwich Village / Soho,16,3,2
-304,6.984,1.738,10.127,0.893,111975,Bushwick,17,26,17
-404,6.929,1.493,8.659,1.779,168616,Elmhurst / Corona,18,31,29
-412,6.81,1.469,6.948,0.663,251250,Jamaica / Hollis,19,33,42
-317,6.788,1.914,6.665,1.079,154489,East Flatbush / Farragut,20,13,44
-302,6.383,2.685,13.828,0.531,125637,Fort Greene / Brooklyn Heights,21,4,8
-303,6.37,1.834,7.54,1.849,180283,Bedford-Stuyvesant,22,21,36
-103,6.017,2.053,14.556,3.044,153288,Lower East Side / Chinatown,23,10,5
-308,5.988,1.85,6.574,1.823,109719,Crown Heights / Prospect Heights,24,20,45
-211,5.894,1.128,10.669,1.726,115883,Pelham Parkway / Morris Park,25,49,14
-109,5.832,1.552,9.062,0.887,112774,Manhattanville / Hamilton Heights,26,29,27
-112,5.508,1.271,8.194,1.06,188591,Washington Heights / Inwood,27,42,33
-403,5.49,1.525,8.283,1.852,161945,Jackson Heights / North Corona,28,30,31
-313,5.196,1.353,6.386,0.908,110145,Coney Island / Brighton Beach,29,39,47
-309,4.839,1.999,5.669,1.328,100366,South Crown Heights / Lefferts Gardens,30,11,50
-501,4.698,1.241,5.086,1.47,181349,St. George / Stapleton,31,43,54
-101,4.671,1.86,14.541,0.928,71865,Financial District / Battery Park City,32,18,6
-414,4.657,0.917,4.476,1.787,130562,Rockaway / Broad Channel,33,55,57
-401,4.581,1.757,8.34,1.489,179054,Astoria,34,25,30
-410,4.404,1.213,7.341,1.45,137905,South Ozone Park / Howard Beach,35,45,39
-210,4.129,0.802,9.483,1.323,126010,Throgs Neck / Co-op City,36,57,24
-307,4.125,2.187,7.803,1.663,120253,Sunset Park,37,8,35
-402,3.987,1.914,9.839,2.961,123823,Sunnyside / Woodside,38,13,22
-409,3.815,1.207,5.1,1.135,146860,Kew Gardens / Woodhaven,39,46,53
-301,3.686,2.141,10.561,1.478,203002,Williamsburg / Greenpoint,40,9,15
-314,3.635,1.901,4.962,2.089,159561,Flatbush / Midwood,41,15,56
-208,3.405,0.94,10.406,1.221,109169,Riverdale / Fieldston,42,54,16
-106,3.228,2.461,9.927,1.594,125446,Stuyvesant Town / Turtle Bay,43,5,19
-407,3.215,1.371,9.423,1.893,246517,Flushing / Bay Terrace,44,38,25
-318,3.212,1.412,6.567,2.22,195224,Canarsie / Flatlands,45,37,46
-306,3.121,1.76,7.487,1.653,121009,Park Slope / Carroll Gardens,46,24,37
-413,2.965,0.944,5.743,1.625,205191,Queens Village / Cambria Heights,47,53,49
-405,2.929,1.218,6.972,0.92,181189,Ridgewood / Maspeth,48,44,41
-315,2.792,1.694,6.781,2.515,159032,Sheepshead Bay / Manhattan Beach,49,28,43
-107,2.51,0.998,7.864,1.067,218761,Upper West Side,50,51,34
-408,2.432,1.19,7.345,1.053,158329,Hillcrest / Fresh Meadows,51,47,38
-311,2.098,1.463,5.509,1.295,180184,Bensonhurst / Bath Beach,52,34,51
-108,2.038,1.151,9.904,1.413,212308,Upper East Side,53,48,20
-502,1.726,0.964,5.056,1.173,142132,South Beach / Willowbrook,54,52,55
-312,1.683,1.854,4.403,2.054,194695,Borough Park,55,19,58
-310,1.61,1.474,5.387,2.932,125053,Bay Ridge / Dyker Heights,56,32,52
-406,1.552,0.914,5.801,0.55,121131,Forest Hills / Rego Park,57,56,48
-411,1.432,0.704,8.99,1.649,121282,Bayside / Little Neck,58,58,28
-503,0.986,0.581,3.655,0.593,168729,Tottenville / Great Kills,59,59,59
+borocd,violent_per1k,traffic_ki_per1k,property_per1k,traffic_killed_per100k,traffic_ki_per_mile,street_miles,pop,cd_name,violent_per1k_rank,traffic_ki_per1k_rank,property_per1k_rank,quadrant
+201,16.827,2.232,15.268,2.408,4.52,47.86,96910,Mott Haven / Melrose,1,6,4,feared_and_deadly
+202,16.042,1.874,13.954,3.377,2.592,42.82,59218,Hunts Point / Longwood,2,17,7,feared_and_deadly
+105,15.131,6.235,64.954,3.262,10.999,40.55,71533,Midtown,3,1,1,feared_and_deadly
+203,13.96,1.825,13.292,0.795,4.371,35.0,83832,Morrisania / Crotona,4,22,9,feared_and_deadly
+206,13.702,1.796,12.892,1.174,3.77,40.58,85192,Belmont / East Tremont,5,23,10,feared_and_deadly
+204,11.836,1.448,11.09,0.891,4.261,50.85,149631,Highbridge / Concourse,6,35,12,feared_not_deadly
+111,10.948,2.198,11.366,1.874,7.095,38.57,124499,East Harlem,7,7,11,feared_and_deadly
+316,10.513,1.736,7.055,0.343,3.554,47.46,97145,Brownsville,8,27,40,feared_and_deadly
+205,9.529,1.423,8.206,0.738,5.715,33.77,135584,University Heights / Fordham,9,36,32,feared_not_deadly
+305,9.327,1.897,9.858,0.84,3.263,115.44,198521,East New York / Cypress Hills,10,16,21,feared_and_deadly
+207,8.959,1.277,9.269,1.017,4.125,40.56,131046,Kingsbridge Heights / Bedford Park,11,41,26,feared_not_deadly
+110,8.787,1.952,9.548,0.988,8.15,32.31,134893,Central Harlem,12,12,23,feared_and_deadly
+212,8.438,1.28,9.945,1.038,1.905,107.94,160621,Williamsbridge / Baychester,13,40,18,feared_not_deadly
+209,8.375,1.065,11.065,1.927,2.075,88.85,173006,Soundview / Parkchester,14,50,13,feared_not_deadly
+104,7.632,2.952,18.842,2.277,8.02,43.1,117099,Chelsea / Hell's Kitchen,15,2,3,feared_and_deadly
+102,7.173,2.749,34.199,1.547,5.503,43.07,86202,Greenwich Village / Soho,16,3,2,feared_and_deadly
+304,6.984,1.738,10.127,0.893,3.789,51.38,111975,Bushwick,17,26,17,feared_and_deadly
+404,6.929,1.493,8.659,1.779,4.53,55.56,168616,Elmhurst / Corona,18,31,29,feared_not_deadly
+412,6.81,1.469,6.948,0.663,1.855,198.9,251250,Jamaica / Hollis,19,33,42,feared_not_deadly
+317,6.788,1.914,6.665,1.079,3.547,83.35,154489,East Flatbush / Farragut,20,13,44,feared_and_deadly
+302,6.383,2.685,13.828,0.531,4.538,74.34,125637,Fort Greene / Brooklyn Heights,21,4,8,feared_and_deadly
+303,6.37,1.834,7.54,1.849,4.514,73.26,180283,Bedford-Stuyvesant,22,21,36,feared_and_deadly
+103,6.017,2.053,14.556,3.044,7.709,40.82,153288,Lower East Side / Chinatown,23,10,5,feared_and_deadly
+308,5.988,1.85,6.574,1.823,5.079,39.97,109719,Crown Heights / Prospect Heights,24,20,45,feared_and_deadly
+211,5.894,1.128,10.669,1.726,1.52,85.95,115883,Pelham Parkway / Morris Park,25,49,14,feared_not_deadly
+109,5.832,1.552,9.062,0.887,4.965,35.25,112774,Manhattanville / Hamilton Heights,26,29,27,feared_and_deadly
+112,5.508,1.271,8.194,1.06,4.715,50.83,188591,Washington Heights / Inwood,27,42,33,feared_not_deadly
+403,5.49,1.525,8.283,1.852,4.425,55.82,161945,Jackson Heights / North Corona,28,30,31,feared_and_deadly
+313,5.196,1.353,6.386,0.908,2.48,60.07,110145,Coney Island / Brighton Beach,29,39,47,feared_not_deadly
+309,4.839,1.999,5.669,1.328,5.272,38.06,100366,South Crown Heights / Lefferts Gardens,30,11,50,feared_and_deadly
+501,4.698,1.241,5.086,1.47,1.018,221.12,181349,St. George / Stapleton,31,43,54,safe
+101,4.671,1.86,14.541,0.928,3.613,37.0,71865,Financial District / Battery Park City,32,18,6,calm_but_deadly
+414,4.657,0.917,4.476,1.787,0.82,145.99,130562,Rockaway / Broad Channel,33,55,57,safe
+401,4.581,1.757,8.34,1.489,2.441,128.9,179054,Astoria,34,25,30,calm_but_deadly
+410,4.404,1.213,7.341,1.45,1.145,146.12,137905,South Ozone Park / Howard Beach,35,45,39,safe
+210,4.129,0.802,9.483,1.323,0.985,102.55,126010,Throgs Neck / Co-op City,36,57,24,safe
+307,4.125,2.187,7.803,1.663,3.347,78.58,120253,Sunset Park,37,8,35,calm_but_deadly
+402,3.987,1.914,9.839,2.961,2.233,106.14,123823,Sunnyside / Woodside,38,13,22,calm_but_deadly
+409,3.815,1.207,5.1,1.135,2.02,87.79,146860,Kew Gardens / Woodhaven,39,46,53,safe
+301,3.686,2.141,10.561,1.478,4.318,100.66,203002,Williamsburg / Greenpoint,40,9,15,calm_but_deadly
+314,3.635,1.901,4.962,2.089,3.838,79.03,159561,Flatbush / Midwood,41,15,56,calm_but_deadly
+208,3.405,0.94,10.406,1.221,2.087,49.19,109169,Riverdale / Fieldston,42,54,16,safe
+106,3.228,2.461,9.927,1.594,8.485,36.38,125446,Stuyvesant Town / Turtle Bay,43,5,19,calm_but_deadly
+407,3.215,1.371,9.423,1.893,1.297,260.66,246517,Flushing / Bay Terrace,44,38,25,safe
+318,3.212,1.412,6.567,2.22,1.925,143.22,195224,Canarsie / Flatlands,45,37,46,safe
+306,3.121,1.76,7.487,1.653,3.19,66.78,121009,Park Slope / Carroll Gardens,46,24,37,calm_but_deadly
+413,2.965,0.944,5.743,1.625,0.691,280.46,205191,Queens Village / Cambria Heights,47,53,49,safe
+405,2.929,1.218,6.972,0.92,1.588,138.92,181189,Ridgewood / Maspeth,48,44,41,safe
+315,2.792,1.694,6.781,2.515,2.223,121.15,159032,Sheepshead Bay / Manhattan Beach,49,28,43,calm_but_deadly
+107,2.51,0.998,7.864,1.067,5.177,42.17,218761,Upper West Side,50,51,34,safe
+408,2.432,1.19,7.345,1.053,1.219,154.51,158329,Hillcrest / Fresh Meadows,51,47,38,safe
+311,2.098,1.463,5.509,1.295,3.037,86.83,180184,Bensonhurst / Bath Beach,52,34,51,safe
+108,2.038,1.151,9.904,1.413,4.578,53.37,212308,Upper East Side,53,48,20,safe
+502,1.726,0.964,5.056,1.173,0.462,296.49,142132,South Beach / Willowbrook,54,52,55,safe
+312,1.683,1.854,4.403,2.054,3.861,93.5,194695,Borough Park,55,19,58,calm_but_deadly
+310,1.61,1.474,5.387,2.932,2.207,83.53,125053,Bay Ridge / Dyker Heights,56,32,52,safe
+406,1.552,0.914,5.801,0.55,1.525,72.55,121131,Forest Hills / Rego Park,57,56,48,safe
+411,1.432,0.704,8.99,1.649,0.454,188.05,121282,Bayside / Little Neck,58,58,28,safe
+503,0.986,0.581,3.655,0.593,0.296,331.23,168729,Tottenville / Great Kills,59,59,59,safe

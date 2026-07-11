@@ -167,12 +167,17 @@ chapter — see Punch list**), `render_headline_choropleth` from Ch. 2/3/4/5,
   series consistency; traffic KSI also reported per street-mile so the
   arterial story isn't a resident-count artifact; Midtown / Lower-Manhattan
   daytime-population distortion disclosed in the footer for affected anchors.
-- **Perceived-safety source = DOHMH CHS `safeneighborhood16` 2016 @ UHF42,
-  overlay only (LOCKED 2026-07-11).** Chosen after research confirmed no
-  current per-CD perceived survey exists. UHF42→CD areal crosswalk; used for
-  the fear-calibration overlay, never the headline. 311 `Street Light
-  Condition` remains available as a current-year environmental-disorder
-  cross-reference if the CHS overlay proves too coarse.
+- **Perceived-safety overlay DROPPED — data not accessible (RESOLVED
+  2026-07-11).** Second research pass confirmed the CHS 2016 public-use file
+  **omits the neighborhood geography variable** (`uhf34` is DUA-restricted,
+  absent from the 10k-row public microdata), so no per-CD/per-UHF perceived
+  rate is computable without a DOHMH Data Use Agreement. Only a **citywide**
+  2016 figure exists: **14.5% rated their neighborhood unsafe from crime**
+  (weighted). The chapter therefore makes the fear-vs-harm argument from
+  *where the objective harm lands* (violent crime in the feared districts,
+  traffic in the calm ones), not from a measured fear axis, and says so.
+  A UHF34→CD crosswalk is prepped (`scratchpad/uhf_cd_crosswalk.csv`) if the
+  DUA microdata is ever obtained.
 - **Crime window / vintage.** NYPD complaint + collision data are event
   streams — pull a **fixed 3-year window** (target **2022-01-01 →
   2024-12-31**) so per-CD rates are stable, not single-year noise;

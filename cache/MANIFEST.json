@@ -156,6 +156,12 @@
       "sha256": "9565d6c134c1519f8e1d5cac3fd5de9b96f1e73964aeebb3af4258e526f70e20",
       "source_url": "https://data.cityofnewyork.us/resource/inkn-q76z.json?%24select=l_zip%2Csum%28segmentlength%29+as+ft&%24where=rw_type%3D%271%27+and+l_zip+IS+NOT+NULL&%24group=l_zip&%24limit=5000"
     },
+    "nypd_collisions/killed-persons-2022-01-01_2024-12-31.json": {
+      "bytes": 80560,
+      "fetched_at": "2026-07-11T19:54:32+00:00",
+      "sha256": "79b346c9e33a8e58c54ecf3b633342b23af2dbe98b148d72aedee53ac473ef86",
+      "source_url": "https://data.cityofnewyork.us/resource/f55k-p6yu.json?$select=collision_id,person_type,person_sex,person_age&$where=crash_date%20between%20'2022-01-01T00:00:00'%20and%20'2024-12-31T23:59:59'%20and%20person_injury='Killed'&$limit=50000"
+    },
     "nypd_collisions/ped-cyc-casualties-2022-01-01_2024-12-31.json": {
       "bytes": 8769792,
       "fetched_at": "2026-07-11T17:58:58+00:00",
@@ -167,6 +173,12 @@
       "fetched_at": "2026-07-11T17:58:48+00:00",
       "sha256": "140d265050dc993c3629e367914a84b8d68f43dd6bf070c234591545acee3b31",
       "source_url": "https://data.cityofnewyork.us/resource/qgea-i56i.json?$where=cmplnt_fr_dt between '2022-01-01T00:00:00' and '2024-12-31T23:59:59' and law_cat_cd='FELONY' and ky_cd in ('101','104','105','106','107','109','110') and x_coord_cd IS NOT NULL"
+    },
+    "nypd_complaints/murders-demo-2022-01-01_2024-12-31.json": {
+      "bytes": 85897,
+      "fetched_at": "2026-07-11T19:54:29+00:00",
+      "sha256": "65cb86c7f8fd272816d6e3e48d592e070c3066c584427efccdd0bc8a4783d399",
+      "source_url": "https://data.cityofnewyork.us/resource/qgea-i56i.json?$select=cmplnt_num,vic_sex,vic_age_group&$where=cmplnt_fr_dt%20between%20'2022-01-01T00:00:00'%20and%20'2024-12-31T23:59:59'%20and%20ky_cd='101'&$limit=50000"
     },
     "nys_food_stores/nyc-2026-06-01.geojson": {
       "bytes": 3910305,

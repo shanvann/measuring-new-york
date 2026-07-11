@@ -1,0 +1,32 @@
+{
+  "window": [
+    "2022-01-01",
+    "2024-12-31"
+  ],
+  "annualized": true,
+  "deaths_per_year": {
+    "murder": 394,
+    "all_road": 279,
+    "pedestrian": 122,
+    "cyclist": 25,
+    "ped_plus_cyclist": 147
+  },
+  "totals_over_window": {
+    "murder": 1181,
+    "all_road": 838,
+    "ped_plus_cyclist": 440
+  },
+  "murder_victims": {
+    "n": 1181,
+    "pct_male": 82.5,
+    "pct_under_45": 72.3,
+    "pct_65_plus": 6.4
+  },
+  "traffic_victims_ped_cyc": {
+    "n": 440,
+    "pct_male": 65.2,
+    "pct_under_45": 34.3,
+    "pct_65_plus": 31.8
+  },
+  "concentration_note": "Murder deaths concentrate in young men (dispute/network violence signature); traffic deaths spread across the population and skew elderly. The NYPD open data has NO gang or victim-offender-relationship field \u2014 demographics are an in-data PROXY for targeted-vs-random, not proof of gang involvement."
+}

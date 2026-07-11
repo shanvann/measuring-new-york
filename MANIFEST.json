@@ -39,6 +39,24 @@
       "geography": "ZIP-only (postalcode in oca_addresses.csv). No BBL/BIN. CD aggregation via zip→CD crosswalk in shared/zip_to_cd.py.",
       "note": "True court filings, not marshal-executed evictions. Same source the Furman Center, Right to Counsel NYC, and the Cornell ILR dashboard use. ETL repo: https://github.com/housing-data-coalition/oca"
     },
+    "nypd_complaints": {
+      "dataset_id": "qgea-i56i",
+      "window": "2022-01-01 .. 2024-12-31",
+      "source": "https://data.cityofnewyork.us/resource/qgea-i56i.json",
+      "subset": "seven major felonies (ky_cd 101 murder, 104 rape, 105 robbery, 106 felony assault = VIOLENT; 107 burglary, 109 grand larceny, 110 GLA motor vehicle = PROPERTY), law_cat_cd='FELONY'",
+      "geography": "State Plane x_coord_cd/y_coord_cd (EPSG:2263); CD assigned by point-in-polygon.",
+      "vintage_exception": "Series freeze is 2026-06-01, but crime is an event stream — a fixed 3-year window (2022-2024) is used so per-CD rates are stable, not single-year noise. Rates annualized.",
+      "note": "Chapter 6 (Safety). 375,823 complaints fetched; ~2,292 lacked a CD match and were dropped."
+    },
+    "nypd_collisions": {
+      "dataset_id": "h9gi-nx95",
+      "window": "2022-01-01 .. 2024-12-31",
+      "source": "https://data.cityofnewyork.us/resource/h9gi-nx95.json",
+      "subset": "crashes injuring or killing a pedestrian or cyclist (ped+cyclist KI). Public data lacks injury severity, so this is killed-OR-injured, not strict Vision-Zero KSI.",
+      "geography": "latitude/longitude (EPSG:4326 -> 2263); CD assigned by point-in-polygon.",
+      "vintage_exception": "Same 3-year-window rationale as nypd_complaints.",
+      "note": "Chapter 6 (Safety). 39,550 harm-crashes fetched; 40,318 ped+cyclist casualties, 379 killed over the window."
+    },
     "geographies": {
       "community_districts_59": {
         "source": "https://data.cityofnewyork.us/api/geospatial/5crt-au7u?method=export&format=GeoJSON",

@@ -1,0 +1,129 @@
+{
+  "chapter": 6,
+  "title_working": "Safety",
+  "window": [
+    "2022-01-01",
+    "2024-12-31"
+  ],
+  "n_cds": 59,
+  "normalization": "per 1,000 residents, annualized (B01003)",
+  "spine_test": {
+    "ready": true,
+    "n": 59,
+    "pairs": {
+      "violent_per1k ~ traffic_ki_per1k": 0.478,
+      "violent_per1k ~ property_per1k": 0.61,
+      "traffic_ki_per1k ~ property_per1k": 0.447
+    },
+    "kill": false
+  },
+  "axes": {
+    "violent": {
+      "source": "NYPD complaints qgea-i56i",
+      "window": [
+        "2022-01-01",
+        "2024-12-31"
+      ],
+      "definition": "seven major felonies, annualized per 1,000 residents",
+      "violent_ky": [
+        "101",
+        "104",
+        "105",
+        "106"
+      ],
+      "property_ky": [
+        "107",
+        "109",
+        "110"
+      ],
+      "n_complaints": 373531,
+      "n_unassigned_to_cd": 2292,
+      "violent_per1k_range": [
+        0.986,
+        16.827
+      ],
+      "property_per1k_range": [
+        3.655,
+        64.954
+      ]
+    },
+    "traffic": {
+      "source": "NYPD collisions h9gi-nx95",
+      "window": [
+        "2022-01-01",
+        "2024-12-31"
+      ],
+      "definition": "pedestrian + cyclist killed OR injured (KI, not strict KSI \u2014 public data lacks injury severity), annualized per 1,000 residents",
+      "n_crashes": 38844,
+      "n_unassigned_to_cd": 281,
+      "total_casualties": 40318,
+      "total_killed": 379,
+      "ki_per1k_range": [
+        0.581,
+        6.235
+      ]
+    }
+  },
+  "property_note": "property crime carried as a descriptive third axis; the bodily-harm story is violent + traffic.",
+  "citywide": {
+    "violent_per1k_median": 4.839,
+    "traffic_ki_per1k_median": 1.525,
+    "property_per1k_median": 8.34
+  },
+  "biggest_crime_vs_traffic_flips": [
+    {
+      "borocd": "106",
+      "name": "Stuyvesant Town / Turtle Bay",
+      "violent_rank": 43,
+      "traffic_rank": 5,
+      "rank_gap": 38,
+      "violent_per1k": 3.23,
+      "traffic_ki_per1k": 2.46
+    },
+    {
+      "borocd": "209",
+      "name": "Soundview / Parkchester",
+      "violent_rank": 14,
+      "traffic_rank": 50,
+      "rank_gap": 36,
+      "violent_per1k": 8.38,
+      "traffic_ki_per1k": 1.06
+    },
+    {
+      "borocd": "312",
+      "name": "Borough Park",
+      "violent_rank": 55,
+      "traffic_rank": 19,
+      "rank_gap": 36,
+      "violent_per1k": 1.68,
+      "traffic_ki_per1k": 1.85
+    },
+    {
+      "borocd": "301",
+      "name": "Williamsburg / Greenpoint",
+      "violent_rank": 40,
+      "traffic_rank": 9,
+      "rank_gap": 31,
+      "violent_per1k": 3.69,
+      "traffic_ki_per1k": 2.14
+    },
+    {
+      "borocd": "207",
+      "name": "Kingsbridge Heights / Bedford Park",
+      "violent_rank": 11,
+      "traffic_rank": 41,
+      "rank_gap": 30,
+      "violent_per1k": 8.96,
+      "traffic_ki_per1k": 1.28
+    },
+    {
+      "borocd": "307",
+      "name": "Sunset Park",
+      "violent_rank": 37,
+      "traffic_rank": 8,
+      "rank_gap": 29,
+      "violent_per1k": 4.12,
+      "traffic_ki_per1k": 2.19
+    }
+  ]
+}

@@ -150,6 +150,18 @@
       "sha256": "e8971d212102c229212d27fe51dd6ba58d56f6ceafbb5d4d78ab5a9cac4100d9",
       "source_url": "https://data.cityofnewyork.us/resource/enfh-gkve.geojson?%24select=gispropnum%2C+signname%2C+name311%2C+class%2C+typecategory%2C+subcategory%2C+borough%2C+communityboard%2C+acres%2C+multipolygon&%24limit=10000"
     },
+    "nypd_collisions/ped-cyc-casualties-2022-01-01_2024-12-31.json": {
+      "bytes": 8769792,
+      "fetched_at": "2026-07-11T17:58:58+00:00",
+      "sha256": "a750102ed7306ffae60c21a4bd26ca7cd9a58d19a5e48d8b8a3e587862fa9e1a",
+      "source_url": "https://data.cityofnewyork.us/resource/h9gi-nx95.json?$where=crash_date between '2022-01-01T00:00:00' and '2024-12-31T23:59:59' and latitude IS NOT NULL and (number_of_pedestrians_injured>0 or number_of_pedestrians_killed>0 or number_of_cyclist_injured>0 or number_of_cyclist_killed>0)"
+    },
+    "nypd_complaints/major-felonies-2022-01-01_2024-12-31.json": {
+      "bytes": 35181264,
+      "fetched_at": "2026-07-11T17:58:48+00:00",
+      "sha256": "140d265050dc993c3629e367914a84b8d68f43dd6bf070c234591545acee3b31",
+      "source_url": "https://data.cityofnewyork.us/resource/qgea-i56i.json?$where=cmplnt_fr_dt between '2022-01-01T00:00:00' and '2024-12-31T23:59:59' and law_cat_cd='FELONY' and ky_cd in ('101','104','105','106','107','109','110') and x_coord_cd IS NOT NULL"
+    },
     "nys_food_stores/nyc-2026-06-01.geojson": {
       "bytes": 3910305,
       "fetched_at": "2026-06-06T16:39:32+00:00",

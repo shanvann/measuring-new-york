@@ -61,7 +61,12 @@ try:
 except Exception:
     pass
 
-from pipelines import acs_census, nypd_collisions, nypd_complaints  # noqa: E402
+from pipelines import (  # noqa: E402
+    acs_census,
+    nypd_collisions,
+    nypd_complaints,
+    nyc_street_centerline,
+)
 from shared.cd_names import name_for  # noqa: E402
 from shared.zip_to_cd import is_real_cd  # noqa: E402
 
@@ -192,6 +197,8 @@ def per_cd_traffic(cd_pop: "pd.Series") -> tuple["pd.Series", "pd.Series", dict]
     killed_per100k = (agg["killed"] / cd_pop / WINDOW_YEARS * 100000.0).dropna().round(3)
     ki_per1k.name = "traffic_ki_per1k"
     killed_per100k.name = "traffic_killed_per100k"
+    casualties_per_yr = (agg["casualties"] / WINDOW_YEARS).round(2)
+    casualties_per_yr.name = "casualties_per_yr"
 
     meta = {
         "source": f"NYPD collisions {nypd_collisions.DATASET_ID}",
@@ -205,7 +212,26 @@ def per_cd_traffic(cd_pop: "pd.Series") -> tuple["pd.Series", "pd.Series", dict]
         "total_killed": int(agg["killed"].sum()),
         "ki_per1k_range": [float(ki_per1k.min()), float(ki_per1k.max())],
     }
-    return ki_per1k, killed_per100k, meta
+    return ki_per1k, killed_per100k, casualties_per_yr, meta
+
+
+def per_cd_street_miles() -> "pd.Series":
+    """Centerline street-miles per CD, via the area-weighted ZIP→CD crosswalk.
+
+    Approximate (ZIPs straddle CDs) — a denominator cross-check, not a
+    headline metric. See nyc_street_centerline for the exposure rationale.
+    """
+    import pandas as pd
+
+    zip_miles = nyc_street_centerline.load()
+    xwalk = pd.read_csv(
+        REPO_ROOT / "geographies" / "zip_cd_crosswalk.csv",
+        dtype={"modzcta": str, "borocd": str},
+    )
+    xwalk["miles"] = xwalk["modzcta"].map(zip_miles) * xwalk["area_weight"]
+    per_cd = xwalk.dropna(subset=["miles"]).groupby("borocd")["miles"].sum()
+    per_cd.name = "street_miles"
+    return per_cd.round(2)
 
 
 def spine_test(axes: dict) -> dict:
@@ -231,6 +257,105 @@ def spine_test(axes: dict) -> dict:
     return result
 
 
+# Five anchors, one per borough, spanning the crime x traffic quadrants.
+# 209 feared-not-deadly (BX) · 106 calm-but-deadly (MN) · 316 Brownsville the
+# feared archetype (BK, Ch.2 tie) · 411 safe-both (QN, Ch.2 tie) · 503 safest
+# CD citywide (SI). Midtown (105) is discussed in prose as the ambient-
+# population caveat rather than anchored.
+ANCHOR_CDS = ["209", "106", "316", "411", "503"]
+
+
+def _safety_quadrant(violent, traffic, v_med, t_med) -> str:
+    hi_v, hi_t = violent >= v_med, traffic >= t_med
+    return ("feared_and_deadly" if hi_v and hi_t else
+            "feared_not_deadly" if hi_v and not hi_t else
+            "calm_but_deadly" if (not hi_v) and hi_t else "safe")
+
+
+def render_headline(frame: "pd.DataFrame") -> dict:
+    """Headline: violent-crime vs. traffic-KI scatter (the crime map is not
+    the danger map) + a per-CD display-CRS geojson for <NycMap>.
+
+    Writes:
+      out/crime-vs-danger.svg   static headline scatter (fallback / repro)
+      out/safety.geojson        per-CD axes + ranks + quadrant, 50-ft
+                                simplified, consumed by <NycMap>/<ScatterPlot>
+    """
+    import matplotlib.pyplot as plt
+    from shared import basemap, palette
+
+    palette.for_matplotlib()
+    f = frame.set_index("borocd")
+    v_med = float(f["violent_per1k"].median())
+    t_med = float(f["traffic_ki_per1k"].median())
+
+    QCOLOR = {
+        "feared_and_deadly": "#7a3a5a",   # dangerous on both
+        "feared_not_deadly": palette.ALERT,   # the crime the map shows
+        "calm_but_deadly": palette.ACCENT,    # the danger the map hides
+        "safe": palette.MUTED,
+    }
+    cls = {cd: _safety_quadrant(r["violent_per1k"], r["traffic_ki_per1k"],
+                                v_med, t_med)
+           for cd, r in f.iterrows()}
+
+    # ---- geojson sibling for <NycMap> ----
+    cds = basemap.load("cd")
+    cds = cds[cds["boro_cd"].apply(is_real_cd)].copy()
+    cds["geometry"] = cds.geometry.simplify(50.0, preserve_topology=True)
+    geo = cds[["boro_cd", "geometry"]].copy()
+    geo["name"] = geo["boro_cd"].map(name_for)
+    for col in ["violent_per1k", "traffic_ki_per1k", "property_per1k",
+                "traffic_killed_per100k", "traffic_ki_per_mile"]:
+        geo[col] = f[col].reindex(geo["boro_cd"].values).values
+    geo["rank_violent"] = geo["violent_per1k"].rank(ascending=False, method="min").astype("Int64")
+    geo["rank_traffic"] = geo["traffic_ki_per1k"].rank(ascending=False, method="min").astype("Int64")
+    geo["rank_property"] = geo["property_per1k"].rank(ascending=False, method="min").astype("Int64")
+    geo["quadrant"] = geo["boro_cd"].map(cls)
+    geojson_path = OUT / "safety.geojson"
+    basemap.to_display(geo).to_file(geojson_path, driver="GeoJSON")
+    print(f"[wrote] {geojson_path}  ({geojson_path.stat().st_size:,} bytes)")
+
+    # ---- headline scatter (static fallback) ----
+    fig, ax = plt.subplots(figsize=(8.5, 8.0))
+    for cd, r in f.iterrows():
+        c = QCOLOR[cls[cd]]
+        is_anchor = cd in ANCHOR_CDS
+        ax.scatter(r["violent_per1k"], r["traffic_ki_per1k"],
+                   s=80 if is_anchor else 34, c=c,
+                   edgecolor=palette.TEXT if is_anchor else "none",
+                   linewidth=0.8, zorder=3 if is_anchor else 2,
+                   alpha=0.95 if is_anchor else 0.6)
+    ax.axvline(v_med, color=palette.BORDER, lw=1, zorder=1)
+    ax.axhline(t_med, color=palette.BORDER, lw=1, zorder=1)
+    for cd in ANCHOR_CDS:
+        r = f.loc[cd]
+        ax.annotate(f"  {name_for(cd).split(' / ')[0]}",
+                    xy=(r["violent_per1k"], r["traffic_ki_per1k"]),
+                    fontsize=8.5, color=palette.TEXT, va="center", zorder=4)
+    ax.set_xlabel("Violent crime — murder/rape/robbery/felony assault per 1,000 residents/yr")
+    ax.set_ylabel("Traffic harm — pedestrians + cyclists killed or injured per 1,000 residents/yr")
+    rho = f["violent_per1k"].rank().corr(f["traffic_ki_per1k"].rank())
+    ax.set_title("The map of crime is not the map of danger", fontsize=15, loc="left", pad=8)
+    ax.text(0.0, 1.012,
+            f"NYC community districts · violent crime vs. traffic harm (ρ = {rho:+.2f})",
+            transform=ax.transAxes, fontsize=9.5, color=palette.TEXT_SECONDARY,
+            ha="left", va="bottom")
+    svg_path = OUT / "crime-vs-danger.svg"
+    fig.savefig(svg_path, bbox_inches="tight")
+    plt.close(fig)
+    print(f"[wrote] {svg_path}  ({svg_path.stat().st_size:,} bytes)")
+
+    return {
+        "anchors": ANCHOR_CDS,
+        "violent_median_per1k": round(v_med, 3),
+        "traffic_median_per1k": round(t_med, 3),
+        "quadrant_counts": {k: int(v) for k, v in
+                            __import__("collections").Counter(cls.values()).items()},
+        "files": {"scatter_svg": svg_path.name, "geojson": geojson_path.name},
+    }
+
+
 def main() -> int:
     import pandas as pd
 
@@ -242,7 +367,12 @@ def main() -> int:
     violent, prop, crime_meta = per_cd_crime(cd_pop)
 
     print("[ch.6] axis 2 — traffic KI (NYPD collisions, ped+cyclist)")
-    traffic, killed, traffic_meta = per_cd_traffic(cd_pop)
+    traffic, killed, casualties_yr, traffic_meta = per_cd_traffic(cd_pop)
+
+    print("[ch.6] traffic exposure cross-check — casualties per street-mile")
+    street_miles = per_cd_street_miles()
+    traffic_per_mile = (casualties_yr / street_miles).dropna().round(3)
+    traffic_per_mile.name = "traffic_ki_per_mile"
 
     axes = {
         "violent_per1k": violent,
@@ -252,12 +382,21 @@ def main() -> int:
     print("[ch.6] SPINE TEST — three kinds of harm")
     spine = spine_test(axes)
 
+    # exposure check: does per-street-mile agree with per-resident on traffic?
+    import pandas as _pd
+    _tt = _pd.DataFrame({"per1k": traffic, "per_mile": traffic_per_mile}).dropna()
+    traffic_norm_rho = float(_tt["per1k"].rank().corr(_tt["per_mile"].rank()))
+    print(f"[ch.6] traffic per-1k ~ per-mile Spearman rho = {traffic_norm_rho:+.3f} "
+          f"(high = the exposure denominator doesn't change the ranking)")
+
     # fear-calibration preview: which objective axis dominates the total?
     frame = pd.DataFrame({
         "violent_per1k": violent,
         "traffic_ki_per1k": traffic,
         "property_per1k": prop,
         "traffic_killed_per100k": killed,
+        "traffic_ki_per_mile": traffic_per_mile,
+        "street_miles": street_miles,
     })
     frame["pop"] = cd_pop.reindex(frame.index)
     frame.index.name = "borocd"
@@ -268,8 +407,35 @@ def main() -> int:
     for col in ["violent_per1k", "traffic_ki_per1k", "property_per1k"]:
         frame[f"{col}_rank"] = frame[col].rank(ascending=False, method="min").astype("Int64")
 
+    # quadrant class on the frame (violent x traffic) for rankings + anchors
+    v_med = float(frame["violent_per1k"].median())
+    t_med = float(frame["traffic_ki_per1k"].median())
+    frame["quadrant"] = [
+        _safety_quadrant(v, t, v_med, t_med)
+        for v, t in zip(frame["violent_per1k"], frame["traffic_ki_per1k"])
+    ]
+
     rankings = frame.sort_values("violent_per1k", ascending=False)
     rankings.to_csv(OUT / "rankings.csv", index=False)
+
+    print("\n[ch.6] render headline (crime-vs-danger scatter + geojson)")
+    render = render_headline(frame)
+
+    fi = frame.set_index("borocd")
+    anchor_table = [
+        {
+            "borocd": cd,
+            "name": name_for(cd),
+            "violent_per1k": round(float(fi.loc[cd, "violent_per1k"]), 2),
+            "violent_rank": int(fi.loc[cd, "violent_per1k_rank"]),
+            "traffic_ki_per1k": round(float(fi.loc[cd, "traffic_ki_per1k"]), 2),
+            "traffic_rank": int(fi.loc[cd, "traffic_ki_per1k_rank"]),
+            "property_per1k": round(float(fi.loc[cd, "property_per1k"]), 2),
+            "property_rank": int(fi.loc[cd, "property_per1k_rank"]),
+            "quadrant": fi.loc[cd, "quadrant"],
+        }
+        for cd in ANCHOR_CDS
+    ]
 
     # crime-map vs danger-map divergence: how far do violent & traffic ranks move?
     fr = frame.dropna(subset=["violent_per1k_rank", "traffic_ki_per1k_rank"]).copy()
@@ -283,12 +449,21 @@ def main() -> int:
         "n_cds": int(frame["borocd"].nunique()),
         "normalization": "per 1,000 residents, annualized (B01003)",
         "spine_test": spine,
+        "traffic_normalization_check": {
+            "per1k_vs_per_mile_rho": round(traffic_norm_rho, 3),
+            "note": "Spearman ρ between traffic KI per-1k-resident and per-"
+                    "street-mile rankings. High ρ means the dense-core traffic "
+                    "toll is not merely a resident-denominator artifact — it "
+                    "survives an exposure denominator.",
+        },
         "axes": {
             "violent": crime_meta,
             "traffic": traffic_meta,
         },
         "property_note": "property crime carried as a descriptive third axis; "
                          "the bodily-harm story is violent + traffic.",
+        "anchors": anchor_table,
+        "headline": render,
         "citywide": {
             "violent_per1k_median": round(float(violent.median()), 3),
             "traffic_ki_per1k_median": round(float(traffic.median()), 3),

@@ -230,13 +230,30 @@ medians/1k: violent 4.84, traffic KI 1.52, property 8.34.
   daytime-pop caveat matter here (see below).
 - **BK 312 Borough Park** — violent #55 (near-safest), traffic #19.
 
-**Refinement for the prose (empirical, not hypothesized):** violent crime
-concentrates in the South Bronx; traffic casualties concentrate in dense
-high-throughput cores (Manhattan, north Brooklyn). The two maps differ — the
-thesis holds — but the *traffic* mechanism reads more as exposure/throughput
-than car-dependence. Adding the **per-street-mile** traffic normalization
-(LION) is now higher priority than "optional" to separate the exposure story
-from a genuine road-design story before the headline visual locks.
+**Refinement CONFIRMED (empirical, overturns the kickoff hypothesis):** I
+guessed traffic danger would hide in *quiet car-dependent outer-borough
+arterials*. The data says the opposite. Traffic casualties concentrate in
+**dense Manhattan** (Midtown, Chelsea, Village, Stuy Town, Harlem, LES) — a
+**pedestrian-exposure** story, not car-dependence — while the car-dependent
+outer edges (Tottenville, Bayside, Throgs Neck, Forest Hills) are the
+**safest** per capita: few people on foot, few people hit. The per-street-
+mile cross-check (`pipelines/nyc_street_centerline.py`, CSCL `inkn-q76z`)
+gives **traffic per-1k ~ per-mile ρ = +0.713** → the dense-core toll is NOT a
+resident-denominator artifact; it survives an exposure denominator (Midtown
+is #1 on both). Violent crime, meanwhile, concentrates in the **South Bronx**
+(Mott Haven, Kingsbridge, Soundview) + Brownsville. Different maps → thesis
+holds, mechanism is exposure. **Midtown (105) is the ambient-population
+caveat** — tiny residential denominator inflates all three per-resident
+rates (V#3, T#1, P#1); discuss in prose, not anchored.
+
+**Anchors (locked, 1/borough, span the quadrants):** 209 Soundview (BX,
+feared-not-deadly) · 106 Stuyvesant Town/Turtle Bay (MN, calm-but-deadly) ·
+316 Brownsville (BK, the feared archetype, Ch.2 tie) · 411 Bayside (QN, safe,
+Ch.2 tie) · 503 Tottenville (SI, safest CD citywide). Quadrant spread: 20
+feared+deadly / 19 safe / 10 calm-but-deadly / 10 feared-not-deadly.
+
+**Headline shipped:** `out/crime-vs-danger.svg` (violent×traffic scatter,
+fallback) + `out/safety.geojson` (per-CD axes+ranks+quadrant for `<NycMap>`).
 
 ### Next session (build order)
 1. **Lock the perceived-safety source** from the research verdict; record id
